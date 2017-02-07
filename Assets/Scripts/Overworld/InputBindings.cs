@@ -25,15 +25,15 @@ public class InputBindings : PlayerActionSet {
 
         inputBindings.Backwards.AddDefaultBinding(Key.DownArrow);
         inputBindings.Backwards.AddDefaultBinding(Key.S);
-        //inputBindings.Backwards.AddDefaultBinding(InputControlType.LeftStickDown);
+        inputBindings.Backwards.AddDefaultBinding(InputControlType.LeftStickDown);
 
         inputBindings.RotateClockwise.AddDefaultBinding(Key.RightArrow);
         inputBindings.RotateClockwise.AddDefaultBinding(Key.D);
-        //inputBindings.RotateClockwise.AddDefaultBinding(InputControlType.LeftStickRight);
+        inputBindings.RotateClockwise.AddDefaultBinding(InputControlType.RightStickRight);
 
         inputBindings.RotateCounterClockwise.AddDefaultBinding(Key.LeftArrow);
         inputBindings.RotateCounterClockwise.AddDefaultBinding(Key.A);
-        //inputBindings.RotateCounterClockwise.AddDefaultBinding(InputControlType.LeftStickLeft);
+        inputBindings.RotateCounterClockwise.AddDefaultBinding(InputControlType.RightStickLeft);
 
         return inputBindings;
     }
