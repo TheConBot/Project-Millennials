@@ -28,7 +28,6 @@ public class BasicInkExample : MonoBehaviour {
 
 	void RefreshView () {
 		RemoveChildren ();
-
 		while (story.canContinue) {
 			string text = story.Continue ().Trim();
 			CreateContentView(text);
