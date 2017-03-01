@@ -6,8 +6,8 @@ VAR want_to_go = false
 
 ===Begin===
 Halle: Hey so what the fuck are we doing tonight?
-Vanya: I just got a text from Cody, there's a thing happening at Brooke's.
-Kay: And we would want to be there why?
+Vanya: I just got a text from Cody, there's a thing happening at Brooke's. # kay_sad
+Kay: And we would want to be there why? # kay_happy
 Halle: I forget, which one are you dating - Cody or Caleb?
 Vanya: Yes.
 Kay: Oh. Well then.

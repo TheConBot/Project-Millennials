@@ -15,6 +15,10 @@ public class InkTest : MonoBehaviour {
     private GameObject choicesPanel;
     [SerializeField]
     private Button[] choicesButtons;
+    [SerializeField]
+    private Sprite[] kayExpressions;
+    [SerializeField]
+    private Image textBoxImage;
 
     private void Awake()
     {
@@ -42,6 +46,32 @@ public class InkTest : MonoBehaviour {
     private void UpdateText()
     {
         textField.text = story.Continue().Trim();
+        if(story.currentTags.Count > 0)
+        {
+            Sprite temp = null;
+            foreach (string i in story.currentTags)
+            {
+                if (i.StartsWith("kay"))
+                {
+                    switch (i)
+                    {
+                        case "kay_happy":
+                            temp = kayExpressions[0];
+                            break;
+                        case "kay_sad":
+                            temp = kayExpressions[1];
+                            break;
+
+                    }
+                }
+            }
+            if(temp == null)
+            {
+                Debug.LogError("Something went wrong with updating the character expression");
+                return;
+            }
+            textBoxImage.sprite = temp;
+        }
     }
 
     private void GenerateChoices()
