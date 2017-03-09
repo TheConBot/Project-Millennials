@@ -6,23 +6,30 @@ using Ink.Runtime;
 
 public class InkTest : MonoBehaviour {
 
-    [SerializeField]
+    [SerializeField, Header("INK File")]
     private TextAsset inkJSONAsset;
     private Story story;
+    [SerializeField, Header("UI Elements")]
+    private Text bodyText;
     [SerializeField]
-    private Text textField;
+    private Text nameText;
     [SerializeField]
     private GameObject choicesPanel;
     [SerializeField]
     private Button[] choicesButtons;
     [SerializeField]
-    private Sprite[] kayExpressions;
+    private Image characterImage;
     [SerializeField]
-    private Image textBoxImage;
+    private Sprite[] expressionSprites;
+
+    private readonly char[] delimiterChars = { ':' };
+    private readonly string[] characterImageNames = { "halle", "kay", "vanya" };
+    private readonly string[] characterImageExpressions = { "_angry", "_happy", "_neutral", "_sad", "_sarcastic", "_special" };
 
     private void Awake()
     {
         story = new Story(inkJSONAsset.text);
+        story.ChoosePathString("Kay_to_Vanya");
         UpdateText();
     }
 
@@ -45,33 +52,48 @@ public class InkTest : MonoBehaviour {
 
     private void UpdateText()
     {
-        textField.text = story.Continue().Trim();
+        string nextLine = story.Continue().Trim();
+        string[] splitLine = nextLine.Split(delimiterChars);
+
         if(story.currentTags.Count > 0)
         {
-            Sprite temp = null;
-            foreach (string i in story.currentTags)
-            {
-                if (i.StartsWith("kay"))
-                {
-                    switch (i)
-                    {
-                        case "kay_happy":
-                            temp = kayExpressions[0];
-                            break;
-                        case "kay_sad":
-                            temp = kayExpressions[1];
-                            break;
+            characterImage.sprite = GetCharacterImage();
+        }
 
+        nameText.text = splitLine[0].Trim();
+        bodyText.text = splitLine[1].Trim();
+    }
+    //TODO: Refactor this, there has to be a better way. Use a fucking dictionary.
+    private Sprite GetCharacterImage(Sprite temp = null)
+    {
+        string tag = story.currentTags[0];
+        if (tag == "none")
+        {
+            temp = expressionSprites[expressionSprites.Length - 1];
+        }
+        else
+        {
+            for (int i = 0; i < characterImageNames.Length; i++)
+            {
+                if (tag.StartsWith(characterImageNames[i]))
+                {
+                    for (int j = 0; j < characterImageExpressions.Length; j++)
+                    {
+                        if (tag.EndsWith(characterImageExpressions[j]))
+                        {
+                            temp = expressionSprites[i * j];
+                            break;
+                        }
                     }
                 }
             }
-            if(temp == null)
-            {
-                Debug.LogError("Something went wrong with updating the character expression");
-                return;
-            }
-            textBoxImage.sprite = temp;
         }
+
+        if (temp == null)
+        {
+            Debug.LogWarning("Something may have went wrong with updating the character expression.");
+        }
+        return temp;
     }
 
     private void GenerateChoices()

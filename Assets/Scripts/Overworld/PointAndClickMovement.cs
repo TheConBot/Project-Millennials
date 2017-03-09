@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class PointAndClickMovement : MonoBehaviour {
 
     private NavMeshAgent agent;
+    public GameObject cameraPivot;
 
     private void Start()
     {
@@ -21,14 +22,18 @@ public class PointAndClickMovement : MonoBehaviour {
             {
                 agent.destination = hit.point;
             }
+            else
+            {
+                Debug.LogError("Could not walk to selected destinaion.");
+            }
         }
 
         if (Input.GetMouseButton(1))
         {
             Debug.Log(Input.GetAxis("Mouse X"));
-            float yAxis = Camera.main.transform.eulerAngles.y; 
+            float yAxis = cameraPivot.transform.eulerAngles.y; 
             yAxis += -Input.GetAxis("Mouse X");
-            Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, yAxis, Camera.main.transform.eulerAngles.z);
+            cameraPivot.transform.rotation = Quaternion.Euler(cameraPivot.transform.eulerAngles.x, yAxis, cameraPivot.transform.eulerAngles.z);
         }
     }
 }
