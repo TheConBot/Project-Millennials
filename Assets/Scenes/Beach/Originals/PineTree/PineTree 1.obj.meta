@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: 1edeec5df4d2fea4f999c8a2417be935
-timeCreated: 1488907833
+guid: 7db4e56b92300294fa8be0ae77970c53
+timeCreated: 1488906236
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Bench
+    100000: Branch2_Tree1
     100002: //RootNode
-    400000: Bench
+    100004: Tree1_Trunk
+    400000: Branch2_Tree1
     400002: //RootNode
-    2300000: Bench
-    3300000: Bench
-    4300000: Bench
+    400004: Tree1_Trunk
+    2300000: Branch2_Tree1
+    2300002: Tree1_Trunk
+    3300000: Branch2_Tree1
+    3300002: Tree1_Trunk
+    4300000: Branch2_Tree1
+    4300002: Tree1_Trunk
   materials:
     importMaterials: 1
     materialName: 0

@@ -14,7 +14,7 @@ public class PointAndClickMovement : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !UI.Instance.inConversation)
         {
             RaycastHit hit;
 
