@@ -8,6 +8,12 @@ public class UI : MonoBehaviour
 {
     public static UI Instance { get; private set; }
 
+    public enum FadeType
+    {
+        Out,
+        In
+    }
+
     [SerializeField, Header("INK File")]
     private TextAsset inkJSONAsset;
     private Story story;
@@ -16,15 +22,34 @@ public class UI : MonoBehaviour
     [SerializeField]
     private Text nameText;
     [SerializeField]
+    private GameObject conversationPanel;
+    [SerializeField]
     private GameObject choicesPanel;
     [SerializeField]
     private Button[] choicesButtons;
     [SerializeField]
     private Image characterImage;
     [SerializeField]
-    public Sprite[] expressionSprites;
+    private Sprite[] expressionSprites;
+    [Header("UI Variables"), SerializeField]
+    private float fadeSpeed = 1;
 
-    public bool inConversation { get; private set; }
+    private CanvasGroup conversationCanvasGroup;
+
+    public bool inConversation {
+        get
+        {
+            return conversationPanel.activeSelf;
+        }
+    }
+
+    public bool choicesAvailable
+    {
+        get
+        {
+            return story.currentChoices.Count > 0 && !choicesPanel.activeSelf;
+        }
+    }
 
     private readonly char[] delimiterChars = { ':' };
     private readonly string[] characterImageNames = { "halle", "kay", "vanya" };
@@ -32,6 +57,7 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -40,36 +66,23 @@ public class UI : MonoBehaviour
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            story = new Story(inkJSONAsset.text);
         }
-
+        //Everything else
+        InitializeInk();
+        InitializeUI();
     }
 
-    //TODO: This shit has gotta go somewhere else, local script in the scene that talks to UI as a singleton.
-
-    private void Update()
+    public void UpdateText()
     {
-        if (Input.GetMouseButtonDown(0) && story.canContinue)
+        if (!story.canContinue && story.currentChoices.Count == 0)
         {
-            UpdateText();
-            inConversation = true;
+            EndConversation();
+            return;
         }
-        else if (Input.GetMouseButtonDown(0) && !story.canContinue && story.currentChoices.Count == 0)
+        else if (!story.canContinue)
         {
-            Debug.LogWarning("End of story!");
-            inConversation = false;
+            return;
         }
-
-        if (story.currentChoices.Count > 0 && !choicesPanel.activeSelf)
-        {
-            GenerateChoices();
-        }
-    }
-
-    //END OF BAD SHIT
-
-    private void UpdateText()
-    {
         string nextLine = story.Continue().Trim();
         string[] splitLine = nextLine.Split(delimiterChars);
 
@@ -81,6 +94,19 @@ public class UI : MonoBehaviour
         nameText.text = splitLine[0].Trim();
         bodyText.text = splitLine[1].Trim();
     }
+
+    private void InitializeInk()
+    {
+        story = new Story(inkJSONAsset.text);
+    }
+
+    private void InitializeUI()
+    {
+        conversationCanvasGroup = conversationPanel.GetComponent<CanvasGroup>();
+        conversationCanvasGroup.alpha = 0;
+        conversationPanel.SetActive(false);
+    }
+
     //TODO: Refactor this, there has to be a better way. Use a fucking dictionary.
     private Sprite GetCharacterImage(Sprite temp = null)
     {
@@ -118,9 +144,44 @@ public class UI : MonoBehaviour
     {
         story.ChoosePathString(tag);
         UpdateText();
+        StartCoroutine(FadeCanvasGroup(FadeType.In));
     }
 
-    private void GenerateChoices()
+    private void EndConversation()
+    {
+        Debug.Log("End of conversation.");
+        StartCoroutine(FadeCanvasGroup(FadeType.Out));
+    }
+
+    private IEnumerator FadeCanvasGroup(FadeType fadeType)
+    {
+        int targetAlpha = (int)fadeType;
+
+        if(fadeType == FadeType.In)
+        {
+            conversationPanel.SetActive(true);
+        }
+
+        while(conversationCanvasGroup.alpha != targetAlpha)
+        {
+            if (conversationCanvasGroup.alpha < targetAlpha)
+            {
+                conversationCanvasGroup.alpha += Time.smoothDeltaTime * fadeSpeed;
+            }
+            else
+            {
+                conversationCanvasGroup.alpha -= Time.smoothDeltaTime * fadeSpeed;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        if(fadeType == FadeType.Out)
+        {
+            conversationPanel.SetActive(false);
+        }
+    }
+
+    public void GenerateChoices()
     {
         choicesPanel.SetActive(true);
         for (int i = 0; i < story.currentChoices.Count; i++)

@@ -28,7 +28,7 @@ public class InkTest : MonoBehaviour {
 
     private void Awake()
     {
-        UI.Instance.expressionSprites = expressionSprites;
+        //UI.Instance.expressionSprites = expressionSprites;
         story = new Story(inkJSONAsset.text);
         story.ChoosePathString("Kay_to_Vanya");
         UpdateText();
