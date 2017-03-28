@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour {
     private GameObject cameraPivot;
     private TriggerVolume lastClickedTrigger;
 
+    public float cameraSwivelSpeed = 3;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -52,7 +54,7 @@ public class PlayerInput : MonoBehaviour {
         else if (Input.GetMouseButton(1))
         {
             Debug.Log(Input.GetAxis("Mouse X"));
-            float yAxis = cameraPivot.transform.eulerAngles.y; 
+            float yAxis = cameraPivot.transform.eulerAngles.y * cameraSwivelSpeed; 
             yAxis += -Input.GetAxis("Mouse X");
             cameraPivot.transform.rotation = Quaternion.Euler(cameraPivot.transform.eulerAngles.x, yAxis, cameraPivot.transform.eulerAngles.z);
         }

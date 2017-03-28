@@ -84,6 +84,7 @@ public class UI : MonoBehaviour
             return;
         }
         string nextLine = story.Continue().Trim();
+        Debug.Log(nextLine);
         string[] splitLine = nextLine.Split(delimiterChars);
 
         if (story.currentTags.Count > 0)
@@ -92,7 +93,8 @@ public class UI : MonoBehaviour
         }
 
         nameText.text = splitLine[0].Trim();
-        bodyText.text = splitLine[1].Trim();
+        if (splitLine.Length > 1) bodyText.text = splitLine[1].Trim();
+        else bodyText.text = "";
     }
 
     private void InitializeInk()
