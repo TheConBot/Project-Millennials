@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: f9064d4d77bf5c04fba4fc03ac8003fc
+timeCreated: 1490656138
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base01
+    100002: Base02
+    100004: Base03
+    100006: Base04
+    100008: Cabinet01
+    100010: Cabinet02
+    100012: Door01
+    100014: Door02
+    100016: Knob01
+    100018: Knob02
+    100020: Support01
+    100022: Support010
+    100024: Support011
+    100026: Support012
+    100028: Support013
+    100030: Support02
+    100032: Support03
+    100034: Support04
+    100036: Support05
+    100038: Support06
+    100040: Support07
+    100042: Support08
+    100044: Support09
+    100046: //RootNode
+    400000: Base01
+    400002: Base02
+    400004: Base03
+    400006: Base04
+    400008: Cabinet01
+    400010: Cabinet02
+    400012: Door01
+    400014: Door02
+    400016: Knob01
+    400018: Knob02
+    400020: Support01
+    400022: Support010
+    400024: Support011
+    400026: Support012
+    400028: Support013
+    400030: Support02
+    400032: Support03
+    400034: Support04
+    400036: Support05
+    400038: Support06
+    400040: Support07
+    400042: Support08
+    400044: Support09
+    400046: //RootNode
+    2300000: Base01
+    2300002: Base02
+    2300004: Base03
+    2300006: Base04
+    2300008: Cabinet01
+    2300010: Cabinet02
+    2300012: Door01
+    2300014: Door02
+    2300016: Knob01
+    2300018: Knob02
+    2300020: Support01
+    2300022: Support010
+    2300024: Support011
+    2300026: Support012
+    2300028: Support013
+    2300030: Support02
+    2300032: Support03
+    2300034: Support04
+    2300036: Support05
+    2300038: Support06
+    2300040: Support07
+    2300042: Support08
+    2300044: Support09
+    3300000: Base01
+    3300002: Base02
+    3300004: Base03
+    3300006: Base04
+    3300008: Cabinet01
+    3300010: Cabinet02
+    3300012: Door01
+    3300014: Door02
+    3300016: Knob01
+    3300018: Knob02
+    3300020: Support01
+    3300022: Support010
+    3300024: Support011
+    3300026: Support012
+    3300028: Support013
+    3300030: Support02
+    3300032: Support03
+    3300034: Support04
+    3300036: Support05
+    3300038: Support06
+    3300040: Support07
+    3300042: Support08
+    3300044: Support09
+    4300000: Base03
+    4300002: Cabinet01
+    4300004: Door01
+    4300006: Knob01
+    4300008: Base02
+    4300010: Base01
+    4300012: Support01
+    4300014: Support02
+    4300016: Support03
+    4300018: Support04
+    4300020: Support05
+    4300022: Base04
+    4300024: Cabinet02
+    4300026: Door02
+    4300028: Knob02
+    4300030: Support06
+    4300032: Support07
+    4300034: Support08
+    4300036: Support09
+    4300038: Support010
+    4300040: Support011
+    4300042: Support012
+    4300044: Support013
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
