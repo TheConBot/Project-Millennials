@@ -27,22 +27,22 @@ public class PlayerMovement : MonoBehaviour {
         {
             //To handle the actual movement
             int moveDirection = 0;
-            if (input.Forwards.IsPressed)
+            if (input.Up.IsPressed)
             {
                 moveDirection = 1;
             }
-            else if (input.Backwards.IsPressed)
+            else if (input.Down.IsPressed)
             {
                 moveDirection = -1;    
             }
             body.AddForce(transform.forward * moveSpeed * moveDirection);
             //Rotating the player
             int rotationDirection = 0;
-            if (input.RotateClockwise.IsPressed)
+            if (input.Right.IsPressed)
             {
                 rotationDirection = 1;
             }
-            else if (input.RotateCounterClockwise.IsPressed)
+            else if (input.Left.IsPressed)
             {
                 rotationDirection = -1;
             }
