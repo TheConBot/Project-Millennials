@@ -59,7 +59,15 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("Could not walk to selected destinaion.");
+                    if(hit.transform == null)
+                    {
+                        Debug.LogWarning("Could not walk to selected destinaion. Nothing was hit.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Could not walk to selected destinaion. Object Hit: " + hit.transform.name);
+                    }
+                    
                 }
             }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using InControl;
+using UnityEngine.UI;
 
 public class CarManager : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class CarManager : MonoBehaviour
     public int invincibilityTicks = 3;
     public AnimationCurve carTurnAngle;
     public Transform[] XPosRef;
+    public Slider distanceMeter;
+    public Image[] livesImages;
 
     private InputBindings inputBindings;
     private int lives = 3;
@@ -24,6 +26,11 @@ public class CarManager : MonoBehaviour
     private void Awake()
     {
         inputBindings = InputBindings.CreateWithDefaultBindings();
+        distanceMeter.maxValue = timer;
+        if(lives != livesImages.Length)
+        {
+            Debug.LogWarning("The ammount of lives images is not equal to the ammount of lives.");
+        }
         StartCoroutine(Timer());
     }
 
@@ -81,6 +88,7 @@ public class CarManager : MonoBehaviour
         if(other.GetComponent<ObstacleMover>() != null && !isCarInvincible)
         {
             lives--;
+            livesImages[lives].enabled = false;
             if(lives <= 0)
             {
                 StartCoroutine(Invincible(100));
@@ -109,9 +117,9 @@ public class CarManager : MonoBehaviour
     {
         while(timer > 0 && lives > 0)
         {
-            yield return new WaitForSecondsRealtime(1);
-            timer--;
-            Debug.Log(timer);
+            timer -= Time.deltaTime;
+            distanceMeter.value += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
         if (lives > 0)
         {
