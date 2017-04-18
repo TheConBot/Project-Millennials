@@ -19,13 +19,14 @@ public class BallToss : MonoBehaviour
     public float ballResetTime = 4;
     [Header("Ball Settings")]
     public float zOffset;
-    public float ballSpeed = 10;
+    public float ballSpeed = 1000;
     [Header("Camera Settings")]
     public float cameraZoomAmount = 15;
     public float cameraZoomSpeed = 5;
     [Header("UI")]
     public Text triesRemaining;
     public Text cupsRemaining;
+    public Slider powerGauge;
 
 
     private void Awake()
@@ -43,7 +44,11 @@ public class BallToss : MonoBehaviour
         if (tries > 0 && cups > 0)
         {
             //Launch Input
-            if (Input.GetMouseButtonDown(0) && holdingBall)
+            if (Input.GetMouseButton(0) && holdingBall)
+            {
+                powerGauge.value = Mathf.PingPong(Time.time * 10, powerGauge.maxValue);
+            }
+            else if(Input.GetMouseButtonUp(0) && holdingBall)
             {
                 LaunchBall();
             }
@@ -87,7 +92,7 @@ public class BallToss : MonoBehaviour
     {
         holdingBall = false;
         body.isKinematic = holdingBall;
-        body.AddForce(transform.forward * ballSpeed);
+        body.AddForce(transform.forward * ballSpeed * powerGauge.value);
         StartCoroutine(ResetBallTimer());
     }
 
