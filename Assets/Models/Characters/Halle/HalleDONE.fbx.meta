@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: ff18baa5d14d4244f93091767c8f165f
-timeCreated: 1490059806
-licenseType: Free
+guid: 72b2db20c27f7d64393ae9a06aea42b1
+timeCreated: 1492708612
+licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -90,6 +90,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -104,7 +106,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 25
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 56fd80e81cee7a545ac46463d18be6a5
-timeCreated: 1492706807
+guid: ba0609d9358b0fe41871ef6167cb0bc0
+timeCreated: 1492707037
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -93,7 +93,6 @@ ModelImporter:
     400084: mixamorig:Spine2
     4300000: Box001
     7400000: Take 001
-    7400002: mixamo.com
     9500000: //RootNode
     13700000: Box001
   materials:

@@ -8,6 +8,7 @@ public class BallToss : MonoBehaviour
 {
     //Private Vars
     private Rigidbody body;
+    private LineRenderer lineRenderer;
     private bool holdingBall;
     private float cameraOrigonalZoom;
     private const string triesText = "Tries: ";
@@ -32,6 +33,7 @@ public class BallToss : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
+        lineRenderer = GetComponent<LineRenderer>();
         holdingBall = true;
         body.isKinematic = holdingBall;
         cameraOrigonalZoom = Camera.main.fieldOfView;
@@ -43,35 +45,40 @@ public class BallToss : MonoBehaviour
     {
         if (tries > 0 && cups > 0)
         {
-            //Launch Input
-            if (Input.GetMouseButton(0) && holdingBall)
-            {
-                powerGauge.value = Mathf.PingPong(Time.time * 10, powerGauge.maxValue);
-            }
-            else if(Input.GetMouseButtonUp(0) && holdingBall)
-            {
-                LaunchBall();
-            }
-            //Ball Aim
             if (holdingBall)
             {
+                //Launch Input
+                if (Input.GetMouseButton(0))
+                {
+                    powerGauge.value = Mathf.PingPong(Time.time * 10, powerGauge.maxValue);
+                    UpdateTrajectory(transform.position, (transform.forward * powerGauge.value * 1.25f), Physics.gravity);
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    LaunchBall();
+                }
+                //Ball Aim
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition.z = zOffset;
                 transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+                //Camera Zoom Out
+                if (Camera.main.fieldOfView != cameraOrigonalZoom)
+                {
+                    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraOrigonalZoom, Time.deltaTime * cameraZoomSpeed);
+                }
             }
-            //Camera Zoom
-            if (holdingBall && Camera.main.fieldOfView != cameraOrigonalZoom)
+            else
             {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraOrigonalZoom, Time.deltaTime * cameraZoomSpeed);
-            }
-            else if (!holdingBall && Camera.main.fieldOfView != cameraZoomAmount)
-            {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraZoomAmount, Time.deltaTime * cameraZoomSpeed);
-            }
-
-            if (gameObject.transform.position.y < -5)
-            {
-                ResetBall();
+                //Camera Zoom In
+                if (Camera.main.fieldOfView != cameraZoomAmount)
+                {
+                    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraZoomAmount, Time.deltaTime * cameraZoomSpeed);
+                }
+                //Reset Falling Ball
+                if (gameObject.transform.position.y < -5)
+                {
+                    ResetBall();
+                }
             }
         }
         else
@@ -86,6 +93,7 @@ public class BallToss : MonoBehaviour
         tries--;
         triesRemaining.text = triesText + tries;
         gameObject.transform.rotation = Quaternion.identity;
+        lineRenderer.enabled = false;
     }
 
     private void LaunchBall()
@@ -108,10 +116,28 @@ public class BallToss : MonoBehaviour
     {
         int originTry = tries;
         yield return new WaitForSeconds(ballResetTime);
-        if(!holdingBall && originTry == tries)
+        if (!holdingBall && originTry == tries)
         {
             ResetBall();
         }
         yield return null;
+    }
+
+    void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
+    {
+        int numSteps = 25; // for example
+        float timeDelta = 1.0f / initialVelocity.magnitude; // for example
+        lineRenderer.enabled = true;
+        lineRenderer.positionCount = numSteps;
+
+        Vector3 position = initialPosition;
+        Vector3 velocity = initialVelocity;
+        for (int i = 0; i < numSteps; ++i)
+        {
+            lineRenderer.SetPosition(i, position);
+
+            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
+            velocity += gravity * timeDelta;
+        }
     }
 }
