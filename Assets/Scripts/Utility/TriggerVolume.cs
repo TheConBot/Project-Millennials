@@ -49,4 +49,4 @@ public class TriggerVolume : MonoBehaviour {
         //If getting an error here check the Action Data to make sure the ink tag is correct
         UI.Instance.StartConversation(inkTag);
     }
-}
+ }
