@@ -28,15 +28,17 @@ public class UI : MonoBehaviour
     [SerializeField]
     private Button[] choicesButtons;
     [SerializeField]
-    private Image characterImage;
+    private Image characterImage, decorationSquare;
     [SerializeField]
     private Sprite[] expressionSprites;
     [Header("UI Variables"), SerializeField]
     private float fadeSpeed = 1;
-
+    [SerializeField]
+    private Color halleColor, kayColor, vanyaColor;
     private CanvasGroup conversationCanvasGroup;
 
-    public bool inConversation {
+    public bool inConversation
+    {
         get
         {
             return conversationPanel.activeSelf;
@@ -52,8 +54,6 @@ public class UI : MonoBehaviour
     }
 
     private readonly char[] delimiterChars = { ':' };
-    private readonly string[] characterImageNames = { "halle", "kay", "vanya" };
-    private readonly string[] characterImageExpressions = { "_angry", "_happy", "_neutral", "_sad", "_sarcastic", "_special" };
 
     private void Awake()
     {
@@ -62,7 +62,8 @@ public class UI : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else {
+        else
+        {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -110,36 +111,44 @@ public class UI : MonoBehaviour
     }
 
     //TODO: Refactor this, there has to be a better way. Use a fucking dictionary.
-    private Sprite GetCharacterImage(Sprite temp = null)
+    private Sprite GetCharacterImage(Sprite charSprite = null)
     {
         string tag = story.currentTags[0];
-        if (tag == "none")
+        for (int i = 0; i < expressionSprites.Length; i++)
         {
-            temp = expressionSprites[expressionSprites.Length - 1];
-        }
-        else
-        {
-            for (int i = 0; i < characterImageNames.Length; i++)
+            if (tag == expressionSprites[i].name)
             {
-                if (tag.StartsWith(characterImageNames[i]))
-                {
-                    for (int j = 0; j < characterImageExpressions.Length; j++)
-                    {
-                        if (tag.EndsWith(characterImageExpressions[j]))
-                        {
-                            temp = expressionSprites[i * j];
-                            break;
-                        }
-                    }
-                }
+                charSprite = expressionSprites[i];
+                break;
             }
         }
 
-        if (temp == null)
+        if (charSprite == null)
         {
-            Debug.LogWarning("Something may have went wrong with updating the character expression.");
+            Debug.LogWarning("Something went wrong with updating the character expression. Ink Tag: " + tag);
+            charSprite = expressionSprites[expressionSprites.Length - 1];
         }
-        return temp;
+        else
+        {
+            if (charSprite.name.StartsWith("halle"))
+            {
+                decorationSquare.color = halleColor;
+            }
+            else if (charSprite.name.StartsWith("kay"))
+            {
+                decorationSquare.color = kayColor;
+            }
+            else if (charSprite.name.StartsWith("vanya"))
+            {
+                decorationSquare.color = vanyaColor;
+            }
+            else
+            {
+                decorationSquare.color = Color.white;
+            }
+        }
+        Debug.Log("Character Sprite: " + charSprite.name);
+        return charSprite;
     }
 
     public void StartConversation(string tag)
@@ -159,12 +168,12 @@ public class UI : MonoBehaviour
     {
         int targetAlpha = (int)fadeType;
 
-        if(fadeType == FadeType.In)
+        if (fadeType == FadeType.In)
         {
             conversationPanel.SetActive(true);
         }
 
-        while(conversationCanvasGroup.alpha != targetAlpha)
+        while (conversationCanvasGroup.alpha != targetAlpha)
         {
             if (conversationCanvasGroup.alpha < targetAlpha)
             {
@@ -177,7 +186,7 @@ public class UI : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        if(fadeType == FadeType.Out)
+        if (fadeType == FadeType.Out)
         {
             conversationPanel.SetActive(false);
         }
@@ -205,7 +214,7 @@ public class UI : MonoBehaviour
         {
             button.gameObject.SetActive(false);
         }
-        Debug.Log(i);
+        Debug.Log("Choice Picked: " + story.currentChoices[i].text);
         story.ChooseChoiceIndex(i);
         UpdateText();
     }

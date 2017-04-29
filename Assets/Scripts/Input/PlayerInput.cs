@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
             {
                 RaycastHit hit;
                 NavMeshPath path = new NavMeshPath();
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100000) && agent.CalculatePath(hit.point, path))
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100000) && (agent.CalculatePath(hit.point, path) || hit.transform.GetComponent<TriggerVolume>() != null))
                 {
                     agent.destination = hit.point;
                     if (hit.transform.GetComponent<TriggerVolume>() != null)
