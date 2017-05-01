@@ -88,6 +88,7 @@ public class BallToss : MonoBehaviour
     }
     private void ResetBall()
     {
+        StopAllCoroutines();
         holdingBall = true;
         body.isKinematic = holdingBall;
         tries--;
@@ -108,6 +109,7 @@ public class BallToss : MonoBehaviour
     {
         other.gameObject.SetActive(false);
         cups--;
+        tries++;
         cupsRemaining.text = cupsText + cups;
         ResetBall();
     }
@@ -116,16 +118,16 @@ public class BallToss : MonoBehaviour
     {
         int originTry = tries;
         yield return new WaitForSeconds(ballResetTime);
-        if (!holdingBall && originTry == tries)
+        if (!holdingBall)
         {
             ResetBall();
         }
         yield return null;
     }
 
-    void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
+    private void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
     {
-        int numSteps = 25; // for example
+        int numSteps = 30; // for example
         float timeDelta = 1.0f / initialVelocity.magnitude; // for example
         lineRenderer.enabled = true;
         lineRenderer.positionCount = numSteps;
@@ -134,10 +136,25 @@ public class BallToss : MonoBehaviour
         Vector3 velocity = initialVelocity;
         for (int i = 0; i < numSteps; ++i)
         {
-            lineRenderer.SetPosition(i, position);
+            if(i == numSteps / 2)
+            {
+                if (position.y > -0.6f && position.y < 0.3f)
+                {
+                    lineRenderer.startColor = Color.green;
+                    lineRenderer.endColor = Color.green;
+                }
+                else
+                {
+                    lineRenderer.startColor = Color.white;
+                    lineRenderer.endColor = Color.white;
 
+                }
+            }
+            lineRenderer.SetPosition(i, position);
             position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
             velocity += gravity * timeDelta;
         }
+        
+
     }
 }
