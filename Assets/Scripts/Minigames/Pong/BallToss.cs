@@ -10,14 +10,17 @@ public class BallToss : MonoBehaviour
     private Rigidbody body;
     private LineRenderer lineRenderer;
     private bool holdingBall;
+    private bool bounced;
     private float cameraOrigonalZoom;
+    private int cupsRemaining;
     private const string triesText = "Tries: ";
     private const string cupsText = "Cups: ";
     //Inspector Vars
     [Header("Game Settings")]
-    public int tries = 20;
-    public int cups = 10;
+    public int triesRemaining = 20;
     public float ballResetTime = 4;
+    public GameObject[] cups;
+    public GameObject guideLine;
     [Header("Ball Settings")]
     public float zOffset;
     public float ballSpeed = 1000;
@@ -25,25 +28,26 @@ public class BallToss : MonoBehaviour
     public float cameraZoomAmount = 15;
     public float cameraZoomSpeed = 5;
     [Header("UI")]
-    public Text triesRemaining;
-    public Text cupsRemaining;
+    public Text triesRemainingText;
+    public Text cupsRemainingText;
     public Slider powerGauge;
 
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer = guideLine.GetComponent<LineRenderer>();
         holdingBall = true;
         body.isKinematic = holdingBall;
+        cupsRemaining = cups.Length;
         cameraOrigonalZoom = Camera.main.fieldOfView;
-        triesRemaining.text = triesText + tries;
-        cupsRemaining.text = cupsText + cups;
+        triesRemainingText.text = triesText + triesRemaining;
+        cupsRemainingText.text = cupsText + cupsRemaining;
     }
 
     private void Update()
     {
-        if (tries > 0 && cups > 0)
+        if (triesRemaining > 0 && cupsRemaining > 0)
         {
             if (holdingBall)
             {
@@ -86,13 +90,15 @@ public class BallToss : MonoBehaviour
             Debug.Log("Game Over!");
         }
     }
+
     private void ResetBall()
     {
         StopAllCoroutines();
         holdingBall = true;
+        bounced = false;
         body.isKinematic = holdingBall;
-        tries--;
-        triesRemaining.text = triesText + tries;
+        triesRemaining--;
+        triesRemainingText.text = triesText + triesRemaining;
         gameObject.transform.rotation = Quaternion.identity;
         lineRenderer.enabled = false;
     }
@@ -107,16 +113,39 @@ public class BallToss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false);
-        cups--;
-        tries++;
-        cupsRemaining.text = cupsText + cups;
-        ResetBall();
+        if (other.tag == "Cup")
+        {
+            other.gameObject.SetActive(false);
+            cupsRemaining--;
+            triesRemaining++;
+            if (bounced)
+            {
+                foreach(GameObject cup in cups)
+                {
+                    if (cup.activeSelf)
+                    {
+                        cup.gameObject.SetActive(false);
+                        cupsRemaining--;
+                        triesRemaining++;
+                        break;
+                    }
+                }
+            }
+            cupsRemainingText.text = cupsText + cupsRemaining;
+            ResetBall();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Table")
+        {
+            bounced = true;
+        }
     }
 
     private IEnumerator ResetBallTimer()
     {
-        int originTry = tries;
         yield return new WaitForSeconds(ballResetTime);
         if (!holdingBall)
         {
@@ -127,8 +156,9 @@ public class BallToss : MonoBehaviour
 
     private void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
     {
-        int numSteps = 30; // for example
-        float timeDelta = 1.0f / initialVelocity.magnitude; // for example
+        int numSteps = 30;
+        float timeDelta = 1.0f / initialVelocity.magnitude;
+        guideLine.transform.position = transform.position;
         lineRenderer.enabled = true;
         lineRenderer.positionCount = numSteps;
 
@@ -154,7 +184,5 @@ public class BallToss : MonoBehaviour
             position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
             velocity += gravity * timeDelta;
         }
-        
-
     }
 }
