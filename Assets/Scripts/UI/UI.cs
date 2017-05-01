@@ -94,7 +94,9 @@ public class UI : MonoBehaviour
         {
             if (story.currentTags[0].StartsWith("scene:"))
             {
-
+                string sceneName = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0])).Trim();
+                Debug.Log(sceneName);
+                StartCoroutine(LoadScene(sceneName));
             }
             characterImage.sprite = GetCharacterImage();
         }
@@ -112,6 +114,7 @@ public class UI : MonoBehaviour
     private void InitializeUI()
     {
         conversationCanvasGroup = conversationPanel.GetComponent<CanvasGroup>();
+        fadeToBlackCanvasGroup = fadeToBlack.GetComponent<CanvasGroup>();
         conversationCanvasGroup.alpha = 0;
         conversationPanel.SetActive(false);
     }
