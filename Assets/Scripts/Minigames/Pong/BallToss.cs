@@ -12,37 +12,34 @@ public class BallToss : MonoBehaviour
     private bool holdingBall;
     private bool bounced;
     private float cameraOrigonalZoom;
+    private float powerMultiplier;
     private int cupsRemaining;
-    private const string triesText = "Tries: ";
-    private const string cupsText = "Cups: ";
+    private const string TRIES_TEXT = "Tries: ";
+    private const string CUPS_TEXT = "Cups: ";
     //Inspector Vars
     [Header("Game Settings")]
     public int triesRemaining = 20;
     public float ballResetTime = 4;
     public GameObject[] cups;
-    public GameObject guideLine;
     [Header("Ball Settings")]
     public float zOffset;
     public float ballSpeed = 1000;
+    [Header("Guide Line Settings")]
+    public GameObject guideLine;
+    public Gradient lineGradiant;
+    public float powerMultiplierSpeed = 5;
+    public float minPowerMultiplier = 5;
+    public float maxPowerMultiplier = 14;
     [Header("Camera Settings")]
     public float cameraZoomAmount = 15;
     public float cameraZoomSpeed = 5;
     [Header("UI")]
     public Text triesRemainingText;
     public Text cupsRemainingText;
-    public Slider powerGauge;
-
 
     private void Awake()
     {
-        body = GetComponent<Rigidbody>();
-        lineRenderer = guideLine.GetComponent<LineRenderer>();
-        holdingBall = true;
-        body.isKinematic = holdingBall;
-        cupsRemaining = cups.Length;
-        cameraOrigonalZoom = Camera.main.fieldOfView;
-        triesRemainingText.text = triesText + triesRemaining;
-        cupsRemainingText.text = cupsText + cupsRemaining;
+        Initialize();
     }
 
     private void Update()
@@ -51,20 +48,20 @@ public class BallToss : MonoBehaviour
         {
             if (holdingBall)
             {
-                //Launch Input
-                if (Input.GetMouseButton(0))
-                {
-                    powerGauge.value = Mathf.PingPong(Time.time * 10, powerGauge.maxValue);
-                    UpdateTrajectory(transform.position, (transform.forward * powerGauge.value * 1.25f), Physics.gravity);
-                }
-                else if (Input.GetMouseButtonUp(0))
-                {
-                    LaunchBall();
-                }
                 //Ball Aim
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition.z = zOffset;
                 transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+                //Launch Input
+                if (Input.GetMouseButton(0))
+                {
+                    powerMultiplier = Mathf.Clamp(powerMultiplier + (Time.deltaTime * powerMultiplierSpeed), minPowerMultiplier, maxPowerMultiplier);
+                    UpdateTrajectory(transform.position, (transform.forward * powerMultiplier * 1.25f), Physics.gravity);
+                }
+                if (Input.GetMouseButtonUp(0) || powerMultiplier == maxPowerMultiplier)
+                {
+                    LaunchBall();
+                }
                 //Camera Zoom Out
                 if (Camera.main.fieldOfView != cameraOrigonalZoom)
                 {
@@ -87,8 +84,27 @@ public class BallToss : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Over!");
+            if(cupsRemaining <= 0)
+            {
+                Debug.Log("You win!");
+            }
+            else if(triesRemaining <= 0)
+            {
+                Debug.Log("Good try!");
+            }
         }
+    }
+
+    private void Initialize()
+    {
+        body = GetComponent<Rigidbody>();
+        lineRenderer = guideLine.GetComponent<LineRenderer>();
+        holdingBall = true;
+        body.isKinematic = holdingBall;
+        cupsRemaining = cups.Length;
+        cameraOrigonalZoom = Camera.main.fieldOfView;
+        triesRemainingText.text = TRIES_TEXT + triesRemaining;
+        cupsRemainingText.text = CUPS_TEXT + cupsRemaining;
     }
 
     private void ResetBall()
@@ -96,9 +112,10 @@ public class BallToss : MonoBehaviour
         StopAllCoroutines();
         holdingBall = true;
         bounced = false;
+        powerMultiplier = 0;
         body.isKinematic = holdingBall;
         triesRemaining--;
-        triesRemainingText.text = triesText + triesRemaining;
+        triesRemainingText.text = TRIES_TEXT + triesRemaining;
         gameObject.transform.rotation = Quaternion.identity;
         lineRenderer.enabled = false;
     }
@@ -107,8 +124,33 @@ public class BallToss : MonoBehaviour
     {
         holdingBall = false;
         body.isKinematic = holdingBall;
-        body.AddForce(transform.forward * ballSpeed * powerGauge.value);
+        body.AddForce(transform.forward * ballSpeed * powerMultiplier);
         StartCoroutine(ResetBallTimer());
+    }
+
+    private void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
+    {
+        int numSteps = 30;
+        float timeDelta = 1.0f / initialVelocity.magnitude;
+        guideLine.transform.position = transform.position;
+        lineRenderer.enabled = true;
+        lineRenderer.positionCount = numSteps;
+
+        Vector3 position = initialPosition;
+        Vector3 velocity = initialVelocity;
+        for (int i = 0; i < numSteps; ++i)
+        {
+            lineRenderer.SetPosition(i, position);
+            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
+            velocity += gravity * timeDelta;
+        }
+        lineRenderer.startColor = lineGradiant.Evaluate(EstimatedPower());
+        lineRenderer.endColor = lineRenderer.startColor;
+    }
+
+    private float EstimatedPower()
+    {
+        return Mathf.Clamp(((powerMultiplier - minPowerMultiplier) / (maxPowerMultiplier - minPowerMultiplier)), 0 ,1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -131,7 +173,7 @@ public class BallToss : MonoBehaviour
                     }
                 }
             }
-            cupsRemainingText.text = cupsText + cupsRemaining;
+            cupsRemainingText.text = CUPS_TEXT + cupsRemaining;
             ResetBall();
         }
     }
@@ -152,37 +194,5 @@ public class BallToss : MonoBehaviour
             ResetBall();
         }
         yield return null;
-    }
-
-    private void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
-    {
-        int numSteps = 30;
-        float timeDelta = 1.0f / initialVelocity.magnitude;
-        guideLine.transform.position = transform.position;
-        lineRenderer.enabled = true;
-        lineRenderer.positionCount = numSteps;
-
-        Vector3 position = initialPosition;
-        Vector3 velocity = initialVelocity;
-        for (int i = 0; i < numSteps; ++i)
-        {
-            if(i == numSteps / 2)
-            {
-                if (position.y > -0.6f && position.y < 0.3f)
-                {
-                    lineRenderer.startColor = Color.green;
-                    lineRenderer.endColor = Color.green;
-                }
-                else
-                {
-                    lineRenderer.startColor = Color.white;
-                    lineRenderer.endColor = Color.white;
-
-                }
-            }
-            lineRenderer.SetPosition(i, position);
-            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
-            velocity += gravity * timeDelta;
-        }
     }
 }
