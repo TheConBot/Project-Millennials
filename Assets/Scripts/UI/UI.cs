@@ -94,9 +94,10 @@ public class UI : MonoBehaviour
         {
             if (story.currentTags[0].StartsWith("scene:"))
             {
-                string sceneName = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0])).Trim();
+                string sceneName = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0]) + 1).Trim();
                 Debug.Log(sceneName);
-                StartCoroutine(LoadScene(sceneName));
+                StartCoroutine(LoadScene(int.Parse(sceneName)));
+                return;
             }
             characterImage.sprite = GetCharacterImage();
         }
@@ -122,23 +123,17 @@ public class UI : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
     }
 
-    private IEnumerator LoadScene(string sceneName)
+    private IEnumerator LoadScene(int sceneIndex)
     {
+        EndConversation();
         StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
-        AsyncOperation aSync;
-        if (SceneManager.GetSceneByName(sceneName).IsValid()) {
-            aSync = SceneManager.LoadSceneAsync(sceneName);
-        }
-        else
-        {
-            Debug.LogWarning("Invalid Scene Name. Defaulting to next scene in build index");
-            aSync = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        AsyncOperation aSync = SceneManager.LoadSceneAsync(sceneIndex);
         aSync.allowSceneActivation = false;
-        while (fadeToBlackCanvasGroup.alpha != 0 && !aSync.isDone)
+        while (fadeToBlackCanvasGroup.alpha != 0 && aSync.isDone)
         {
             yield return null;
         }
+        yield return new WaitForSeconds(2);
         aSync.allowSceneActivation = true;
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
         yield return null;

@@ -176,6 +176,7 @@ Kay: Can she hold, cap'n? #kay_sarcastic
 Halle: Guess we'll find out! #halle_sarcastic
 Vanya: Halle you're a really bad driver, don't blame the car. #vanya_neutral
 TODO: Load the next scene! (The car mini-game)
+#scene: 2
 VAR driving_fail = false
 -> DONE
 
