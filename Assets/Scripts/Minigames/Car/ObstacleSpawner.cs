@@ -30,7 +30,7 @@ public class ObstacleSpawner : MonoBehaviour {
             int randomLane = Random.Range(0, curatedRefs.Count);
             spawnedObject.transform.position = new Vector3(curatedRefs[randomLane].transform.position.x, transform.position.y, transform.position.z);
             lastUsedIndex = xRefs.IndexOf(curatedRefs[randomLane]);
-            yield return new WaitForSeconds(Random.Range(0.8f, 1.25f));
+            yield return new WaitForSeconds(Random.Range(0.6f, 1.75f));
         }
     }
 }
