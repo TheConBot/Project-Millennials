@@ -179,7 +179,7 @@ TODO: Load the next scene! (The car mini-game)
 VAR driving_fail = false
 -> DONE
 
-/********** Act II, Scene 1 **********/
+/********** Act II, Scene 1 **********/ 4
 // EXT. Kelly Fleming's House - Front Lawn - Night
 
 ===II_i_main===
@@ -226,7 +226,7 @@ Kay: Memories for a lifetime.
 TODO: Guide player into the party, who are they controlling? (I,ii)
 ->DONE
 
-/********** Act II, Scene 2 **********/
+/********** Act II, Scene 2 **********/ 5 
 // INT. Kelly Fleming's House - Night
 
 //Halle is now inside and can talk with people, including Kelly
@@ -290,7 +290,7 @@ Halle: Why yes, yes it is. Let's play another round.
 TODO: Load next scene (II,ii)
 -> DONE
 
-/********** Act II, Scene 3 **********/
+/********** Act II, Scene 3 **********/ 7
 /*
 INT. Kelly's Garage
 Vanya chooses her boyfriend
@@ -418,11 +418,11 @@ Vanya: Shut up.
 TODO: Load Next Scene! (II,iii)
 -> DONE
 
-/********** Act II, Scene 4 **********/
+/********** Act II, Scene 4 **********/ 8 
 // Kay gets freaked out
 
 
-/********** Act III, Scene 1 **********/
+/********** Act III, Scene 1 **********/ 9 
 /*
 EXT. Kelly Fleming's House - Night
 Kay reacting to the events of the last scene
