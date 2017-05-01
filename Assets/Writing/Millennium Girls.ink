@@ -171,7 +171,7 @@ Halle: I mean I also am also in the mood to get drunk and cause problems in the 
 Halle: Plus you two, of course. 
 Halle: We can't hangout in the Liberty Plaza parking lot forever. #halle_neutral
 Kay: I dare you to come up with a good reason why. #kay_sarcastic
-Halle: It'll be fine! You'll be fine. We just gotta get this {~shitbucket|shittrap|steel death-trap|domestic disaster} across town to the sub-division from hell! #halle_happy
+Halle: It'll be fine! You'll be fine. We just gotta get this {~shitbucket|shittrap|steel death-trap|domestic disaster|Terry Gilliam joke about consumerism} across town to the sub-division from hell! #halle_happy
 Kay: Can she hold, cap'n? #kay_sarcastic
 Halle: Guess we'll find out! #halle_sarcastic
 Vanya: Halle you're a really bad driver, don't blame the car. #vanya_neutral
@@ -179,7 +179,7 @@ TODO: Load the next scene! (The car mini-game)
 VAR driving_fail = false
 -> DONE
 
-/********** Act II, Scene 1 **********/ 4
+/********** Act II, Scene 1 **********/
 // EXT. Kelly Fleming's House - Front Lawn - Night
 
 ===II_i_main===
@@ -226,7 +226,7 @@ Kay: Memories for a lifetime.
 TODO: Guide player into the party, who are they controlling? (I,ii)
 ->DONE
 
-/********** Act II, Scene 2 **********/ 5 
+/********** Act II, Scene 2 **********/
 // INT. Kelly Fleming's House - Night
 
 //Halle is now inside and can talk with people, including Kelly
@@ -290,7 +290,7 @@ Halle: Why yes, yes it is. Let's play another round.
 TODO: Load next scene (II,ii)
 -> DONE
 
-/********** Act II, Scene 3 **********/ 7
+/********** Act II, Scene 3 **********/
 /*
 INT. Kelly's Garage
 Vanya chooses her boyfriend
@@ -418,20 +418,20 @@ Vanya: Shut up.
 TODO: Load Next Scene! (II,iii)
 -> DONE
 
-/********** Act II, Scene 4 **********/ 8 
+/********** Act II, Scene 4 **********/
 // Kay gets freaked out
 
 
-/********** Act III, Scene 1 **********/ 9 
+/********** Act III, Scene 1 **********/
 /*
 EXT. Kelly Fleming's House - Night
 Kay reacting to the events of the last scene
 */
 
 ===II_iv_main===
-Kay: Fuck.
+Kay: Fuck. #kay_angry
 Devin: Hey Matthews, you fuck yourself up too quick?
-Kay: Fuck 155% OFF, Devin. 
+Kay: Fuck 155% OFF, Devin. #kay_angry
 Devin: Hey, don't freak out at me if you can't handle your shit, right?
 Matt: Hey McAllister, why don't you actually give fucking off 155% a shot? 
 Devin: Woah boy, singer-songwriter Matt Fenster appears! 
