@@ -117,6 +117,9 @@ public class UI : MonoBehaviour
         fadeToBlackCanvasGroup = fadeToBlack.GetComponent<CanvasGroup>();
         conversationCanvasGroup.alpha = 0;
         conversationPanel.SetActive(false);
+        fadeToBlackCanvasGroup.alpha = 1;
+        fadeToBlack.SetActive(true);
+        StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
     }
 
     private IEnumerator LoadScene(string sceneName)
