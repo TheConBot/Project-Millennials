@@ -119,12 +119,12 @@ public class UI : MonoBehaviour
         conversationPanel.SetActive(false);
         fadeToBlackCanvasGroup.alpha = 1;
         fadeToBlack.SetActive(true);
-        StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
+        StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
     }
 
     private IEnumerator LoadScene(string sceneName)
     {
-        StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
+        StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
         AsyncOperation aSync;
         if (SceneManager.GetSceneByName(sceneName).IsValid()) {
             aSync = SceneManager.LoadSceneAsync(sceneName);
@@ -140,7 +140,7 @@ public class UI : MonoBehaviour
             yield return null;
         }
         aSync.allowSceneActivation = true;
-        StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
+        StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
         yield return null;
     }
 
