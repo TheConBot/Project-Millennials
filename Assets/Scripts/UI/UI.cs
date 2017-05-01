@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Ink.Runtime;
 
 public class UI : MonoBehaviour
@@ -22,7 +23,7 @@ public class UI : MonoBehaviour
     [SerializeField]
     private Text nameText;
     [SerializeField]
-    private GameObject conversationPanel;
+    private GameObject conversationPanel, fadeToBlack;
     [SerializeField]
     private GameObject choicesPanel;
     [SerializeField]
@@ -36,6 +37,7 @@ public class UI : MonoBehaviour
     [SerializeField]
     private Color halleColor, kayColor, vanyaColor;
     private CanvasGroup conversationCanvasGroup;
+    private CanvasGroup fadeToBlackCanvasGroup;
 
     public bool inConversation
     {
@@ -90,6 +92,10 @@ public class UI : MonoBehaviour
 
         if (story.currentTags.Count > 0)
         {
+            if (story.currentTags[0].StartsWith("scene:"))
+            {
+
+            }
             characterImage.sprite = GetCharacterImage();
         }
 
@@ -108,6 +114,28 @@ public class UI : MonoBehaviour
         conversationCanvasGroup = conversationPanel.GetComponent<CanvasGroup>();
         conversationCanvasGroup.alpha = 0;
         conversationPanel.SetActive(false);
+    }
+
+    private IEnumerator LoadScene(string sceneName)
+    {
+        StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
+        AsyncOperation aSync;
+        if (SceneManager.GetSceneByName(sceneName).IsValid()) {
+            aSync = SceneManager.LoadSceneAsync(sceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid Scene Name. Defaulting to next scene in build index");
+            aSync = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        aSync.allowSceneActivation = false;
+        while (fadeToBlackCanvasGroup.alpha != 0 && !aSync.isDone)
+        {
+            yield return null;
+        }
+        aSync.allowSceneActivation = true;
+        StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
+        yield return null;
     }
 
     //TODO: Refactor this, there has to be a better way. Use a fucking dictionary.
@@ -155,40 +183,40 @@ public class UI : MonoBehaviour
     {
         story.ChoosePathString(tag);
         UpdateText();
-        StartCoroutine(FadeCanvasGroup(FadeType.In));
+        StartCoroutine(FadeCanvasGroup(FadeType.In, conversationCanvasGroup));
     }
 
     private void EndConversation()
     {
         Debug.Log("End of conversation.");
-        StartCoroutine(FadeCanvasGroup(FadeType.Out));
+        StartCoroutine(FadeCanvasGroup(FadeType.Out, conversationCanvasGroup));
     }
 
-    private IEnumerator FadeCanvasGroup(FadeType fadeType)
+    private IEnumerator FadeCanvasGroup(FadeType fadeType, CanvasGroup canvasGroup)
     {
         int targetAlpha = (int)fadeType;
 
         if (fadeType == FadeType.In)
         {
-            conversationPanel.SetActive(true);
+            canvasGroup.gameObject.SetActive(true);
         }
 
-        while (conversationCanvasGroup.alpha != targetAlpha)
+        while (canvasGroup.alpha != targetAlpha)
         {
-            if (conversationCanvasGroup.alpha < targetAlpha)
+            if (canvasGroup.alpha < targetAlpha)
             {
-                conversationCanvasGroup.alpha += Time.smoothDeltaTime * fadeSpeed;
+                canvasGroup.alpha += Time.smoothDeltaTime * fadeSpeed;
             }
             else
             {
-                conversationCanvasGroup.alpha -= Time.smoothDeltaTime * fadeSpeed;
+                canvasGroup.alpha -= Time.smoothDeltaTime * fadeSpeed;
             }
             yield return new WaitForEndOfFrame();
         }
 
         if (fadeType == FadeType.Out)
         {
-            conversationPanel.SetActive(false);
+            canvasGroup.gameObject.SetActive(false);
         }
     }
 
