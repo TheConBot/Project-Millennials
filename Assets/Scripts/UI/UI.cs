@@ -94,9 +94,9 @@ public class UI : MonoBehaviour
         {
             if (story.currentTags[0].StartsWith("scene:"))
             {
-                string sceneName = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0]) + 1).Trim();
+                string sceneIndex = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0]) + 1).Trim();
                 Debug.Log(sceneName);
-                StartCoroutine(LoadScene(int.Parse(sceneName)));
+                StartCoroutine(LoadScene(sceneIndex));
                 return;
             }
             characterImage.sprite = GetCharacterImage();
@@ -123,11 +123,17 @@ public class UI : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
     }
 
-    private IEnumerator LoadScene(int sceneIndex)
+    public void LoadSceneRemote(string sceneIndex)
     {
+        StartCoroutine(LoadScene(sceneName));
+    }
+
+    private IEnumerator LoadScene(string sceneIndex)
+    {
+        int index = int.Parse(sceneIndex);
         EndConversation();
         StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
-        AsyncOperation aSync = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation aSync = SceneManager.LoadSceneAsync(index);
         aSync.allowSceneActivation = false;
         while (fadeToBlackCanvasGroup.alpha != 0 && aSync.isDone)
         {

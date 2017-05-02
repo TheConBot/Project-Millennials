@@ -33,15 +33,9 @@ public class TriggerVolume : MonoBehaviour {
         }
     }
 
-    private void LoadScene(string sceneName)
+    private void LoadScene(string sceneIndex)
     {
-        Scene scene = SceneManager.GetSceneByName(sceneName);
-        if (!scene.IsValid())
-        {
-            Debug.LogError("Could not find scene. Check for spelling and make sure the scene is in the build settings.");
-            return;
-        }
-        SceneManager.LoadScene(sceneName);
+        UI.Instance.LoadSceneRemote(sceneIndex);
     }
 
     private void StartConversation(string inkTag)
