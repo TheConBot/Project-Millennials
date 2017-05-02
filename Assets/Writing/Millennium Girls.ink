@@ -280,20 +280,24 @@ Bro: You know all the rules?
 * [Remind me]
 	TODO: Write the rules of Beer Pong (II,ii)
 VAR beer_pong_cups = 0
-#scene: 5
+- #scene: 5
 -> DONE
 
 ===Beer_Poing_Result===
 //What is the result of the Beer Pong game? Can I get the variable of how many cups you knocked over, and depending on that get an IF statement for different funny outcomes?
 {
-	- beer_pong_cups >= 4:
+	- beer_pong_cups == 10:
 		Halle: AYYYY we won! #halle_happy
 		Kelly: Yeah, and you drank all the beer. #kelly_neutral
 		Halle: YUP. Why would I split this nectar? #halle_happy
-	- else:
+	- beer_pong_cups <= 3:
 		Halle: WOW we fucked that up. #halle_sad
-		Kelly: And yet you drank all the beer! #kelly_neutral
+		Kelly: And yet you drank all the beer! #kelly_angry
 		Halle: YUP. Why would I waste all this nectar? #halle_happy
+	- else:
+		Halle: Ok, so I'm not the greatest at playing beer pong. #halle_sarcastic
+		Kelly: Ya think? #kelly_neutral
+		Halle: I don't *hiccup* need this from you. #halle_sarcastic
 }
 - Kelly: Oh goody, you're drunk. #kelly_angry
 Halle: Is this not ze poiint of partiess? #halle_happy
