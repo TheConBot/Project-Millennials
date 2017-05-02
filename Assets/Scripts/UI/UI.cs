@@ -87,7 +87,6 @@ public class UI : MonoBehaviour
             return;
         }
         string nextLine = story.Continue().Trim();
-        Debug.Log(nextLine);
         string[] splitLine = nextLine.Split(delimiterChars);
 
         if (story.currentTags.Count > 0)
@@ -124,8 +123,8 @@ public class UI : MonoBehaviour
 
     public void LoadSceneRemote(string sceneIndex)
     {
-        bool canLoad = (bool)story.variablesState["loadScene"];
-        if (canLoad)
+        var canLoad = (int)story.variablesState["loadScene"];
+        if (canLoad == 1)
         {
             StartCoroutine(LoadScene(sceneIndex));
         }

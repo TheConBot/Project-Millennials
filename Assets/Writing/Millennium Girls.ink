@@ -116,6 +116,7 @@ Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
 
 =I_i_All_repeat
 Halle: I'm with you. Let's get out of here. #halle_neutral
+~ loadScene = true
 -> DONE
 
 /********** Act I, Scene 2 **********/
