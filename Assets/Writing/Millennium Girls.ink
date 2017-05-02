@@ -21,7 +21,7 @@ cam_neutral | cam_sad
 
 kelly_neutral | kelly_angry
 
-#loadscene: [scene name] = how to load scene at the end of a conversation
+#scene: [scene index int] = how to load scene at the end of a conversation
 
 /********** Act I, Scene 1 **********/
 // EXT. Lake Massapoag - Magic Hour
@@ -280,7 +280,7 @@ Bro: You know all the rules?
 * [Remind me]
 	TODO: Write the rules of Beer Pong (II,ii)
 VAR beer_pong_cups = 0
-TODO: Load the beer pong mini-game! (II,ii)
+#scene: 5
 -> DONE
 
 ===Beer_Poing_Result===
