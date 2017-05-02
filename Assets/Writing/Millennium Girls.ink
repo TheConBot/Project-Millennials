@@ -58,7 +58,14 @@ Vanya: Halle's over at the lifeguard tower, let's go see what's up! #vanya_happy
 ->DONE
 
 ===I_i_All===
-Kay: Yo. #kay_neutral
+{	
+	- I_i_All == 1:
+	    -> I_i_All_repeat
+	- else:
+	    -> I_i_All_main
+}
+=I_i_All_main
+Kay: Yo Halle. #kay_neutral
 Halle: Hey K, what's up? #halle_neutral
 Kay: Nothing much - What have you guys been up to? #kay_neutral
 Halle: I watched "The Avengers" for the 18th time today - I'm convinced it's a film without flaws. #halle_happy
@@ -99,7 +106,10 @@ Vanya: Seems legit to me. We're just weird.
 Halle: Whatever. #halle_neutral
 ... #none
 Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
-TODO: How to guide player out of the scene? (I.i)
+-> DONE
+
+=I_i_All_repeat
+Halle: I'm with you. Let's get out of here. #halle_neutral
 -> DONE
 
 /********** Act I, Scene 2 **********/
@@ -107,7 +117,7 @@ TODO: How to guide player out of the scene? (I.i)
 
 ===I_ii_All===
 Kay: That's better. #kay_happy
-Vanya: Good ol' Liberty Heights plaza. #vanya_happys
+Vanya: Good ol' Liberty Heights plaza. #vanya_happy
 Halle: This place is about as dead as it gets. #halle_sarcastic
 Kay: It sucks that the cinema closed. #kay_sad
 Vanya: It sucks that the cinema got the emergency exits fixed so we couldn't sneak in during trailers. #vanya_sad
@@ -175,14 +185,12 @@ Halle: It'll be fine! You'll be fine. We just gotta get this {~shitbucket|shittr
 Kay: Can she hold, cap'n? #kay_sarcastic
 Halle: Guess we'll find out! #halle_sarcastic
 Vanya: Halle you're a really bad driver, don't blame the car. #vanya_neutral
-TODO: Load the next scene! (The car mini-game)
 #scene: 2
 VAR driving_fail = false
 -> DONE
 
 /********** Act II, Scene 1 **********/
 // EXT. Kelly Fleming's House - Front Lawn - Night
-
 ===II_i_main===
 // Do I need to declare these variables earlier to make them accessible?
 {

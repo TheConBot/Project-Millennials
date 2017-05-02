@@ -95,7 +95,6 @@ public class UI : MonoBehaviour
             if (story.currentTags[0].StartsWith("scene:"))
             {
                 string sceneIndex = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0]) + 1).Trim();
-                Debug.Log(sceneName);
                 StartCoroutine(LoadScene(sceneIndex));
                 return;
             }
@@ -125,7 +124,7 @@ public class UI : MonoBehaviour
 
     public void LoadSceneRemote(string sceneIndex)
     {
-        StartCoroutine(LoadScene(sceneName));
+        StartCoroutine(LoadScene(sceneIndex));
     }
 
     private IEnumerator LoadScene(string sceneIndex)
