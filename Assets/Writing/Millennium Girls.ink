@@ -32,6 +32,7 @@ VAR loadScene = false
 /* People with repeatable conversations need to use a variable for read-count
 Create a stitch for main conversation, count that as conditional to pass
 */
+TODO:Add IF statement for if the player hasn't talked to Vanya yet!
 {	
 	- I_i_kay_to_vanya_main == 1:
 	    -> I_i_Kay_to_Vanya_repeat
@@ -261,20 +262,20 @@ Kelly: Yeah you do. #kelly_neutral
 -> DONE
 
 ===II_ii_Halle_to_BeerPong===
-Halle: Oh HELL yes I will take on anyone at beer pong!
+Halle: Oh HELL yes I will take on anyone at beer pong! #halle_happy
 Halle: Kelly, get over here! 
-Kelly: What?
-Halle: Be my partner! Let's fuck this shit up.
-Kelly: I'm not going to say no, but I want you to know I am apprehensive about this arrangement.
-Halle: And that's why no one likes you anymore.
-Halle: Who wants to challenge us?!
+Kelly: What? #kelly_neutral
+Halle: Be my partner! Let's fuck this shit up. #halle_happy
+Kelly: I'm not going to say no, but I want you to know I am apprehensive about this arrangement. #kelly_neutral
+Halle: And that's why no one likes you anymore. #halle_sarcastic
+Halle: Who wants to challenge us?! #halle_happy
 ... #none
 TODO: Put some bros near the beer pong table (II,ii)
 Bro: Yo.
 Bro 2: Yo.
 Bro: You know all the rules?
 * [Hell yeah]
-	Halle: Hell yeah! This ain't my first time.
+	Halle: Hell yeah! This ain't my first time. #halle_happy
 * [Remind me]
 	TODO: Write the rules of Beer Pong (II,ii)
 VAR beer_pong_cups = 0
@@ -537,99 +538,100 @@ Vanya faces the consequences of her choice to which dude, because the other one 
 ===III_ii_Vanya_to_Cody===
 //She chooses Cody, Cam comes over
 //Last we left off, Cody was really honest for a second and it hurt his head
-Vanya: I really appreciate you being so honest with me. #vanya_
-Cody: Thanks for listening! That was a new and frightening level of mental clarity.
-Vanya: So like, would you like to be my... boyfriend?
-Cody: Woah.
+Vanya: I really appreciate you being so honest with me. #vanya_happy
+Cody: Thanks for listening! That was a new and frightening level of mental clarity. #cody_neutral
+Vanya: So like, would you like to be my... boyfriend? #vanya_happy
+Cody: Woah. #cody_neutral
 Cody: I've never identified as one of those before. Sounds good to me!
-Cam: Uhh, hey?
-Vanya: OH HEY CAM. WHAT ARE YOU DOING HERE?
-Cam: I told you I'd be here? At the party I texted you to tell you about?
-Cody: Yo! I also texted her about it and told her to come!
-Vanya: Uhhh...
-Cody: Oh wait-
-Cam: I get the feeling there's something going on between you two?
+Cam: Uhh, hey? #cam_neutral
+Vanya: OH HEY CAM. WHAT ARE YOU DOING HERE? #vanya_special
+Cam: I told you I'd be here? At the party I texted you to tell you about? #cam_neutral
+Cody: Yo! I also texted her about it and told her to come! #cody_neutral
+Vanya: Uhhh... #vanya_neutral
+Cody: Oh wait- #cody_neutral
+Cam: I get the feeling there's something going on between you two? #cam_neutral
 -> III_ii_Result
 
 ===III_ii_Vanya_to_Cam===
 //She chooses Cam, Cody comes over
 //Last we left off, Vanya was saying she wanted to be more serious with Cam
-Cam: I guess I don't get why we would become some kind of "item" going into senior year of high school?
+Cam: I guess I don't get why we would become some kind of "item" going into senior year of high school? #cam_neutral
 * [Because we're good together?]
-	Vanya: Well we're good together right?
-	Cam: Yeah but that doesn't mean we have to be so "official", or that it's a good idea to pile on expectations and stuff.
-	Vanya: "And stuff"?
-	Cam: You know what I mean! 
+	Vanya: Well we're good together right? #vanya_sad
+	Cam: Yeah but that doesn't mean we have to be so "official", or that it's a good idea to pile on expectations and stuff. #cam_neutral
+	Vanya: "And stuff"? #vanya_sarcastic
+	Cam: You know what I mean! #cam_neutral
 * [Because that's what I want!]
-	Vanya: Because that's what I want!
-	Cam: Oh.
-	Cam: I guess I'm just not sure that's what I want?
+	Vanya: Because that's what I want! #vanya_neutral
+	Cam: Oh. #cam_neutral
+	Cam: I guess I'm just not sure that's what I want? 
 * [Because why not?]
-	Vanya: Because why not? I want to be able to like, kiss you in the hall and hang out and not sneak around all the time.
-	Vanya: I bet your mom would like me if she met me.
-	Cam: I'm not sure my mom likes ANYONE when she first meets them.
-	Vanya: Well, that's fucked up anyways, but there's still no way to know unless we try.
-- Cody: Yo V!
-Vanya: OH HEY CODY. WHAT ARE YOU DOING HERE?
-Cody: I told you I'd be here? At the party I texted you to tell you about?
-Cam: I also texted her about it and told her to come!
-Vanya: Uhhh...
-Cam: Oh wait-
-Cody: I get the feeling I'm intruding on a moment.
+	Vanya: Because why not? I want to be able to like, kiss you in the hall and hang out and not sneak around all the time. #vanya_neutral
+	Vanya: I bet your mom would like me if she met me. #vanya_happy
+	Cam: I'm not sure my mom likes ANYONE when she first meets them. #cam_neutral
+	Vanya: Well that's a completely seperate stituation that might explain some things, #vanya_sad
+	Vanya: but there's still no way to know unless we try.
+- Cody: Yo V! #cody_neutral
+Vanya: OH HEY CODY. WHAT ARE YOU DOING HERE? #vanya_neutral
+Cody: I told you I'd be here? At the party I texted you to tell you about? #cody_neutral
+Cam: I also texted her about it and told her to come! #cam_neutral
+Vanya: Uhhh... #vanya_special
+Cam: Oh wait- #cam_neutral
+Cody: I get the feeling I'm intruding on a moment. #cody_sad
 -> III_ii_Result
 
 ===III_ii_Result===
 {
 	- dating_cody == true:
-		Cody: I mean yeah, it's been a thing for a bit, we've just kept on the down-low.
-		Cam: Oh. That's cool.
-		Cody: Is there a problem?
-		Cam: Nope! I just feel like an unknowing accomplice, 'cos me and Vanya have been hooking up for a bit.
-		Cody: What the fuck?!
-		Cam: If I had known I wouldn't have, man! 
-		Vanya: Don't fight!! 
+		Cody: I mean yeah, it's been a thing for a bit, we've just kept on the down-low. #cody_neutral
+		Cam: Oh. That's cool. #cam_neutral
+		Cody: Is there a problem? #cody_neutral
+		Cam: Nope! I just feel like an unknowing accomplice, 'cos me and Vanya have been hooking up for a bit. #cam_sad
+		Cody: What the fuck?! #cody_neutral
+		Cam: If I had known I wouldn't have, man! #cam_sad
+		Vanya: Don't {~fight|beat the shit out of each other}!! #vanya_sad
 		... #none
-		Cam: I mean I don't think we were going to? Were we?
-		Cody: Nah, I wasn't gonna get physical.
-		Cam: Well I greatly appreciate that because I would've lost.
-		Cody: Haha yeah.
-		Cody: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me.
+		Cam: I mean I don't think we were going to? Were we? #cam_neutral
+		Cody: Nah, I wasn't gonna get physical. #cody_neutral
+		Cam: Well I greatly appreciate that because I would've lost. #cam_neutral
+		Cody: Haha yeah. #cody_neutral
+		Cody: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me. #cody_sad
 	- dating_cam == true:
-		Cody: Yeah, it's freshly official, I guess!
-		Cam: Well that's problematic, cos we've been dating for 3 months.
-		Cody: Woah.
+		Cody: Yeah, it's freshly official, I guess! #cody_neutral
+		Cam: Well that's problematic, cos we've been dating for 3 months. #cam_sad
+		Cody: Woah. #cody_neutral
 		Cody: Well that's an inconvenient twist.
-		Cam: Have you guys been hooking up?!
-		Cody: Yeah!
-		Vanya: Don't fight!!
+		Cam: Have you guys been hooking up?! #cam_sad
+		Cody: Yeah! #cody_sad
+		Vanya: Don't {~fight|beat the shit out of each other}!! #vanya_sad
 		... #none
-		Cam: I mean I don't think we were going to? Were we?
-		Cody: Nah, I wasn't gonna get physical.
-		Cam: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me.
+		Cam: I mean I don't think we were going to? Were we? #cam_neutral
+		Cody: Nah, I wasn't gonna get physical. #cody_neutral
+		Cam: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me. #cam_sad
 	- dating_cody == true && dating_cam == true:
-		Cody: I mean yeah, it's been a thing for a bit, we've just kept on the down-low.
-		Cam: Well that's problematic, cos we've been dating for 3 months.
-		Vanya: aww hey you remembered our anniversary- I MEAN.
+		Cody: I mean yeah, it's been a thing for a bit, we've just kept on the down-low. #cody_neutral
+		Cam: Well that's problematic, cos we've been dating for 3 months. #cam_sad
+		Vanya: aww hey you remembered our anniversary- I MEAN. #vanya_happy
 		... #none
-		Vanya: Shit this is awkward.
-		Cam: I'd agree with that.
-		Cody: Yeah. This is a thing.
-		Cam: A.k.a you cheated on BOTH of us.
-		Cody: That's 110% uncool.
-		Cam: Under-statement.
+		Vanya: Shit this is awkward. #vanya_sad
+		Cam: I'd agree with that. #cam_sad
+		Cody: Yeah. This is a thing. #cody_sad
+		Cam: A.k.a you cheated on BOTH of us. #cam_sad
+		Cody: That's 110% uncool. #cody_sad
+		Cam: Under-statement. #cam_sad
 }
-- Vanya: Uhh.
+- Vanya: Uhh. #vanya_sad
 Vanya: I'm sorry? Like soul-crushingly sorry?
-Cam: I'm not entirely sure that suffices here, Vanya.
-Cody: Yeah man I kinda gotta agree. Cam, you wanna hang out?
-Cam: Yeah, that sounds chill.
+Cam: I'm not entirely sure that suffices here, Vanya. #cam_sad
+Cody: Yeah man I kinda gotta agree. Cam, you wanna hang out? #cody_neutral
+Cam: Yeah, that sounds chill. #cam_neutral
 {
 	- dating_cody == true:
 		Vanya: Cody, we'll talk later? #vanya_sad
-		Cody: Yeah, for sure. Just, you gotta think about stuff first.
+		Cody: Yeah, for sure. Just, you gotta think about stuff first. #cody_sad
 	- dating_cam == true:
-		Vanya: Cam, we'll talk later? #vanya_sad
-		Cam: Maybe. I gotta cool off for a bit.
+		Vanya: Cam, we'll talk later? #vanya_sad 
+		Cam: Maybe. I gotta cool off for a bit. #cam_neutral
 }
 //The two of them exit in some way?
 Vanya: Crap. #vanya_sad
@@ -643,67 +645,66 @@ Gotta figure out some more of this scene, but from what I know it's Kelly comes 
 */
 
 ===III_iii_Int===
-Kelly: GET OUT!
-Halle: Woahhhh there, alright alright, I'm going.
-Kelly: What the fuck is your PROBLEM, Halle? 
+Kelly: GET OUT! #kelly_angry
+Halle: Woahhhh there, alright alright, I'm going. #halle_sarcastic
+Kelly: What the fuck is your PROBLEM, Halle? #kelly_angry
 Kelly: I let you in because we've known each other since we were in elementary school, but you are a TOTAL bitch now!
 Kelly: You don't get to show up, get drunk, break my mom's vase, and then call us "phonies" like you're some Goth version of Holden Caulfield!
-Halle: I'm super totally not at all Goth.
-Kelly: You wanna be way cooler than the rest of us,
+Halle: I'm super totally not at all Goth. #halle_sarcastic
+Kelly: You wanna be way cooler than the rest of us, #kelly_angry
 Kelly: You want to be smart and aloof and go into the military instead of college and shit,
 Kelly: But you just want us all to pay attention to you. 
-Kelly: Get out, stay out or I'll beat you up or something. Ugh.
+Kelly: Get out, stay out, or I'll beat you up or something. Ugh.
 // Kelly leaves. Vanya comes up to Halle.
 ... #none
-Vanya: Wow.
-Halle: Right? Rad.
-Vanya: I dunno, seems like you went too far this time.
-Halle: I called Brooke the "c-word".
-Vanya: Jeezuz, Halle. That's a bit much. What'd she do?
-Halle: She was THERE. You know?
+Vanya: Wow. #vanya_sad
+Halle: Right? Rad. #halle_happy
+Vanya: I dunno, seems like you went too far this time. #vanya_sad
+Halle: I called Brooke the "c-word". #halle_sarcastic
+Vanya: Jeezuz, Halle. That's a bit much. What'd she do? #vanya_sad
+Halle: She was THERE. You know? #halle_sarcastic
 ... #none
-Vanya: No, I really don't.
-Halle: Where's Kay at?
-Vanya: She's over there, hanging out with Matt.
-Halle: Let's go grab her, we're going home.
+Vanya: No, I really don't. #vanya_sad
+Halle: Where's Kay at? #halle_neutral
+Vanya: She's over there, hanging out with Matt. #vanya_neutral
+Halle: Let's go grab her, we're going home. #halle_neutral
 -> DONE
 
 ===III_iii_Halle_To_Kay===
-Halle: Kay let's go. We're going home.
-Kay: What? It's a bit early, isn't it?
-Halle: What do you care? You didn't even want to come. 
-Kay: Yeah, I really didn't, and we did anyways, and then I got here and had a fucking anxiety attack-
-Vanya: Oh shit! Are you okay?
-Kay: Yeah, I'm okay.
-Matt: We've been hanging out.
-Halle: You always freak out when we show up to shit like this, and have "panic attacks"-
-Matt: Where there "air quotes" around that?
-Halle: Yeah, there were - Kay is a total drama queen and doesn't know how to like, breathe and chill-
-Matt: Woah, that's not fair, that's super uncool-
-Kay: Hang on, I got this.
-Kay: Halle, you NEVER listen to me or take what I want, or even what Vanya wants, into consideration,
-Kay: And it's really not okay for you to just say like "breathe" or "chill out" when I say I'm having a moment.
+Halle: Kay let's go. We're going home. #halle_angry
+Kay: What? It's a bit early, isn't it? #kay_angry
+Halle: What do you care? You didn't even want to come. #halle_angry
+Kay: Yeah, I really didn't, and we did anyways, and then I got here and had a fucking anxiety attack- #kay_angry
+Vanya: Oh shit! Are you okay? #vanya_sad
+Kay: Yeah, I'm okay. #kay_sad
+Matt: We've been hanging out. #matt_netural
+Halle: You always freak out when we show up to shit like this, and have "panic attacks"- #kay_angry
+Matt: Were there "air quotes" around that? #matt_netural
+Halle: Yeah, there were - Kay is a total drama queen and doesn't know how to like, breathe and chill- #kay_angry
+Matt: Woah, that's not fair, that's super uncool- #matt_netural
+Kay: Hang on, I got this. #kay_angry
+Kay: Halle, you NEVER listen to me or take what I want, or even what Vanya wants, into consideration, #kay_angry
+Kay: And it's really not okay for you to just say like "breathe" or "chill out" when I say I'm having a moment. #kay_angry
 ... #none
-Halle: Whatever.
-Kay: Vanya, how'd your thing go?
-Vanya: Badly.
-Kay: Shit I'm sorry about that.
-Matt: I have no idea what you're talking about, but me too.
-Vanya: Thanks bro. Appreciate it.
+Halle: Whatever. #kay_angry
+Kay: Vanya, how'd your thing go? #kay_neutral
+Vanya: Badly. #vanya_sad
+Kay: Shit I'm sorry about that. #kay_neutral
+Matt: I have no idea what you're talking about, but me too. #matt_netural
+Vanya: Thanks bro. Appreciate it. #vanya_neutral
 ... #none
-Kay: I'm going to hang out with Matt.
-Matt: I can, uhh, give her a ride home.
-Vanya: (I bet you can)
-Halle: I'm going home.
+Kay: I'm going to hang out with Matt. #kay_neutral
+Matt: I can, uhh, give her a ride home. #matt_netural
+Halle: I'm going home. #halle_neutral
 {
 	- driving_fail == true:
-		Vanya: With what car? Your ride is busted.
-		Halle: I'll fucking walk.
+		Vanya: With what car? Your ride is busted. #vanya_sarcastic
+		Halle: I'll fucking walk. #halle_angry
 	- driving_fail == false: 
-		Vanya: You definitely shouldn't be driving.
-		Vanya: And I don't have a license, so.
-		Halle: Shit.
+		Vanya: You definitely shouldn't be driving. #vanya_sarcastic
+		Vanya: And I don't have a license, so. #vanya_neutral
+		Halle: Shit. #halle_angry
 }
-Vanya: Yeah, you probably shouldn't be in control of anything right now.
+Vanya: Yeah, you probably shouldn't be in control of anything right now. #vanya_sad
 #none #loadscene: [the end]
 -> DONE
