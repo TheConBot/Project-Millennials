@@ -15,14 +15,18 @@ kay_angry | kay_neutral | kay_special
 
 matt_netural | matt_happy
 
-cody
+cody_neutral | cody_sad
 
-cam
+cam_neutral | cam_sad
+
+kelly_neutral | kelly_angry
 
 #loadscene: [scene name] = how to load scene at the end of a conversation
 
 /********** Act I, Scene 1 **********/
 // EXT. Lake Massapoag - Magic Hour
+
+VAR loadScene = false
 
 ===I_i_Kay_to_Vanya===
 /* People with repeatable conversations need to use a variable for read-count
@@ -106,6 +110,7 @@ Vanya: Seems legit to me. We're just weird.
 Halle: Whatever. #halle_neutral
 ... #none
 Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
+~ loadScene = true
 -> DONE
 
 =I_i_All_repeat
@@ -192,6 +197,7 @@ VAR driving_fail = false
 /********** Act II, Scene 1 **********/
 // EXT. Kelly Fleming's House - Front Lawn - Night
 ===II_i_main===
+~ loadScene = true
 // Do I need to declare these variables earlier to make them accessible?
 {
 	- driving_fail == true:
@@ -242,18 +248,16 @@ TODO: Guide player into the party, who are they controlling? (I,ii)
 
 //Need multiple routes for Kelly
 ===II_ii_Halle_to_Kelly===
-Kelly: Hey, Halle!
+Kelly: Hey, Halle. #kelly_neutral
 Kelly: I uhh, don't remember inviting you?
-Halle: My RSVP must have been misplaced in the mail.
 Kelly: I mean you're welcome to hang out, I just didn't think this was your scene.
-Halle: It usually isn't, but I heard about it through the grape-vine and couldn't resist. Not a hell of a lot happening this summer.
-Kelly: You doing anything cool?
-Halle: No.
+Halle: It usually isn't, but I heard about it through the grape-vine and couldn't resist. Not a hell of a lot happening this summer. #halle_sarcastic
+Kelly: You doing anything cool? #kelly_neutral
+Halle: No. #halle_neutral
 ... #none
-Kelly: Yeah. Umm, listen. Just- just don't start anything alright? I'm just trying to have a cool party.
-* [Moi?]
-* [I don't know what you could possibly be referring to.]
-- Kelly: You know what I mean.
+Kelly: Yeah. Umm, listen. Just- just don't start anything alright? I'm just trying to have a cool party. #kelly_neutral
+Halle: I don't know what you could possibly be referring to. #halle_sarcastic
+Kelly: Yeah you do. #kelly_neutral
 -> DONE
 
 ===II_ii_Halle_to_BeerPong===
@@ -281,21 +285,21 @@ TODO: Load the beer pong mini-game! (II,ii)
 //What is the result of the Beer Pong game? Can I get the variable of how many cups you knocked over, and depending on that get an IF statement for different funny outcomes?
 {
 	- beer_pong_cups >= 4:
-		Halle: AYYYY we won!
-		Kelly: Yeah, and you drank all the beer.
-		Halle: YUP. Why would I split this nectar?
+		Halle: AYYYY we won! #halle_happy
+		Kelly: Yeah, and you drank all the beer. #kelly_neutral
+		Halle: YUP. Why would I split this nectar? #halle_happy
 	- else:
-		Halle: WOW we fucked that up.
-		Kelly: And yet you drank all the beer!
-		Halle: YUP. Why would I waste all this nectar?
+		Halle: WOW we fucked that up. #halle_sad
+		Kelly: And yet you drank all the beer! #kelly_neutral
+		Halle: YUP. Why would I waste all this nectar? #halle_happy
 }
-- Kelly: Oh goody, you're drunk.
-Halle: Is this not ze poiint of partiess?
-Halle: I kinda gotta drink a bunch to survive being in the same room as YOU people.
-Kelly: If you hate us so much, why the hell do you feel you've got to show up and make such a big deal of being here?
+- Kelly: Oh goody, you're drunk. #kelly_angry
+Halle: Is this not ze poiint of partiess? #halle_happy
+Halle: I kinda gotta drink a bunch to survive being in the same room as YOU people. #halle_sarcastic
+Kelly: If you hate us so much, why the hell do you feel you've got to show up and make such a big deal of being here? #kelly_angry
 ... #none
-Kelly: Seriously, this is like your THING.
-Halle: Why yes, yes it is. Let's play another round.
+Kelly: Seriously, this is like your THING. #kelly_angry
+Halle: Why yes, yes it is. Let's play another round. #halle_sarcastic
 TODO: Load next scene (II,ii)
 -> DONE
 
@@ -312,7 +316,7 @@ VAR vanya_chooses_cam = false
 Vanya: Well shit. Guess it's now or never. #vanya_neutral
 Vanya: Cody is with his friends, the lovable lug, and Cody is over in the corner because he's a beautiful loner. #vanya_happy
 Vanya: I have to choose between two super cute boys UGH THIS SUCKS. #vanya_angry
-TODO: Create some kind of diegetic indicator of who she can talk to, camera pans (II,iii)
+TODO: Create some kind of diegetic indicator of who she can talk to (II,iii)
 -> DONE
 
 //Both these knots need repeat stitches, because the player will get to make a choice to continue the conversation
@@ -327,25 +331,25 @@ TODO: Create some kind of diegetic indicator of who she can talk to, camera pans
 
 =II_iii_Vanya_to_Cody_main
 //Cody is the SPORTY one, dense but nice
-Vanya: Hey!
-Cody: HEYYY V! What's up?? Me and the guys were just about break our keg-hymens, wanna join?
-Vanya: That's not- nevermind, YES I wanna- WAIT.
+Vanya: Hey! #vanya_happy
+Cody: HEYYY V! What's up?? Me and the guys were just about break our keg-hymens, wanna join? #cody_neutral
+Vanya: That's not- nevermind, YES I wanna- WAIT. #vanya_happy
 * [*Choose Cody to be your boyfriend*]
 	-> choose_cody
 * [On second thought-]
-	Vanya: On second thought, I'll be right back!
-	Cody: No problemo!
+	Vanya: On second thought, I'll be right back! #vanya_neutral
+	Cody: No problemo! #cody_neutral
 	-> DONE
 
 =II_iii_Vanya_to_Cody_repeat
 //Make marginally different from the first, don't want characters re-introducing
-Vanya: Hey!
-Cody: *burp*
+Vanya: Hey! #vanya_happy
+Cody: *burp* #cody_neutral
 * [*Choose Cody to be your boyfriend*]
 	-> choose_cody
 * [On second thought-]
-	Vanya: On second thought, I'll be right back!
-	Cody: No problemo!
+	Vanya: On second thought, I'll be right back! #vanya_neutral
+	Cody: No problemo! #cody_neutral
 	-> DONE
 
 =choose_cody
@@ -353,17 +357,17 @@ Cody: *burp*
 //Don't forget to use cody/cam_dating variables to change text in-line! Do I need this for Cody, considering what I've already written?
 ~ vanya_chooses_cody = true
 Vanya: Cody, can I talk to you about something? #vanya_neutral
-Cody: Yeah, of course! What's up? Everything okay?
+Cody: Yeah, of course! What's up? Everything okay? #cody_neutral
 Vanya: Yeah! No things are... great actually. Like with you, things are great when I'm around you. #vanya_happy
 Vanya: You're brash and irresponsible and smoking hot but like also you make me feel wanted and that's cool and stuff.
-Cody: Well that's cos you are wanted.
+Cody: Well that's cos you are wanted. #cody_neutral
 Cody: I know I'm reckless and sometimes a danger to those around me, but that's because I wanna live life right now, you know?
 Cody: All this? Partying at Kelly's house, hanging with three different guys named Jay, driving my mom's minivan home at 3AM before getting up at 6AM for the gym?
-Cody: That stuff ain't forever, you know?
-Cody: I think of my outward masculinity as a veneer that'll fall away as I get further into college and figure out I'm gonna get a job wearing a suit or some shit like that. But for now it's really fun!
+Cody: That stuff ain't forever, you know? #cody_sad
+Cody: I think of my outward masculinity as a veneer that'll fall away as I get further into college and figure out I'm gonna get a job wearing a suit or some shit like that. But for now it's really fun! #cody_neutral
 ... #none
-Vanya: That was really hot.
-Cody: Thanks man! I'm trying. My head hurts.
+Vanya: That was really hot. #vanya_special
+Cody: Thanks man! I'm trying. My head hurts. #cody_neutral
 TODO: Load next scene! (II,iii)
 -> DONE
 
@@ -377,53 +381,53 @@ TODO: Load next scene! (II,iii)
 
 =II_iii_Vanya_to_Cam_main
 //Cam is the cute sensitive one - what is their bond?
-Vanya: Hey!
-Cam: Hey you! Thank goodness you showed up, I was maximum three minutes from quitting life.
-Vanya: Oh no! Why?
-Cam: I know nOBODY at this party. This ain't exactly my crowd.
+Vanya: Hey! #vanya_happy
+Cam: Hey you! Thank goodness you showed up, I was maximum three minutes from quitting life. #cam_neutral
+Vanya: Oh no! Why? #vanya_sarcastic
+Cam: I know nOBODY at this party. This ain't exactly my crowd. #cam_neutral
 Cam: But it's really good to see your face - it's been a bit!
-Vanya: Yeah, sorry about that. Things have been busy at the Gas N' Go, or with the usual suspects.
-Cam: That's cool! It's summer, you wanna hang with your friends! 
-Vanya: Yeah. Hey, I've got something I wanna talk to you about.
-Cam: Yeah? Alright, what's up?
+Vanya: Yeah, sorry about that. Things have been busy at the Gas N' Go, or with the usual suspects. #vanya_neutral
+Cam: That's cool! It's summer, you wanna hang with your friends! #cam_neutral
+Vanya: Yeah. Hey, I've got something I wanna talk to you about. #vanya_neutral
+Cam: Yeah? Alright, what's up? #cam_neutral
 * [*Choose Cam to be your boyfriend*]
 	-> choose_cam
 * [On second thought-]
-	Vanya: On second thought, I'll be right back!
+	Vanya: On second thought, I'll be right back! #vanya_neutral
 	-> DONE
 
 =II_iii_Vanya_to_Cam_repeat
-Vanya: Yeah. Hey, I've got something I wanna talk to you about.
-Cam: Yeah? What's up?
+Vanya: Yeah. Hey, I've got something I wanna talk to you about. #vanya_neutral
+Cam: Yeah? What's up? #cam_neutral
 * [*Choose Cam to be your boyfriend*]
 	-> choose_cam
 * [On second thought-]
-	Vanya: On second thought, I'll be right back! 
+	Vanya: On second thought, I'll be right back! #cam_neutral
 	-> DONE
 
 = choose_cam
 //Don't set this variable to true until the player chooses!
 //Don't forget to use cody/cam_dating variables to change text in-line! How do I use that tool effectively? Shouldn't it just change flavor text?
 ~ vanya_chooses_cam = true
-Vanya: Cam, do you... like me?
-Cam: What do you mean?
+Vanya: Cam, do you... like me? #vanya_neutral
+Cam: What do you mean? #cam_neutral
 {
 	- dating_cam == true:
-		Vanya: Well, we've been dating for like, a few months, but I guess I don't know where you're at on... liking me.
-		Cam: Oh! I like you! Lots! Obviously! Do I not make that obvious?
-		Vanya: Well, I mean it's hard to tell what you like, cos you don't like a lot of stuff.
-		Cam: Just 'cos I hate the world doesn't mean I hate you!
+		Vanya: Well, we've been dating for like, a few months, but I guess I don't know where you're at on... liking me. #vanya_neutral
+		Cam: Oh! I like you! Lots! Obviously! Do I not make that obvious? #cam_sad
+		Vanya: Well, I mean it's hard to tell what you like, cos you don't like a lot of stuff. #vanya_sad
+		Cam: Just 'cos I hate the world doesn't mean I hate you! #cam_neutral
 	- else:
-		Vanya: Well, we've been making out for a bit and like having moody conversations until sunrise and stuff, but we haven't been on a proper "date" yet,
+		Vanya: Well, we've been making out for a bit and like having moody conversations until sunrise and stuff, but we haven't been on a proper "date" yet, #vanya_sad
 		Vanya: and I was wondering if that was because you maybe didn't like me THAT way, even though I like you a... different way.
 }
-- Vanya: Well either way I just wanted to ask if you'd want to become a bit more... serious.
-Cam: Serious?
-Vanya: Yeah! Like I could come over to your place before midnight and maybe meet your parents and like we could see a movie some time? Proper date and everything?
-Cam: Uhh... sure! If that's what you want! Is that what... people do?
-Vanya: I think so?
-Cam: How mainstream of you.
-Vanya: Shut up.
+- Vanya: Well either way I just wanted to ask if you'd want to become a bit more... serious. #vanya_neutral
+Cam: Serious? #cam_neutral
+Vanya: Yeah! Like I could come over to your place before midnight and maybe meet your parents and like we could see a movie some time? Proper date and everything? #vanya_happy
+Cam: Uhh... sure! If that's what you want! Is that what... people do? #cam_neutral
+Vanya: I think so? #vanya_sarcastic
+Cam: How mainstream of you. #cam_neutral
+Vanya: Shut up. #vanya_sarcastic
 TODO: Load Next Scene! (II,iii)
 -> DONE
 
@@ -442,7 +446,7 @@ Kay: Fuck. #kay_angry
 Devin: Hey Matthews, you fuck yourself up too quick?
 Kay: Fuck 155% OFF, Devin. #kay_angry
 Devin: Hey, don't freak out at me if you can't handle your shit, right?
-Matt: Hey McAllister, why don't you actually give fucking off 155% a shot? 
+Matt: Hey McAllister, why don't you actually give fucking off 155% a shot? #matt_netural
 Devin: Woah boy, singer-songwriter Matt Fenster appears! 
 Devin: Your sentence structure sucks, by the way - am I fucking off 155%, or am I giving fucking off 155% of "a shot", because either way-
 Kay: YOU KNOW WHAT I MEANT! #kay_angry
@@ -454,49 +458,48 @@ Kay: FACE.
 ... #none
 Devin: Alright, fair enough. I apologize for any sleight, you don't appear to be drunk but instead very distraught. I want none of this.
 // Devin leaves, do I write stage direction into the script?
-Matt: Uh. Well. I mean that worked really well.
-Kay: I've known Devin since we were like two years old, he isn't bad just dumb.
+Matt: Uh. Well. I mean that worked really well. #matt_happy
+Kay: I've known Devin since we were like two years old, he isn't bad just dumb. #kay_angry
 -> Talk_to_matt
 
 =Talk_to_matt
 // More about her freak out, their introduction
-Matt: Hey, are you okay? You in fact seem "distraught".
-Kay: I, I just- yeah. Having a moment. Anxiety thing. It's a thing. It happens.
-Matt: You're having a panic attack? Do you want to chill out for a bit?
-Kay: Yeah, that'd be good.
-// Change of scenery?
-Matt: It's definitely been a couple of years since we've chatted.
+Matt: Hey, are you okay? You in fact seem "distraught". #matt_netural
+Kay: I, I just- yeah. Having a moment. Anxiety thing. It's a thing. It happens. #kay_sad
+Matt: You're having a panic attack? Do you want to chill out for a bit? #matt_netural
+Kay: Yeah, that'd be good. #kay_neutral
+Matt: It's definitely been a couple of years since we've chatted. #matt_netural
 Matt: I think last time we had class together was in what, 8th grade chemistry? Mr. W, who had a "bang head here" sign?
-Kay: I borrowed it once.
-Matt: What?
-Kay: The VP was on my ass about running in the halls, so I ran into Mr. W's room and used the sign until a bunch of teachers dragged me away from it into ISS. 
-Matt: Oh.
-Kay: Yeah I don't know if you know, but I kinda turned into an asshole.
-Matt: I mean I'd heard it, but you could've totally lied to me and I would've believed you. Way to goof that up.
+Kay: I borrowed it once. #kay_sarcastic
+Matt: What? #matt_netural
+Kay: The VP was on my ass about running in the halls, so I ran into Mr. W's room and used the sign until a bunch of teachers dragged me away from it into ISS. #kay_sarcastic
+Matt: Oh. #matt_netural
+Kay: Yeah I don't know if you know, but I kinda turned into an asshole. #kay_sad
+Matt: I mean I'd heard it, but you could've totally lied to me and I would've believed you. Way to goof that up. #matt_netural
 Matt: I was always under the impression you weren't like an asshole, more just... surrounded by them? Oh man that's not what I mean, I mean-
-Matt: I mean you fell in with a bad crowd? Oh shit I'm sounding like an after-school special.
-* [You're not wrong.]
-	Kay: You're not wrong.
+Matt: I mean you fell in with a weird crowd? Oh shit I'm sounding like an after-school special.
+* [You're not wrong, but...]
+	Kay: You're not wrong, but... #kay_neutral
 	Kay: They may be assholes, but they're my assholes. We stick together.
 	Kay: No one else around here really likes us, so we found each other and that's worked out pretty decently since.
 * [You're pretty wrong.]
-	Kay: You're pretty wrong.
-	Kay: They're not assholes- we're not assholes. We just stick together, and don't feel like censoring ourselves so people like us.
-- Matt: Fair enough. I get that. 
+	Kay: You're pretty wrong. #kay_angry
+	Kay: They're not- we're not assholes. We just stick together, and don't feel like censoring ourselves so people like us. #kay_neutral
+- Matt: Fair enough. I get that. #matt_happy
 ... #none
-Matt: Are you doing okay?
-Kay: Sort of. it's pretty hard to explain.
-Matt: Give it a shot?
+Matt: Are you doing okay? #matt_netural
+Kay: Sort of. it's pretty hard to explain. #kay_neutral
+Matt: Give it a shot? #matt_netural
 * [Drowning]
-	Kay: Uhh, well if I have an attack it's like someone turned on a faucet and stuck my head in it? Like everything, every little thing, is just way too fucking much.
+	Kay: Uhh, well if I have an attack it's like someone turned on a faucet and stuck my head in it? Like everything, every little thing, is just way too much. #kay_sad
 	Kay: You want there just to be an "off" switch for literally the entire world, but 'cos there isn't, instead you kinda end up just shutting yourself off.
 * [Exhausting]
-	Kay: It's pretty exhausting. My brain is always running at 100% doing like, simulations of all the bad shit that could happen. It would be impressive if it didn't suck so much.
+	Kay: It's pretty exhausting. My brain is always running at 100% doing like, simulations of all the bad shit that could happen. It would be impressive if it didn't suck so much. #kay_sad
 * [Everyone is the enemy]
-	Kay: It's like being the Hulk, but not green or strong or cool in any way? I'm just a raw nerve, super exposed and everyone, even if they don't know it, is jabbing at me with like, a dinner fork.
-- Matt: Have you been like, checked out for this?
+	Kay: It's like being the Hulk, but not green or strong or cool in any way? I'm just a raw nerve, super exposed and everyone, even if they don't know it, is jabbing at me with like, a dinner fork. #kay_sad
+- Matt: Have you been like, checked out for this? #matt_netural
 Kay: Nope. Then they'd give me pills and I wouldn't feel anything and that freaks me out way more. #kay_sad
-Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff.
+Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff. #matt_netural
 * [Just a face to put on]
 	Kay: Yeah well, everyone getshanded a stereotype and I never fought mine. #kay_sad
 	Kay: If no one thinks they can get a rise out of you then they won't even try. #kay_neutral
@@ -506,12 +509,12 @@ Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff.
 	Kay: I give a shit.
 // Find a much better third option
 * [Nobody is]
-	Kay: Literally nobody is "too cool" or "detached" for this kinda stuff. Everyone's got something.
+	Kay: Literally nobody is "too cool" or "detached" for this kinda stuff. Everyone's got something. #kay_sad
 - Kay: Fuck why am I dumping this all on you, I just met you like ten minutes ago. #kay_angry
-Matt: We already knew each other! Maybe not this deep, but we knew each other.
-Kay: Still, you're not exactly in my inner circle - I don't usually tell people stuff like this.
-Matt: I'm glad you did. It seems like it's helping.
-Kay: It is. Thanks. I...
+Matt: We already knew each other! Maybe not this deep, but we knew each other. #matt_netural
+Kay: Still, you're not exactly in my inner circle - I don't usually tell people stuff like this. #kay_sad
+Matt: I'm glad you did. It seems like it's helping. #matt_happy
+Kay: It is. Thanks. I... #kay_neutral
 Kay: I don't get to usually talk this stuff out.
 TODO: Load the next scene! (III, i)
 -> DONE
@@ -534,7 +537,7 @@ Vanya faces the consequences of her choice to which dude, because the other one 
 ===III_ii_Vanya_to_Cody===
 //She chooses Cody, Cam comes over
 //Last we left off, Cody was really honest for a second and it hurt his head
-Vanya: I really appreciate you being so honest with me.
+Vanya: I really appreciate you being so honest with me. #vanya_
 Cody: Thanks for listening! That was a new and frightening level of mental clarity.
 Vanya: So like, would you like to be my... boyfriend?
 Cody: Woah.
