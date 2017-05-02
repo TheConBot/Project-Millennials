@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class PlayerInput : MonoBehaviour
 {
-
+    private Animator anim;
     private NavMeshAgent agent;
     private GameObject cameraPivot;
     private TriggerVolume lastClickedTrigger;
@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
         pointerSprite = pointer.GetComponentInChildren<SpriteRenderer>();
         pointerSprite.enabled = false;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
         cameraPivot = Camera.main.transform.root.gameObject;
     }
 
@@ -79,6 +80,12 @@ public class PlayerInput : MonoBehaviour
             cameraPivot.transform.rotation = Quaternion.Euler(cameraPivot.transform.eulerAngles.x, yAxis, cameraPivot.transform.eulerAngles.z);
         }
         pointerSprite.enabled = (agent.velocity.magnitude != 0);
+
+        anim.SetBool("isIdle", (agent.velocity.magnitude == 0));
+        anim.SetBool("isWalking", (agent.velocity.magnitude != 0));
+        anim.SetBool("isTalking", UI.Instance.inConversation);
+
+
     }
 
     private void OnTriggerEnter(Collider other)

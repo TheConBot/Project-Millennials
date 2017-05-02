@@ -124,7 +124,15 @@ public class UI : MonoBehaviour
 
     public void LoadSceneRemote(string sceneIndex)
     {
-        StartCoroutine(LoadScene(sceneIndex));
+        bool canLoad = (bool)story.variablesState["loadScene"];
+        if (canLoad)
+        {
+            StartCoroutine(LoadScene(sceneIndex));
+        }
+        else
+        {
+            Debug.LogWarning("Story will not allow you to load the scene.");
+        }
     }
 
     private IEnumerator LoadScene(string sceneIndex)
