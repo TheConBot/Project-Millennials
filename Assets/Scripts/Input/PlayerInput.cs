@@ -84,8 +84,6 @@ public class PlayerInput : MonoBehaviour
         anim.SetBool("isIdle", (agent.velocity.magnitude == 0));
         anim.SetBool("isWalking", (agent.velocity.magnitude != 0));
         anim.SetBool("isTalking", UI.Instance.inConversation);
-
-
     }
 
     private void OnTriggerEnter(Collider other)
