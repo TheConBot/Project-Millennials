@@ -28,6 +28,7 @@ public class Playlist : MonoBehaviour {
                     yield return null;
                 }
             }
+            yield return null;
         }
     }
 
