@@ -22,8 +22,9 @@ cam_neutral | cam_sad
 kelly_neutral | kelly_angry
 
 #scene: [scene index int] = how to load scene at the end of a conversation
+But remember, scene index int is the UNITYSCENE - 1 because it's an array.
 
-/********** Act I, Scene 1 **********/
+/********** Act I, Scene 1 (UNITYSCENE 1) **********/
 // EXT. Lake Massapoag - Magic Hour
 
 VAR loadScene = false
@@ -32,7 +33,6 @@ VAR loadScene = false
 /* People with repeatable conversations need to use a variable for read-count
 Create a stitch for main conversation, count that as conditional to pass
 */
-TODO:Add IF statement for if the player hasn't talked to Vanya yet!
 {	
 	- I_i_kay_to_vanya_main == 1:
 	    -> I_i_Kay_to_Vanya_repeat
@@ -64,7 +64,9 @@ Vanya: Halle's over at the lifeguard tower, let's go see what's up! #vanya_happy
 
 ===I_i_All===
 {	
-	- I_i_All == 1:
+	- I_i_Kay_to_Vanya == 0:
+		-> I_i_fail
+	- I_i_All_main == 1:
 	    -> I_i_All_repeat
 	- else:
 	    -> I_i_All_main
@@ -111,6 +113,9 @@ Vanya: Seems legit to me. We're just weird.
 Halle: Whatever. #halle_neutral
 ... #none
 Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
+Vanya: I volunteer Halle to drive. #vanya_sarcastic
+Halle: I'm the only one with a car... #halle_neutral
+Vanya: Perfect! This works out so well. #vanya_happy
 ~ loadScene = true
 -> DONE
 
@@ -119,7 +124,11 @@ Halle: I'm with you. Let's get out of here. #halle_neutral
 ~ loadScene = true
 -> DONE
 
-/********** Act I, Scene 2 **********/
+=I_i_fail
+Halle: Oh hey, Kay. Vanya was looking for you. You lose her on the way? #halle_neutral
+-> DONE
+
+/********** Act I, Scene 2 (UNITYSCENE 3) **********/
 // EXT. Empty Shopping Plaza Parking Lot - Early Evening
 
 ===I_ii_All===
@@ -196,7 +205,7 @@ Vanya: Halle you're a really bad driver, don't blame the car. #vanya_neutral
 VAR driving_fail = false
 -> DONE
 
-/********** Act II, Scene 1 **********/
+/********** Act II, Scene 1 (UNITY SCENE 4) **********/
 // EXT. Kelly Fleming's House - Front Lawn - Night
 ===II_i_main===
 ~ loadScene = true
@@ -238,17 +247,16 @@ Kay: I uhh am just going to hang out. I dunno. #kay_neutral
 Vanya: It'll be fun. #vanya_happy
 Kay: Yeah totally, that's the word people usually use to describe these things right? #kay_sarcastic
 Kay: Memories for a lifetime.
-//Everyone splits off, can we animate that?
-
-TODO: Guide player into the party, who are they controlling? (I,ii)
+//Everyone splits off, player is controlling Kay?
 ->DONE
 
-/********** Act II, Scene 2 **********/
-// INT. Kelly Fleming's House - Night
+/********** Act II, Scene 2 (UNITYSCENE 5) **********/
+/* 
+INT. Kelly Fleming's House - Night
+Halle is now inside and can talk with people, including Kelly
+*/
 
-//Halle is now inside and can talk with people, including Kelly
-
-//Need multiple routes for Kelly
+TODO: Need multiple routes for Kelly, other people? Wire up scene first
 ===II_ii_Halle_to_Kelly===
 Kelly: Hey, Halle. #kelly_neutral
 Kelly: I uhh, don't remember inviting you?
@@ -266,22 +274,14 @@ Kelly: Yeah you do. #kelly_neutral
 Halle: Oh HELL yes I will take on anyone at beer pong! #halle_happy
 Halle: Kelly, get over here! 
 Kelly: What? #kelly_neutral
-Halle: Be my partner! Let's fuck this shit up. #halle_happy
+Halle: 
 Kelly: I'm not going to say no, but I want you to know I am apprehensive about this arrangement. #kelly_neutral
 Halle: And that's why no one likes you anymore. #halle_sarcastic
-Halle: Who wants to challenge us?! #halle_happy
-... #none
-TODO: Put some bros near the beer pong table (II,ii)
-Bro: Yo.
-Bro 2: Yo.
-Bro: You know all the rules?
-* [Hell yeah]
-	Halle: Hell yeah! This ain't my first time. #halle_happy
-* [Remind me]
-	TODO: Write the rules of Beer Pong (II,ii)
 VAR beer_pong_cups = 0
 - #scene: 5
 -> DONE
+
+/********** Pong MiniGame (UNITYSCENE 6) **********/
 
 ===Beer_Poing_Result===
 //What is the result of the Beer Pong game? Can I get the variable of how many cups you knocked over, and depending on that get an IF statement for different funny outcomes?
@@ -306,10 +306,10 @@ Kelly: If you hate us so much, why the hell do you feel you've got to show up an
 ... #none
 Kelly: Seriously, this is like your THING. #kelly_angry
 Halle: Why yes, yes it is. Let's play another round. #halle_sarcastic
-TODO: Load next scene (II,ii)
+#scene: 6
 -> DONE
 
-/********** Act II, Scene 3 **********/
+/********** Act II, Scene 3 (UNITYSCENE 7) **********/
 /*
 INT. Kelly's Garage
 Vanya chooses her boyfriend
@@ -374,7 +374,7 @@ Cody: I think of my outward masculinity as a veneer that'll fall away as I get f
 ... #none
 Vanya: That was really hot. #vanya_special
 Cody: Thanks man! I'm trying. My head hurts. #cody_neutral
-TODO: Load next scene! (II,iii)
+#scene: 7
 -> DONE
 
 ===II_iii_Vanya_to_Cam===
@@ -434,14 +434,14 @@ Cam: Uhh... sure! If that's what you want! Is that what... people do? #cam_neutr
 Vanya: I think so? #vanya_sarcastic
 Cam: How mainstream of you. #cam_neutral
 Vanya: Shut up. #vanya_sarcastic
-TODO: Load Next Scene! (II,iii)
+#scene: 7
 -> DONE
 
-/********** Act II, Scene 4 **********/
+/********** Act II, Scene 4 (UNITYSCENE 8) **********/
 // Kay gets freaked out
 
 
-/********** Act III, Scene 1 **********/
+/********** Act III, Scene 1 (UNITYSCENE 9) **********/
 /*
 EXT. Kelly Fleming's House - Night
 Kay reacting to the events of the last scene
@@ -522,10 +522,10 @@ Kay: Still, you're not exactly in my inner circle - I don't usually tell people 
 Matt: I'm glad you did. It seems like it's helping. #matt_happy
 Kay: It is. Thanks. I... #kay_neutral
 Kay: I don't get to usually talk this stuff out.
-TODO: Load the next scene! (III, i)
+#scene: 9
 -> DONE
 
-/********** Act III, Scene 2 **********/
+/********** Act III, Scene 2 (UNITYSCENE 10) **********/
 /*
 INT. Kelly's Garage
 Vanya faces the consequences of her choice to which dude, because the other one comes in and learns the truth
@@ -643,7 +643,7 @@ Cam: Yeah, that sounds chill. #cam_neutral
 Vanya: Crap. #vanya_sad
 -> DONE
 
-/********** Act III, Scene 3 - FINALE **********/
+/********** Act III, Scene 3 - FINALE (UNITYSCENE 11) **********/
 /*
 EXT. Kelly's House
 Halle wins beer pong, or at least "wins" in that she is rather drunk and acting like a total jerk. Kelly gets mad and kicks her out of the party. Or do I write this so that the player can either win or lose, and the game reacts thusly?
