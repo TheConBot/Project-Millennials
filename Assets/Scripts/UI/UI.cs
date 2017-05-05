@@ -94,7 +94,13 @@ public class UI : MonoBehaviour
             if (story.currentTags[0].StartsWith("scene:"))
             {
                 string sceneIndex = story.currentTags[0].Substring(story.currentTags[0].IndexOf(delimiterChars[0]) + 1).Trim();
-                StartCoroutine(LoadScene(sceneIndex));
+                int index;
+                if (!int.TryParse(sceneIndex, out index))
+                {
+                    Debug.LogError("Could not convert Ink Tag string to int. Defaulting to next scene in build index...");
+                    index = SceneManager.GetActiveScene().buildIndex + 1;
+                }
+                StartCoroutine(LoadScene(index));
                 return;
             }
             characterImage.sprite = GetCharacterImage();
@@ -121,32 +127,33 @@ public class UI : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
     }
 
-    public void LoadSceneRemote(string sceneIndex)
+    public void LoadSceneRemote(int sceneIndex, bool isMinigame)
     {
-        var canLoad = (int)story.variablesState["loadScene"];
-        if (canLoad == 1)
+        if (!isMinigame)
         {
-            StartCoroutine(LoadScene(sceneIndex));
+            var canLoad = (int)story.variablesState["loadScene"];
+            if (canLoad == 0)
+            {
+                Debug.LogWarning("Story will not allow you to load the scene.");
+                return;
+            }
         }
-        else
-        {
-            Debug.LogWarning("Story will not allow you to load the scene.");
-        }
+        StartCoroutine(LoadScene(sceneIndex));
     }
 
-    private IEnumerator LoadScene(string sceneIndex)
+    private IEnumerator LoadScene(int sceneIndex)
     {
-        int index = int.Parse(sceneIndex);
         EndConversation();
         StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
-        AsyncOperation aSync = SceneManager.LoadSceneAsync(index);
+        AsyncOperation aSync = SceneManager.LoadSceneAsync(sceneIndex);
         aSync.allowSceneActivation = false;
         while (fadeToBlackCanvasGroup.alpha != 0 && aSync.isDone)
         {
             yield return null;
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         aSync.allowSceneActivation = true;
+        yield return new WaitForSeconds(1.5f);
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
         yield return null;
     }

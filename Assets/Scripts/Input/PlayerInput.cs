@@ -95,5 +95,14 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<TriggerVolume>() == lastClickedTrigger)
+        {
+            agent.destination = transform.position;
+            lastClickedTrigger.TriggerAction();
+        }
+    }
+
 }
 

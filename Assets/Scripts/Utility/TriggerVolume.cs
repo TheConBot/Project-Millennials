@@ -58,7 +58,13 @@ public class TriggerVolume : MonoBehaviour
 
     private void LoadScene(string sceneIndex)
     {
-        UI.Instance.LoadSceneRemote(sceneIndex);
+        int index;
+        if (!int.TryParse(sceneIndex, out index))
+        {
+            Debug.LogError("Could not convert Action Data string to int. Defaulting to next scene in build index...");
+            index = SceneManager.GetActiveScene().buildIndex + 1;
+        }
+        UI.Instance.LoadSceneRemote(index, false);
     }
 
     private void StartConversation(string inkTag)

@@ -9,6 +9,7 @@ public class CarManager : MonoBehaviour
     public float carTurnMultiplier;
     public float timer = 30;
     public int invincibilityTicks = 3;
+    public int sceneToLoad = 3;
     public AnimationCurve carTurnAngle;
     public Transform[] XPosRef;
     public Slider distanceMeter;
@@ -92,7 +93,7 @@ public class CarManager : MonoBehaviour
             if(lives <= 0)
             {
                 StartCoroutine(Invincible(100));
-                Debug.Log("Lose! TODO: Fade to black and load next scene...");
+                UI.Instance.LoadSceneRemote(sceneToLoad, true);
             }
             StartCoroutine(Invincible(invincibilityTicks));
         }
@@ -124,7 +125,7 @@ public class CarManager : MonoBehaviour
         if (lives > 0)
         {
             StartCoroutine(Invincible(100));
-            Debug.Log("Win! TODO: Fade to black and load next scene...");
+            UI.Instance.LoadSceneRemote(sceneToLoad, true);
         }
     }
 }
