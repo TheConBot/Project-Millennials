@@ -165,6 +165,7 @@ public class UI : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1.5f);
+        Time.timeScale = 1;
         aSync.allowSceneActivation = true;
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));

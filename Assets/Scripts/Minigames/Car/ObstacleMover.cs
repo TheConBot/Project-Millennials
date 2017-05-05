@@ -12,7 +12,7 @@ public class ObstacleMover : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, zThreshhold), Time.deltaTime * speed);
         if(transform.position.z <= zThreshhold)
         {
-            Destroy(this);
+            gameObject.SetActive(false);
         }
     }
 }

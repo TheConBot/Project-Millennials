@@ -10,6 +10,7 @@ public class CarManager : MonoBehaviour
     public float timer = 30;
     public int invincibilityTicks = 3;
     public int sceneToLoad = 3;
+    public ObstacleSpawner obstacleSpawner;
     public AnimationCurve carTurnAngle;
     public Transform[] XPosRef;
     public Slider distanceMeter;
@@ -19,8 +20,8 @@ public class CarManager : MonoBehaviour
     private int lives = 3;
     private int xDirection;
     private int xPosIndex = 1;
-    private bool isCarMoving = false;
-    private bool isCarInvincible = false;
+    private bool isCarTurning;
+    private bool isCarInvincible;
     private Vector3 nextPosition;
     private Vector3 lastPosition;
 
@@ -32,12 +33,26 @@ public class CarManager : MonoBehaviour
         {
             Debug.LogWarning("The ammount of lives images is not equal to the ammount of lives.");
         }
+        StartGame();
+    }
+
+    public void StartGame()
+    {
         StartCoroutine(Timer());
+        obstacleSpawner.StartObstacleSpawn();
+    }
+
+    private void EndGame()
+    {
+        StartCoroutine(Invincible(100));
+        StopCoroutine("Timer");
+        obstacleSpawner.StopObstacleSpawn();
+        UI.Instance.LoadSceneRemote(sceneToLoad, true);
     }
 
     private void Update()
     {
-        if (InputDetected() && !isCarMoving)
+        if (InputDetected() && !isCarTurning)
         {
             lastPosition = transform.position;
             //X Axis Input
@@ -64,7 +79,7 @@ public class CarManager : MonoBehaviour
 
     private IEnumerator MoveCar()
     {
-        isCarMoving = true;
+        isCarTurning = true;
         while (transform.position.x != nextPosition.x)
         {
             Vector3 newPos = Vector3.MoveTowards(transform.position, nextPosition, Time.deltaTime * carSpeed);
@@ -72,7 +87,7 @@ public class CarManager : MonoBehaviour
             transform.SetPositionAndRotation(newPos, newRot);
             yield return new WaitForEndOfFrame();
         }
-        isCarMoving = false;
+        isCarTurning = false;
         transform.rotation = Quaternion.identity;
         yield return null;
     }
@@ -92,8 +107,7 @@ public class CarManager : MonoBehaviour
             livesImages[lives].enabled = false;
             if(lives <= 0)
             {
-                StartCoroutine(Invincible(100));
-                UI.Instance.LoadSceneRemote(sceneToLoad, true);
+                EndGame();
             }
             StartCoroutine(Invincible(invincibilityTicks));
         }
@@ -124,8 +138,7 @@ public class CarManager : MonoBehaviour
         }
         if (lives > 0)
         {
-            StartCoroutine(Invincible(100));
-            UI.Instance.LoadSceneRemote(sceneToLoad, true);
+            EndGame();
         }
     }
 }
