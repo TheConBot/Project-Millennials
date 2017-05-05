@@ -99,8 +99,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (other.GetComponent<TriggerVolume>() == lastClickedTrigger)
         {
-            agent.destination = transform.position;
-            lastClickedTrigger.TriggerAction();
+            lastClickedTrigger.ResetCharacter();
+            lastClickedTrigger = null;
         }
     }
 

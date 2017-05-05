@@ -50,10 +50,13 @@ public class TriggerVolume : MonoBehaviour
         }
     }
 
-    public void ResetActor()
+    public void ResetCharacter()
     {
-        anim.SetBool("isTalking", false);
-        anim.SetBool("isIdle", true);
+        if (transform.root.GetComponent<Animator>() != null)
+        {
+            anim.SetBool("isTalking", false);
+            anim.SetBool("isIdle", true);
+        }
     }
 
     private void LoadScene(string sceneIndex)
@@ -73,7 +76,6 @@ public class TriggerVolume : MonoBehaviour
         UI.Instance.StartConversation(inkTag);
         if (transform.root.GetComponent<Animator>() != null)
         {
-            Animator anim = transform.root.GetComponent<Animator>();
             anim.SetBool("isTalking", true);
             anim.SetBool("isIdle", false);
         }

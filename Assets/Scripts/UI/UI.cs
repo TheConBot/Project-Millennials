@@ -29,11 +29,16 @@ public class UI : MonoBehaviour
     [SerializeField]
     private Button[] choicesButtons;
     [SerializeField]
-    private Image characterImage, decorationSquare;
+    private Image characterImage, decorationSquare, continueImage;
     [SerializeField]
     private Sprite[] expressionSprites;
     [Header("UI Variables"), SerializeField]
     private float fadeSpeed = 1;
+    [SerializeField]
+    private float normalCharacterWriteDelay = 0.2f;
+    [SerializeField]
+    private float quickCharacterWriteMultiplier = 0.1f;
+    private float characterWriteDelay;
     [SerializeField]
     private Color halleColor, kayColor, vanyaColor;
     private CanvasGroup conversationCanvasGroup;
@@ -54,7 +59,7 @@ public class UI : MonoBehaviour
             return story.currentChoices.Count > 0 && !choicesPanel.activeSelf;
         }
     }
-
+    private bool isWritingText;
     private readonly char[] delimiterChars = { ':' };
 
     private void Awake()
@@ -77,7 +82,15 @@ public class UI : MonoBehaviour
 
     public void UpdateText()
     {
-        if (!story.canContinue && story.currentChoices.Count == 0)
+        if (isWritingText)
+        {
+            if(characterWriteDelay == normalCharacterWriteDelay)
+            {
+                characterWriteDelay *= quickCharacterWriteMultiplier;
+            }
+            return;
+        }
+        else if (!story.canContinue && story.currentChoices.Count == 0)
         {
             EndConversation();
             return;
@@ -107,7 +120,7 @@ public class UI : MonoBehaviour
         }
 
         nameText.text = splitLine[0].Trim();
-        if (splitLine.Length > 1) bodyText.text = splitLine[1].Trim();
+        if (splitLine.Length > 1) StartCoroutine(CharacterWrite(splitLine[1].Trim()));
         else bodyText.text = "";
     }
 
@@ -238,6 +251,23 @@ public class UI : MonoBehaviour
         {
             canvasGroup.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator CharacterWrite(string line)
+    {
+        bodyText.text = "";
+        continueImage.enabled = false;
+        isWritingText = true;
+        characterWriteDelay = normalCharacterWriteDelay;
+        char[] lineChars = line.ToCharArray();
+        for (int i = 0; i < lineChars.Length; i++)
+        {
+            bodyText.text += lineChars[i];
+            yield return new WaitForSeconds(characterWriteDelay);
+        }
+        isWritingText = false;
+        continueImage.enabled = true;
+        yield return null;
     }
 
     public void GenerateChoices()

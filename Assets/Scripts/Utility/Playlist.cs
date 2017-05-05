@@ -1,28 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 [RequireComponent(typeof(AudioSource))]
 public class Playlist : MonoBehaviour {
 
-    public List<AudioClip> songs;
+    [Header("Playlist Settings")]
+    [SerializeField]
+    private bool shufflePlaylist;
+    [SerializeField]
+    private List<AudioClip> songs;
     private AudioSource audioSource;
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        List<AudioClip> shuffledSongs = Shuffle(songs);
-        StartCoroutine(PlayList(shuffledSongs));
+        if (shufflePlaylist)
+        {
+            songs = ShuffleSongs(songs);
+        }
+        StartCoroutine(PlayList(songs));
     }
 
-    private IEnumerator PlayList(List<AudioClip> shuffledSongs)
+    private IEnumerator PlayList(List<AudioClip> songs)
     {
         while (true)
         {
-            for (int i = 0; i < shuffledSongs.Count; i++)
+            for (int i = 0; i < songs.Count; i++)
             {
-                audioSource.PlayOneShot(shuffledSongs[i]);
+                audioSource.PlayOneShot(songs[i]);
                 while (audioSource.isPlaying)
                 {
                     yield return null;
@@ -32,18 +38,18 @@ public class Playlist : MonoBehaviour {
         }
     }
 
-    private List<AudioClip> Shuffle(List<AudioClip> list)
+    private List<AudioClip> ShuffleSongs(List<AudioClip> playList)
     {
         System.Random rng = new System.Random();
-        int n = list.Count;
+        int n = playList.Count;
         while (n > 1)
         {
             n--;
             int k = rng.Next(n + 1);
-            var value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+            var value = playList[k];
+            playList[k] = playList[n];
+            playList[n] = value;
         }
-        return list;
+        return playList;
     }
 }
