@@ -170,7 +170,7 @@ VAR dating_cam = false
 	Vanya: No? #vanya_sad
 	Kay: That's... not optimal. #kay_sarcastic
  	Halle: Yeah, what she said. #halle_sarcastic
-- Vanya: Look, it's fine! I'll figure it out. vanya_neutral
+- Vanya: Look, it's fine! I'll figure it out. #vanya_neutral
 Halle: Are they both going to the party? #halle_neutral
 Vanya: Yes, why- #vanya_neutral
 * [SHIT.]
