@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 6767d82013db6f943a7b130156eed408
-timeCreated: 1490059805
+guid: a1d5770c9ebaa9d4a96c5da5f156c7cd
+timeCreated: 1494183248
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: body
+    100000: c
     100002: //RootNode
     100004: mixamorig:Head
     100006: mixamorig:HeadTop_End
@@ -18,33 +18,37 @@ ModelImporter:
     100020: mixamorig:LeftHandIndex2
     100022: mixamorig:LeftHandIndex3
     100024: mixamorig:LeftHandIndex4
-    100026: mixamorig:LeftLeg
-    100028: mixamorig:LeftShoulder
-    100030: mixamorig:LeftToe_End
-    100032: mixamorig:LeftToeBase
-    100034: mixamorig:LeftUpLeg
-    100036: mixamorig:Neck
-    100038: mixamorig:RightArm
-    100040: mixamorig:RightFoot
-    100042: mixamorig:RightForeArm
-    100044: mixamorig:RightHand
-    100046: mixamorig:RightHandIndex1
-    100048: mixamorig:RightHandIndex2
-    100050: mixamorig:RightHandIndex3
-    100052: mixamorig:RightHandIndex4
-    100054: mixamorig:RightLeg
-    100056: mixamorig:RightShoulder
-    100058: mixamorig:RightToe_End
-    100060: mixamorig:RightToeBase
-    100062: mixamorig:RightUpLeg
-    100064: mixamorig:Spine
-    100066: mixamorig:Spine1
-    100068: mixamorig:Spine2
-    100070: sandels
-    100072: shoes
-    100074: shorts
-    100076: tshirt
-    400000: body
+    100026: mixamorig:LeftHandThumb1
+    100028: mixamorig:LeftHandThumb2
+    100030: mixamorig:LeftHandThumb3
+    100032: mixamorig:LeftHandThumb4
+    100034: mixamorig:LeftLeg
+    100036: mixamorig:LeftShoulder
+    100038: mixamorig:LeftToe_End
+    100040: mixamorig:LeftToeBase
+    100042: mixamorig:LeftUpLeg
+    100044: mixamorig:Neck
+    100046: mixamorig:RightArm
+    100048: mixamorig:RightFoot
+    100050: mixamorig:RightForeArm
+    100052: mixamorig:RightHand
+    100054: mixamorig:RightHandIndex1
+    100056: mixamorig:RightHandIndex2
+    100058: mixamorig:RightHandIndex3
+    100060: mixamorig:RightHandIndex4
+    100062: mixamorig:RightHandThumb1
+    100064: mixamorig:RightHandThumb2
+    100066: mixamorig:RightHandThumb3
+    100068: mixamorig:RightHandThumb4
+    100070: mixamorig:RightLeg
+    100072: mixamorig:RightShoulder
+    100074: mixamorig:RightToe_End
+    100076: mixamorig:RightToeBase
+    100078: mixamorig:RightUpLeg
+    100080: mixamorig:Spine
+    100082: mixamorig:Spine1
+    100084: mixamorig:Spine2
+    400000: c
     400002: //RootNode
     400004: mixamorig:Head
     400006: mixamorig:HeadTop_End
@@ -57,45 +61,40 @@ ModelImporter:
     400020: mixamorig:LeftHandIndex2
     400022: mixamorig:LeftHandIndex3
     400024: mixamorig:LeftHandIndex4
-    400026: mixamorig:LeftLeg
-    400028: mixamorig:LeftShoulder
-    400030: mixamorig:LeftToe_End
-    400032: mixamorig:LeftToeBase
-    400034: mixamorig:LeftUpLeg
-    400036: mixamorig:Neck
-    400038: mixamorig:RightArm
-    400040: mixamorig:RightFoot
-    400042: mixamorig:RightForeArm
-    400044: mixamorig:RightHand
-    400046: mixamorig:RightHandIndex1
-    400048: mixamorig:RightHandIndex2
-    400050: mixamorig:RightHandIndex3
-    400052: mixamorig:RightHandIndex4
-    400054: mixamorig:RightLeg
-    400056: mixamorig:RightShoulder
-    400058: mixamorig:RightToe_End
-    400060: mixamorig:RightToeBase
-    400062: mixamorig:RightUpLeg
-    400064: mixamorig:Spine
-    400066: mixamorig:Spine1
-    400068: mixamorig:Spine2
-    400070: sandels
-    400072: shoes
-    400074: shorts
-    400076: tshirt
-    2300000: shoes
-    3300000: shoes
-    4300000: body
-    4300002: shorts
-    4300004: tshirt
-    4300006: sandels
-    4300008: shoes
+    400026: mixamorig:LeftHandThumb1
+    400028: mixamorig:LeftHandThumb2
+    400030: mixamorig:LeftHandThumb3
+    400032: mixamorig:LeftHandThumb4
+    400034: mixamorig:LeftLeg
+    400036: mixamorig:LeftShoulder
+    400038: mixamorig:LeftToe_End
+    400040: mixamorig:LeftToeBase
+    400042: mixamorig:LeftUpLeg
+    400044: mixamorig:Neck
+    400046: mixamorig:RightArm
+    400048: mixamorig:RightFoot
+    400050: mixamorig:RightForeArm
+    400052: mixamorig:RightHand
+    400054: mixamorig:RightHandIndex1
+    400056: mixamorig:RightHandIndex2
+    400058: mixamorig:RightHandIndex3
+    400060: mixamorig:RightHandIndex4
+    400062: mixamorig:RightHandThumb1
+    400064: mixamorig:RightHandThumb2
+    400066: mixamorig:RightHandThumb3
+    400068: mixamorig:RightHandThumb4
+    400070: mixamorig:RightLeg
+    400072: mixamorig:RightShoulder
+    400074: mixamorig:RightToe_End
+    400076: mixamorig:RightToeBase
+    400078: mixamorig:RightUpLeg
+    400080: mixamorig:Spine
+    400082: mixamorig:Spine1
+    400084: mixamorig:Spine2
+    4300000: c
     7400000: Take 001
     9500000: //RootNode
-    13700000: body
-    13700002: sandels
-    13700004: shorts
-    13700006: tshirt
+    13700000: c
   materials:
     importMaterials: 1
     materialName: 0
