@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 2dec6fd01cd6ac44f889917654961f14
+timeCreated: 1493135681
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base3:RoadKillOut_EX3_Set1
+    100002: EX3_Set1_Base4:RoadKillOut
+    100004: EX3_Set1_BitchPipe4:RoadKillOut
+    100006: EX3_Set1_ChimneySide3:RoadKillOut
+    100008: EX3_Set1_Door7:RoadKillOut
+    100010: EX3_Set1_GarBase5:RoadKillOut
+    100012: EX3_Set1_polySurface2
+    100014: EX3_Set1_Porch4:RoadKillOut
+    100016: EX3_Set1_PorRoof4:RoadKillOut
+    100018: EX3_Set1_Roof5:RoadKillOut
+    100020: EX3_Set1_Roof6:RoadKillOut
+    100022: EX3_Set1_RoofExtension10:RoadKillOut
+    100024: EX3_Set1_RoofExtension12:RoadKillOut
+    100026: EX3_Set1_WindowMed14:RoadKillOut
+    100028: EX3_Set1_WindowMed15:RoadKillOut
+    100030: EX3_Set1_WindowMed16:RoadKillOut
+    100032: EX3_Set1_WindowMed17:RoadKillOut
+    100034: EX3_Set1_WindowMed18:RoadKillOut
+    100036: EX3_Set1_WindowMed19:RoadKillOut
+    100038: EX3_Set1_WindowMed20:RoadKillOut
+    100040: EX3_Set1_WindowMed21:RoadKillOut
+    100042: //RootNode
+    400000: Base3:RoadKillOut_EX3_Set1
+    400002: EX3_Set1_Base4:RoadKillOut
+    400004: EX3_Set1_BitchPipe4:RoadKillOut
+    400006: EX3_Set1_ChimneySide3:RoadKillOut
+    400008: EX3_Set1_Door7:RoadKillOut
+    400010: EX3_Set1_GarBase5:RoadKillOut
+    400012: EX3_Set1_polySurface2
+    400014: EX3_Set1_Porch4:RoadKillOut
+    400016: EX3_Set1_PorRoof4:RoadKillOut
+    400018: EX3_Set1_Roof5:RoadKillOut
+    400020: EX3_Set1_Roof6:RoadKillOut
+    400022: EX3_Set1_RoofExtension10:RoadKillOut
+    400024: EX3_Set1_RoofExtension12:RoadKillOut
+    400026: EX3_Set1_WindowMed14:RoadKillOut
+    400028: EX3_Set1_WindowMed15:RoadKillOut
+    400030: EX3_Set1_WindowMed16:RoadKillOut
+    400032: EX3_Set1_WindowMed17:RoadKillOut
+    400034: EX3_Set1_WindowMed18:RoadKillOut
+    400036: EX3_Set1_WindowMed19:RoadKillOut
+    400038: EX3_Set1_WindowMed20:RoadKillOut
+    400040: EX3_Set1_WindowMed21:RoadKillOut
+    400042: //RootNode
+    2300000: Base3:RoadKillOut_EX3_Set1
+    2300002: EX3_Set1_Base4:RoadKillOut
+    2300004: EX3_Set1_BitchPipe4:RoadKillOut
+    2300006: EX3_Set1_ChimneySide3:RoadKillOut
+    2300008: EX3_Set1_Door7:RoadKillOut
+    2300010: EX3_Set1_GarBase5:RoadKillOut
+    2300012: EX3_Set1_polySurface2
+    2300014: EX3_Set1_Porch4:RoadKillOut
+    2300016: EX3_Set1_PorRoof4:RoadKillOut
+    2300018: EX3_Set1_Roof5:RoadKillOut
+    2300020: EX3_Set1_Roof6:RoadKillOut
+    2300022: EX3_Set1_RoofExtension10:RoadKillOut
+    2300024: EX3_Set1_RoofExtension12:RoadKillOut
+    2300026: EX3_Set1_WindowMed14:RoadKillOut
+    2300028: EX3_Set1_WindowMed15:RoadKillOut
+    2300030: EX3_Set1_WindowMed16:RoadKillOut
+    2300032: EX3_Set1_WindowMed17:RoadKillOut
+    2300034: EX3_Set1_WindowMed18:RoadKillOut
+    2300036: EX3_Set1_WindowMed19:RoadKillOut
+    2300038: EX3_Set1_WindowMed20:RoadKillOut
+    2300040: EX3_Set1_WindowMed21:RoadKillOut
+    3300000: Base3:RoadKillOut_EX3_Set1
+    3300002: EX3_Set1_Base4:RoadKillOut
+    3300004: EX3_Set1_BitchPipe4:RoadKillOut
+    3300006: EX3_Set1_ChimneySide3:RoadKillOut
+    3300008: EX3_Set1_Door7:RoadKillOut
+    3300010: EX3_Set1_GarBase5:RoadKillOut
+    3300012: EX3_Set1_polySurface2
+    3300014: EX3_Set1_Porch4:RoadKillOut
+    3300016: EX3_Set1_PorRoof4:RoadKillOut
+    3300018: EX3_Set1_Roof5:RoadKillOut
+    3300020: EX3_Set1_Roof6:RoadKillOut
+    3300022: EX3_Set1_RoofExtension10:RoadKillOut
+    3300024: EX3_Set1_RoofExtension12:RoadKillOut
+    3300026: EX3_Set1_WindowMed14:RoadKillOut
+    3300028: EX3_Set1_WindowMed15:RoadKillOut
+    3300030: EX3_Set1_WindowMed16:RoadKillOut
+    3300032: EX3_Set1_WindowMed17:RoadKillOut
+    3300034: EX3_Set1_WindowMed18:RoadKillOut
+    3300036: EX3_Set1_WindowMed19:RoadKillOut
+    3300038: EX3_Set1_WindowMed20:RoadKillOut
+    3300040: EX3_Set1_WindowMed21:RoadKillOut
+    4300000: Base3:RoadKillOut_EX3_Set1
+    4300002: EX3_Set1_Base4:RoadKillOut
+    4300004: EX3_Set1_BitchPipe4:RoadKillOut
+    4300006: EX3_Set1_ChimneySide3:RoadKillOut
+    4300008: EX3_Set1_Door7:RoadKillOut
+    4300010: EX3_Set1_GarBase5:RoadKillOut
+    4300012: EX3_Set1_polySurface2
+    4300014: EX3_Set1_Porch4:RoadKillOut
+    4300016: EX3_Set1_PorRoof4:RoadKillOut
+    4300018: EX3_Set1_Roof5:RoadKillOut
+    4300020: EX3_Set1_Roof6:RoadKillOut
+    4300022: EX3_Set1_RoofExtension10:RoadKillOut
+    4300024: EX3_Set1_RoofExtension12:RoadKillOut
+    4300026: EX3_Set1_WindowMed14:RoadKillOut
+    4300028: EX3_Set1_WindowMed15:RoadKillOut
+    4300030: EX3_Set1_WindowMed16:RoadKillOut
+    4300032: EX3_Set1_WindowMed17:RoadKillOut
+    4300034: EX3_Set1_WindowMed18:RoadKillOut
+    4300036: EX3_Set1_WindowMed19:RoadKillOut
+    4300038: EX3_Set1_WindowMed20:RoadKillOut
+    4300040: EX3_Set1_WindowMed21:RoadKillOut
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
