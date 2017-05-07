@@ -59,11 +59,11 @@ Temporary Items
 .apdisk
 
 # Windows
-# =========================
 
 # Windows image file caches
-Thumbs.db
 ehthumbs.db
+Thumbs.db
+Thumbs.db.meta
 
 # Folder config file
 Desktop.ini

@@ -329,7 +329,7 @@ TODO: Create some kind of diegetic indicator of who she can talk to (II,iii)
 
 ===II_iii_Vanya_to_Cody===
 {	
-	- II_iii_Vanya_to_Cody == 1:
+	- II_iii_Vanya_to_Cody_main == 1:
 	    -> II_iii_Vanya_to_Cody_repeat
 	- else:
 	    -> II_iii_Vanya_to_Cody_main
@@ -338,7 +338,7 @@ TODO: Create some kind of diegetic indicator of who she can talk to (II,iii)
 =II_iii_Vanya_to_Cody_main
 //Cody is the SPORTY one, dense but nice
 Vanya: Hey! #vanya_happy
-Cody: HEYYY V! What's up?? Me and the guys were just about break our keg-hymens, wanna join? #cody_neutral
+Cody: HEYYY V! What's up?? Me and the guys were just about to learn how to shotgun a beer! Wanna join? #cody_neutral
 Vanya: That's not- nevermind, YES I wanna- WAIT. #vanya_happy
 * [*Choose Cody to be your boyfriend*]
 	-> choose_cody
@@ -370,7 +370,8 @@ Cody: Well that's cos you are wanted. #cody_neutral
 Cody: I know I'm reckless and sometimes a danger to those around me, but that's because I wanna live life right now, you know?
 Cody: All this? Partying at Kelly's house, hanging with three different guys named Jay, driving my mom's minivan home at 3AM before getting up at 6AM for the gym?
 Cody: That stuff ain't forever, you know? #cody_sad
-Cody: I think of my outward masculinity as a veneer that'll fall away as I get further into college and figure out I'm gonna get a job wearing a suit or some shit like that. But for now it's really fun! #cody_neutral
+Cody: I think of my outward masculinity as a veneer that'll fall away as I get further into college, #cody_neutral
+Cody: and figure out I'm gonna get a job wearing a suit or some shit like that. But for now it's really fun! 
 ... #none
 Vanya: That was really hot. #vanya_special
 Cody: Thanks man! I'm trying. My head hurts. #cody_neutral
@@ -379,7 +380,7 @@ Cody: Thanks man! I'm trying. My head hurts. #cody_neutral
 
 ===II_iii_Vanya_to_Cam===
 {
-	- II_iii_Vanya_to_Cam == 1:
+	- II_iii_Vanya_to_Cam_main == 1:
 		-> II_iii_Vanya_to_Cam_repeat
 	- else: 
 		-> II_iii_Vanya_to_Cam_main
