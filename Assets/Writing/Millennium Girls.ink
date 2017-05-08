@@ -243,10 +243,9 @@ Halle: I'm in a mischief mood, yeah. #halle_happy
 Kay: Oh goody. #kay_sarcastic
 Halle: Hey everyone says I should learn how to drink BEFORE I go to college, so why not? #halle_sarcastic
 Halle: What are you going to do? 
-Kay: I uhh am just going to hang out. I dunno. #kay_neutral
+Kay: I uhh am just going to hang out. I dunno. I'm not feeling up to this. #kay_neutral
 Vanya: It'll be fun. #vanya_happy
-Kay: Yeah totally, that's the word people usually use to describe these things right? #kay_sarcastic
-Kay: Memories for a lifetime.
+Kay: Maybe for you. #kay_neutral
 //Everyone splits off, player is controlling Kay?
 ->DONE
 
@@ -256,7 +255,6 @@ INT. Kelly Fleming's House - Night
 Halle is now inside and can talk with people, including Kelly
 */
 
-TODO: Need multiple routes for Kelly, other people? Wire up scene first
 ===II_ii_Halle_to_Kelly===
 Kelly: Hey, Halle. #kelly_neutral
 Kelly: I uhh, don't remember inviting you?
@@ -274,9 +272,10 @@ Kelly: Yeah you do. #kelly_neutral
 Halle: Oh HELL yes I will take on anyone at beer pong! #halle_happy
 Halle: Kelly, get over here! 
 Kelly: What? #kelly_neutral
-Halle: 
+Halle: Come play beer pong! We were friends that one time! #halle_happy
 Kelly: I'm not going to say no, but I want you to know I am apprehensive about this arrangement. #kelly_neutral
 Halle: And that's why no one likes you anymore. #halle_sarcastic
+Kelly: Real nice, Halle. #kelly_neutral
 VAR beer_pong_cups = 0
 - #scene: 5
 -> DONE
@@ -322,7 +321,6 @@ VAR vanya_chooses_cam = false
 Vanya: Well shit. Guess it's now or never. #vanya_neutral
 Vanya: Cody is with his friends, the lovable lug, and Cody is over in the corner because he's a beautiful loner. #vanya_happy
 Vanya: I have to choose between two super cute boys UGH THIS SUCKS. #vanya_angry
-TODO: Create some kind of diegetic indicator of who she can talk to (II,iii)
 -> DONE
 
 //Both these knots need repeat stitches, because the player will get to make a choice to continue the conversation
@@ -438,39 +436,35 @@ Vanya: Shut up. #vanya_sarcastic
 #scene: 7
 -> DONE
 
-/********** Act II, Scene 4 (UNITYSCENE 8) **********/
-// Kay gets freaked out
-
-
 /********** Act III, Scene 1 (UNITYSCENE 9) **********/
 /*
 EXT. Kelly Fleming's House - Night
-Kay reacting to the events of the last scene
+Kay has a freak out and decides to stay outside.
 */
 
 ===II_iv_main===
-Kay: Fuck. #kay_angry
-Devin: Hey Matthews, you fuck yourself up too quick?
+Kay: Fuck that. There's no way I can stay in there without freaking the fuck out. #kay_angry
+Devin: Hey Matthews, you fuck yourself up too quick? #none
 Kay: Fuck 155% OFF, Devin. #kay_angry
-Devin: Hey, don't freak out at me if you can't handle your shit, right?
+Devin: Hey, don't freak out at me if you can't handle your shit, right? #none
 Matt: Hey McAllister, why don't you actually give fucking off 155% a shot? #matt_netural
-Devin: Woah boy, singer-songwriter Matt Fenster appears! 
+Devin: Woah boy, singer-songwriter Matt Fenster appears! #none
 Devin: Your sentence structure sucks, by the way - am I fucking off 155%, or am I giving fucking off 155% of "a shot", because either way-
-Kay: YOU KNOW WHAT I MEANT! #kay_angry
+Kay: YOU KNOW WHAT I MEANT. #kay_angry
 Kay: GET
 Kay: OUT
 Kay: OF
 Kay: MY
 Kay: FACE.
 ... #none
-Devin: Alright, fair enough. I apologize for any sleight, you don't appear to be drunk but instead very distraught. I want none of this.
-// Devin leaves, do I write stage direction into the script?
+Devin: Alright, fair enough. #none
+Devin: I apologize for any sleight, you don't appear to be drunk but instead very distraught. I want none of this.
+// Devin leaves, or turns around or some shit
 Matt: Uh. Well. I mean that worked really well. #matt_happy
 Kay: I've known Devin since we were like two years old, he isn't bad just dumb. #kay_angry
 -> Talk_to_matt
 
 =Talk_to_matt
-// More about her freak out, their introduction
 Matt: Hey, are you okay? You in fact seem "distraught". #matt_netural
 Kay: I, I just- yeah. Having a moment. Anxiety thing. It's a thing. It happens. #kay_sad
 Matt: You're having a panic attack? Do you want to chill out for a bit? #matt_netural
