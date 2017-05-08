@@ -64,9 +64,13 @@ public class BallToss : MonoBehaviour
                         powerMultiplier = Mathf.Clamp(powerMultiplier + (Time.deltaTime * powerMultiplierSpeed), minPowerMultiplier, maxPowerMultiplier);
                         UpdateTrajectory(transform.position, (transform.forward * powerMultiplier * 1.25f), Physics.gravity);
                     }
-                    if (Input.GetMouseButtonUp(0) || powerMultiplier == maxPowerMultiplier)
+                    if (Input.GetMouseButtonUp(0))
                     {
                         LaunchBall();
+                    }
+                    else if(powerMultiplier == maxPowerMultiplier)
+                    {
+                        powerMultiplier = minPowerMultiplier;
                     }
                     //Camera Zoom Out
                     if (Camera.main.fieldOfView != cameraOrigonalZoom)
