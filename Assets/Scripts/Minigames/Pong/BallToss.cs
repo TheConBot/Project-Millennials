@@ -9,15 +9,19 @@ public class BallToss : MonoBehaviour
     //Private Vars
     private Rigidbody body;
     private LineRenderer lineRenderer;
+    private bool playGame;
     private bool holdingBall;
     private bool bounced;
     private float cameraOrigonalZoom;
     private float powerMultiplier;
+    private float originTimeStep;
     private int cupsRemaining;
     private const string TRIES_TEXT = "Tries: ";
     private const string CUPS_TEXT = "Cups: ";
     //Inspector Vars
     [Header("Game Settings")]
+    public float fixedTimeStep = 0.005f;
+    public int sceneToLoad = 8;
     public int triesRemaining = 20;
     public float ballResetTime = 4;
     public GameObject[] cups;
@@ -44,59 +48,65 @@ public class BallToss : MonoBehaviour
 
     private void Update()
     {
-        if (triesRemaining > 0 && cupsRemaining > 0)
+        if (playGame)
         {
-            if (holdingBall)
+            if (triesRemaining > 0 && cupsRemaining > 0)
             {
-                //Ball Aim
-                Vector3 mousePosition = Input.mousePosition;
-                mousePosition.z = zOffset;
-                transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
-                //Launch Input
-                if (Input.GetMouseButton(0))
+                if (holdingBall)
                 {
-                    powerMultiplier = Mathf.Clamp(powerMultiplier + (Time.deltaTime * powerMultiplierSpeed), minPowerMultiplier, maxPowerMultiplier);
-                    UpdateTrajectory(transform.position, (transform.forward * powerMultiplier * 1.25f), Physics.gravity);
+                    //Ball Aim
+                    Vector3 mousePosition = Input.mousePosition;
+                    mousePosition.z = zOffset;
+                    transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+                    //Launch Input
+                    if (Input.GetMouseButton(0))
+                    {
+                        powerMultiplier = Mathf.Clamp(powerMultiplier + (Time.deltaTime * powerMultiplierSpeed), minPowerMultiplier, maxPowerMultiplier);
+                        UpdateTrajectory(transform.position, (transform.forward * powerMultiplier * 1.25f), Physics.gravity);
+                    }
+                    if (Input.GetMouseButtonUp(0) || powerMultiplier == maxPowerMultiplier)
+                    {
+                        LaunchBall();
+                    }
+                    //Camera Zoom Out
+                    if (Camera.main.fieldOfView != cameraOrigonalZoom)
+                    {
+                        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraOrigonalZoom, Time.deltaTime * cameraZoomSpeed);
+                    }
                 }
-                if (Input.GetMouseButtonUp(0) || powerMultiplier == maxPowerMultiplier)
+                else
                 {
-                    LaunchBall();
-                }
-                //Camera Zoom Out
-                if (Camera.main.fieldOfView != cameraOrigonalZoom)
-                {
-                    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraOrigonalZoom, Time.deltaTime * cameraZoomSpeed);
+                    //Camera Zoom In
+                    if (Camera.main.fieldOfView != cameraZoomAmount)
+                    {
+                        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraZoomAmount, Time.deltaTime * cameraZoomSpeed);
+                    }
+                    //Reset Falling Ball
+                    if (gameObject.transform.position.y < -5)
+                    {
+                        ResetBall();
+                    }
                 }
             }
             else
             {
-                //Camera Zoom In
-                if (Camera.main.fieldOfView != cameraZoomAmount)
+                if (cupsRemaining <= 0)
                 {
-                    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, cameraZoomAmount, Time.deltaTime * cameraZoomSpeed);
+                    Debug.Log("You win!");
                 }
-                //Reset Falling Ball
-                if (gameObject.transform.position.y < -5)
+                else if (triesRemaining <= 0)
                 {
-                    ResetBall();
+                    Debug.Log("Good try!");
                 }
-            }
-        }
-        else
-        {
-            if(cupsRemaining <= 0)
-            {
-                Debug.Log("You win!");
-            }
-            else if(triesRemaining <= 0)
-            {
-                Debug.Log("Good try!");
+                EndGame();
             }
         }
     }
 
     private void Initialize()
     {
+        originTimeStep = Time.fixedDeltaTime;
+        Time.fixedDeltaTime = fixedTimeStep;
         body = GetComponent<Rigidbody>();
         lineRenderer = guideLine.GetComponent<LineRenderer>();
         holdingBall = true;
@@ -105,6 +115,14 @@ public class BallToss : MonoBehaviour
         cameraOrigonalZoom = Camera.main.fieldOfView;
         triesRemainingText.text = TRIES_TEXT + triesRemaining;
         cupsRemainingText.text = CUPS_TEXT + cupsRemaining;
+        playGame = true;
+    }
+
+    private void EndGame()
+    {
+        Time.fixedDeltaTime = originTimeStep;
+        UI.Instance.LoadSceneRemote(sceneToLoad, true);
+        playGame = false;
     }
 
     private void ResetBall()
@@ -116,7 +134,7 @@ public class BallToss : MonoBehaviour
         body.isKinematic = holdingBall;
         triesRemaining--;
         triesRemainingText.text = TRIES_TEXT + triesRemaining;
-        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         lineRenderer.enabled = false;
     }
 
@@ -157,24 +175,24 @@ public class BallToss : MonoBehaviour
     {
         if (other.tag == "Cup")
         {
-            other.gameObject.SetActive(false);
             cupsRemaining--;
             triesRemaining++;
+            if(cupsRemaining != 0) other.gameObject.SetActive(false);
             if (bounced)
             {
                 foreach(GameObject cup in cups)
                 {
                     if (cup.activeSelf)
                     {
-                        cup.gameObject.SetActive(false);
                         cupsRemaining--;
                         triesRemaining++;
+                        if (cupsRemaining != 0) other.gameObject.SetActive(false);
                         break;
                     }
                 }
             }
             cupsRemainingText.text = CUPS_TEXT + cupsRemaining;
-            ResetBall();
+            if (cupsRemaining != 0)  ResetBall();
         }
     }
 

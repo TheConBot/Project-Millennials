@@ -16,7 +16,6 @@ public class CarManager : MonoBehaviour
     public Slider distanceMeter;
     public Image[] livesImages;
 
-    private InputBindings inputBindings;
     private int lives = 3;
     private int xDirection;
     private int xPosIndex = 1;
@@ -27,7 +26,6 @@ public class CarManager : MonoBehaviour
 
     private void Awake()
     {
-        inputBindings = InputBindings.CreateWithDefaultBindings();
         distanceMeter.maxValue = timer;
         if(lives != livesImages.Length)
         {
@@ -56,12 +54,12 @@ public class CarManager : MonoBehaviour
         {
             lastPosition = transform.position;
             //X Axis Input
-            if (inputBindings.Right.WasPressed && xPosIndex != XPosRef.Length - 1)
+            if (Input.GetMouseButtonDown(1) && xPosIndex != XPosRef.Length - 1)
             {
                 xPosIndex++;
                 xDirection = 1;
             }
-            else if (inputBindings.Left.WasPressed && xPosIndex != 0)
+            else if (Input.GetMouseButtonDown(0) && xPosIndex != 0)
             {
                 xPosIndex--;
                 xDirection = -1;
@@ -74,7 +72,7 @@ public class CarManager : MonoBehaviour
 
     private bool InputDetected()
     {
-        return inputBindings.Left.WasPressed || inputBindings.Right.WasPressed;
+        return Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1);
     }
 
     private IEnumerator MoveCar()
@@ -103,12 +101,16 @@ public class CarManager : MonoBehaviour
     {
         if(other.GetComponent<ObstacleMover>() != null && !isCarInvincible)
         {
+            if (lives <= 0)
+            {
+                return;
+            }
             lives--;
-            livesImages[lives].enabled = false;
             if(lives <= 0)
             {
                 EndGame();
             }
+            livesImages[lives].enabled = false;
             StartCoroutine(Invincible(invincibilityTicks));
         }
     }

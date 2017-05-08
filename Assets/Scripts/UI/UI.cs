@@ -158,15 +158,18 @@ public class UI : MonoBehaviour
     {
         EndConversation();
         StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
-        AsyncOperation aSync = SceneManager.LoadSceneAsync(sceneIndex);
-        aSync.allowSceneActivation = false;
-        while (fadeToBlackCanvasGroup.alpha != 0 && aSync.isDone)
+        while (fadeToBlackCanvasGroup.alpha != 1)
         {
             yield return null;
         }
-        yield return new WaitForSeconds(1.5f);
-        Time.timeScale = 1;
+        AsyncOperation aSync = SceneManager.LoadSceneAsync(sceneIndex);
+        aSync.allowSceneActivation = false;
+        while (aSync.isDone)
+        {
+            yield return null;
+        }
         aSync.allowSceneActivation = true;
+        Time.timeScale = 1;
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
         yield return null;
