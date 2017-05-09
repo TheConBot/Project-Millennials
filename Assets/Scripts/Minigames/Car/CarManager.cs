@@ -15,6 +15,7 @@ public class CarManager : MonoBehaviour
     public Transform[] XPosRef;
     public Slider distanceMeter;
     public Image[] livesImages;
+    public AudioSource impactSound;
 
     private int lives = 3;
     private int xDirection;
@@ -114,6 +115,7 @@ public class CarManager : MonoBehaviour
                 return;
             }
             lives--;
+            impactSound.Play();
             if(lives <= 0)
             {
                 EndGame();

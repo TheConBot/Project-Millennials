@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class BallToss : MonoBehaviour
 {
     //Private Vars
+    private AudioSource audio;
     private Rigidbody body;
     private LineRenderer lineRenderer;
     private bool playGame;
@@ -24,6 +25,7 @@ public class BallToss : MonoBehaviour
     public int sceneToLoad = 8;
     public int triesRemaining = 20;
     public float ballResetTime = 4;
+    public AudioClip ballTable;
     public GameObject[] cups;
     [Header("Ball Settings")]
     public float zOffset;
@@ -119,6 +121,7 @@ public class BallToss : MonoBehaviour
         Time.fixedDeltaTime = fixedTimeStep;
         body = GetComponent<Rigidbody>();
         lineRenderer = guideLine.GetComponent<LineRenderer>();
+        audio = GetComponent<AudioSource>();
         holdingBall = true;
         body.isKinematic = holdingBall;
         cupsRemaining = cups.Length;
@@ -213,6 +216,7 @@ public class BallToss : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        audio.PlayOneShot(ballTable);
         if(collision.transform.tag == "Table")
         {
             bounced = true;
