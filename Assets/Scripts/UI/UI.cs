@@ -145,6 +145,10 @@ public class UI : MonoBehaviour
                 StartCoroutine(LoadScene(index));
                 return;
             }
+            else if (story.currentTags[0].StartsWith("waypoint")){
+                GameObject.FindGameObjectWithTag("Waypoint").GetComponent<NPCWaypoint>().Activate();
+                return;
+            }
             characterImage.sprite = GetCharacterImage();
         }
 
