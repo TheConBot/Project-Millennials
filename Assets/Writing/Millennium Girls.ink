@@ -376,6 +376,18 @@ Cody: and figure out I'm gonna get a job wearing a suit or some shit like that. 
 ... #none
 Vanya: That was really hot. #vanya_special
 Cody: Thanks man! I'm trying. My head hurts. #cody_neutral
+Vanya: I really appreciate you being so honest with me. #vanya_happy
+Cody: Thanks for listening! That was a new and frightening level of mental clarity. #cody_neutral
+Vanya: So like, would you like to be my... boyfriend? #vanya_happy
+Cody: Woah. #cody_neutral
+Cody: I've never identified as one of those before. Sounds good to me!
+Cam: Uhh, hey? #cam_neutral
+Vanya: OH HEY CAM. WHAT ARE YOU DOING HERE? #vanya_special
+Cam: I told you I'd be here? At the party I texted you to tell you about? #cam_neutral
+Cody: Yo! I also texted her about it and told her to come! #cody_neutral
+Vanya: Uhhh... #vanya_neutral
+Cody: Oh wait- #cody_neutral
+Cam: I get the feeling there's something going on between you two? #cam_neutral
 #scene: 8
 -> DONE
 
@@ -435,7 +447,30 @@ Vanya: Yeah! Like I could come over to your place before midnight and maybe meet
 Cam: Uhh... sure! If that's what you want! Is that what... people do? #cam_neutral
 Vanya: I think so? #vanya_sarcastic
 Cam: How mainstream of you. #cam_neutral
-Vanya: Shut up. #vanya_sarcastic
+Vanya: Oh shut up. #vanya_sarcastic
+Cam: I guess I don't get why we would become some kind of "item" going into senior year of high school? #cam_neutral
+* [Because we're good together?]
+	Vanya: Well we're good together right? #vanya_sad
+	Cam: Yeah but that doesn't mean we have to be so "official", or that it's a good idea to pile on expectations and stuff. #cam_neutral
+	Vanya: "And stuff"? #vanya_sarcastic
+	Cam: You know what I mean! #cam_neutral
+* [Because that's what I want!]
+	Vanya: Because that's what I want! #vanya_neutral
+	Cam: Oh. #cam_neutral
+	Cam: I guess I'm just not sure that's what I want? 
+* [Because why not?]
+	Vanya: Because why not? I want to be able to like, kiss you in the hall and hang out and not sneak around all the time. #vanya_neutral
+	Vanya: I bet your mom would like me if she met me. #vanya_happy
+	Cam: I'm not sure my mom likes ANYONE when she first meets them. #cam_neutral
+	Vanya: Well that's a completely seperate stituation that might explain some things, #vanya_sad
+	Vanya: but there's still no way to know unless we try.
+- Cody: Yo V! #cody_neutral
+Vanya: OH HEY CODY. WHAT ARE YOU DOING HERE? #vanya_neutral
+Cody: I told you I'd be here? At the party I texted you to tell you about? #cody_neutral
+Cam: I also texted her about it and told her to come! #cam_neutral
+Vanya: Uhhh... #vanya_special
+Cam: Oh wait- #cam_neutral
+Cody: I get the feeling I'm intruding on a moment. #cody_sad
 #scene: 8
 -> DONE
 
@@ -527,61 +562,6 @@ Kay: I don't get to usually talk this stuff out.
 INT. Kelly's Garage
 Vanya faces the consequences of her choice to which dude, because the other one comes in and learns the truth
 */
-
-===III_ii_main===
-
-{
-	//If statement that takes you to the right knot depending on who Vanya chooses
-	- vanya_chooses_cam == true:
-	-> III_ii_Vanya_to_Cam
-	- vanya_chooses_cody == true:
-	-> III_ii_Vanya_to_Cam
-}
-
-===III_ii_Vanya_to_Cody===
-//She chooses Cody, Cam comes over
-//Last we left off, Cody was really honest for a second and it hurt his head
-Vanya: I really appreciate you being so honest with me. #vanya_happy
-Cody: Thanks for listening! That was a new and frightening level of mental clarity. #cody_neutral
-Vanya: So like, would you like to be my... boyfriend? #vanya_happy
-Cody: Woah. #cody_neutral
-Cody: I've never identified as one of those before. Sounds good to me!
-Cam: Uhh, hey? #cam_neutral
-Vanya: OH HEY CAM. WHAT ARE YOU DOING HERE? #vanya_special
-Cam: I told you I'd be here? At the party I texted you to tell you about? #cam_neutral
-Cody: Yo! I also texted her about it and told her to come! #cody_neutral
-Vanya: Uhhh... #vanya_neutral
-Cody: Oh wait- #cody_neutral
-Cam: I get the feeling there's something going on between you two? #cam_neutral
--> III_ii_Result
-
-===III_ii_Vanya_to_Cam===
-//She chooses Cam, Cody comes over
-//Last we left off, Vanya was saying she wanted to be more serious with Cam
-Cam: I guess I don't get why we would become some kind of "item" going into senior year of high school? #cam_neutral
-* [Because we're good together?]
-	Vanya: Well we're good together right? #vanya_sad
-	Cam: Yeah but that doesn't mean we have to be so "official", or that it's a good idea to pile on expectations and stuff. #cam_neutral
-	Vanya: "And stuff"? #vanya_sarcastic
-	Cam: You know what I mean! #cam_neutral
-* [Because that's what I want!]
-	Vanya: Because that's what I want! #vanya_neutral
-	Cam: Oh. #cam_neutral
-	Cam: I guess I'm just not sure that's what I want? 
-* [Because why not?]
-	Vanya: Because why not? I want to be able to like, kiss you in the hall and hang out and not sneak around all the time. #vanya_neutral
-	Vanya: I bet your mom would like me if she met me. #vanya_happy
-	Cam: I'm not sure my mom likes ANYONE when she first meets them. #cam_neutral
-	Vanya: Well that's a completely seperate stituation that might explain some things, #vanya_sad
-	Vanya: but there's still no way to know unless we try.
-- Cody: Yo V! #cody_neutral
-Vanya: OH HEY CODY. WHAT ARE YOU DOING HERE? #vanya_neutral
-Cody: I told you I'd be here? At the party I texted you to tell you about? #cody_neutral
-Cam: I also texted her about it and told her to come! #cam_neutral
-Vanya: Uhhh... #vanya_special
-Cam: Oh wait- #cam_neutral
-Cody: I get the feeling I'm intruding on a moment. #cody_sad
--> III_ii_Result
 
 ===III_ii_Result===
 {
