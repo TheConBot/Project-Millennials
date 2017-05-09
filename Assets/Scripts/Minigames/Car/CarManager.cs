@@ -19,6 +19,7 @@ public class CarManager : MonoBehaviour
     private int lives = 3;
     private int xDirection;
     private int xPosIndex = 1;
+    private bool fireOnce;
     private bool isCarTurning;
     private bool isCarInvincible;
     private Vector3 nextPosition;
@@ -31,13 +32,13 @@ public class CarManager : MonoBehaviour
         {
             Debug.LogWarning("The ammount of lives images is not equal to the ammount of lives.");
         }
-        StartGame();
     }
 
     public void StartGame()
     {
         StartCoroutine(Timer());
         obstacleSpawner.StartObstacleSpawn();
+        fireOnce = true;
     }
 
     private void EndGame()
@@ -50,22 +51,29 @@ public class CarManager : MonoBehaviour
 
     private void Update()
     {
-        if (InputDetected() && !isCarTurning)
+        if(!fireOnce && !UI.Instance.isMainMenuActive)
         {
-            lastPosition = transform.position;
-            //X Axis Input
-            if (Input.GetMouseButtonDown(1) && xPosIndex != XPosRef.Length - 1)
+            StartGame();
+        }
+        if (!UI.Instance.isMainMenuActive)
+        {
+            if (InputDetected() && !isCarTurning)
             {
-                xPosIndex++;
-                xDirection = 1;
+                lastPosition = transform.position;
+                //X Axis Input
+                if (Input.GetMouseButtonDown(1) && xPosIndex != XPosRef.Length - 1)
+                {
+                    xPosIndex++;
+                    xDirection = 1;
+                }
+                else if (Input.GetMouseButtonDown(0) && xPosIndex != 0)
+                {
+                    xPosIndex--;
+                    xDirection = -1;
+                }
+                nextPosition = new Vector3(XPosRef[xPosIndex].position.x, transform.position.y, transform.position.z);
+                StartCoroutine(MoveCar());
             }
-            else if (Input.GetMouseButtonDown(0) && xPosIndex != 0)
-            {
-                xPosIndex--;
-                xDirection = -1;
-            }
-            nextPosition = new Vector3(XPosRef[xPosIndex].position.x, transform.position.y, transform.position.z);
-            StartCoroutine(MoveCar());
         }
 
     }
