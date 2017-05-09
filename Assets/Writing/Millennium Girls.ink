@@ -264,7 +264,7 @@ Kelly: Hey, Halle. #kelly_neutral
 Kelly: I uhh, don't remember inviting you?
 Kelly: I mean you're welcome to hang out, I just didn't think this was your scene.
 Halle: It usually isn't, but I heard about it through the grape-vine and couldn't resist. Not a hell of a lot happening this summer. #halle_sarcastic
-Kelly: You doing anything cool? #kelly_neutral
+Kelly: You doing anything cool this summer? #kelly_neutral
 Halle: No. #halle_neutral
 ... #none
 Kelly: Yeah. Umm, listen. Just- just don't start anything alright? I'm just trying to have a cool party. #kelly_neutral
