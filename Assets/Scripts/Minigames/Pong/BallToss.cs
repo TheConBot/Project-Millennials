@@ -52,7 +52,7 @@ public class BallToss : MonoBehaviour
 
     private void Update()
     {
-        if(!fireOnce && !UI.Instance.isMainMenuActive)
+        if (!fireOnce && !UI.Instance.isMainMenuActive)
         {
             StartGame();
         }
@@ -76,7 +76,7 @@ public class BallToss : MonoBehaviour
                     {
                         LaunchBall();
                     }
-                    else if(powerMultiplier == maxPowerMultiplier)
+                    else if (powerMultiplier == maxPowerMultiplier)
                     {
                         powerMultiplier = minPowerMultiplier;
                     }
@@ -102,15 +102,23 @@ public class BallToss : MonoBehaviour
             }
             else
             {
-                if (cupsRemaining <= 0)
-                {
-                    Debug.Log("You win!");
-                }
-                else if (triesRemaining <= 0)
-                {
-                    Debug.Log("Good try!");
-                }
                 EndGame();
+            }
+        }
+        else if (UI.Instance.inConversation)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                //Conversation Input
+                if (UI.Instance.choicesAvailable)
+                {
+                    UI.Instance.GenerateChoices();
+                }
+                else
+                {
+                    UI.Instance.UpdateText();
+                }
+
             }
         }
     }
@@ -138,8 +146,9 @@ public class BallToss : MonoBehaviour
 
     private void EndGame()
     {
+        UI.Instance.SetInkVariable("beer_pong_cups", 10 - cupsRemaining);
         Time.fixedDeltaTime = originTimeStep;
-        UI.Instance.LoadSceneRemote(sceneToLoad, true);
+        UI.Instance.StartConversation("Beer_Poing_Result");
         playGame = false;
     }
 
@@ -186,7 +195,7 @@ public class BallToss : MonoBehaviour
 
     private float EstimatedPower()
     {
-        return Mathf.Clamp(((powerMultiplier - minPowerMultiplier) / (maxPowerMultiplier - minPowerMultiplier)), 0 ,1);
+        return Mathf.Clamp(((powerMultiplier - minPowerMultiplier) / (maxPowerMultiplier - minPowerMultiplier)), 0, 1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -195,10 +204,10 @@ public class BallToss : MonoBehaviour
         {
             cupsRemaining--;
             triesRemaining++;
-            if(cupsRemaining != 0) other.gameObject.SetActive(false);
+            if (cupsRemaining != 0) other.gameObject.SetActive(false);
             if (bounced)
             {
-                foreach(GameObject cup in cups)
+                foreach (GameObject cup in cups)
                 {
                     if (cup.activeSelf)
                     {
@@ -210,14 +219,14 @@ public class BallToss : MonoBehaviour
                 }
             }
             cupsRemainingText.text = CUPS_TEXT + cupsRemaining;
-            if (cupsRemaining != 0)  ResetBall();
+            if (cupsRemaining != 0) ResetBall();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         audio.PlayOneShot(ballTable);
-        if(collision.transform.tag == "Table")
+        if (collision.transform.tag == "Table")
         {
             bounced = true;
         }
