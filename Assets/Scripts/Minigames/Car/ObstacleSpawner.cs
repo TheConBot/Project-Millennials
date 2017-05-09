@@ -65,7 +65,7 @@ public class ObstacleSpawner : MonoBehaviour {
             }
             if (objectsToSpawn[0] == null)
             {
-                Debug.LogWarning("Not enough pooled objects in the scene. Except a large gap between objects.");
+                //Debug.LogWarning("Not enough pooled objects in the scene. Except a large gap between objects.");
             }
             else
             {

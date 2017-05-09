@@ -31,7 +31,7 @@ public class CarManager : MonoBehaviour
         distanceMeter.maxValue = timer;
         if(lives != livesImages.Length)
         {
-            Debug.LogWarning("The ammount of lives images is not equal to the ammount of lives.");
+            //Debug.LogWarning("The ammount of lives images is not equal to the ammount of lives.");
         }
     }
 

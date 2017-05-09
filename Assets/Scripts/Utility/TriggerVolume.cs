@@ -28,7 +28,7 @@ public class TriggerVolume : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No Animator Detected on Object: " + transform.root.name);
+            //Debug.LogWarning("No Animator Detected on Object: " + transform.root.name);
         }
     }
 
@@ -36,7 +36,7 @@ public class TriggerVolume : MonoBehaviour
     {
         if (actionData.Count == 0)
         {
-            Debug.LogError("Trigger is missing Action Data.");
+            //Debug.LogError("Trigger is missing Action Data.");
             return;
         }
         switch (action)
@@ -64,7 +64,7 @@ public class TriggerVolume : MonoBehaviour
         int index;
         if (!int.TryParse(sceneIndex, out index))
         {
-            Debug.LogError("Could not convert Action Data string to int. Defaulting to next scene in build index...");
+            //Debug.LogError("Could not convert Action Data string to int. Defaulting to next scene in build index...");
             index = SceneManager.GetActiveScene().buildIndex + 1;
         }
         UI.Instance.LoadSceneRemote(index, false);

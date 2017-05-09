@@ -64,18 +64,18 @@ public class PlayerInput : MonoBehaviour
                     {
                         if (hit.transform == null)
                         {
-                            Debug.LogWarning("Could not walk to selected destinaion. Nothing was hit.");
+                            //Debug.LogWarning("Could not walk to selected destinaion. Nothing was hit.");
                         }
                         else
                         {
-                            Debug.LogWarning("Could not walk to selected destinaion. Object Hit: " + hit.transform.name);
+                            //Debug.LogWarning("Could not walk to selected destinaion. Object Hit: " + hit.transform.name);
                         }
 
                     }
                 }
 
             }
-            else if (Input.GetMouseButton(1))
+            else if (Input.GetMouseButton(1) && !UI.Instance.inConversation)
             {
                 float yAxis = cameraPivot.transform.eulerAngles.y * cameraSwivelSpeed;
                 yAxis += -Input.GetAxis("Mouse X");

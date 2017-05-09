@@ -92,7 +92,7 @@ Vanya: Don't bring taxes into this. #vanya_angry
 Halle: So given EIGHT grand what would you do? #halle_sarcastic
 Halle: I'd invest it - it's not much but it'd become something by the time I'm like, forty. #halle_neutral
 Kay: I'd spend it instantly. #kay_neutral
-Halle: I knew you'd say that- #kay_sarcastic
+Halle: I knew you'd say that- #halle_sarcastic
 Kay: New phone, new clothes, laptop, bass guitar. All the essentials. #kay_happy
 Vanya: I don't have a bank account, so I'd stuff it into my mattress and never tell my parents. #vanya_neutral
 Halle: How the hell do you still not have a bank account? #halle_sarcastic
@@ -100,7 +100,7 @@ Vanya: Hey I don't wanna deal with that. I get paid in cash and it goes under my
 ... #none
 Halle: Okay what about a MILLION dollars- #halle_neutral
 Kay: Same thing. #kay_neutral
-Vanya: Same thing. #kay_neutral
+Vanya: Same thing. #vanya_neutral
 Kay: Your mattress would be very lumpy and I don't know how you'd hide that from your parents. #kay_sarcastic
 Vanya: My mattress would be full of LIES. #vanya_sarcastic
 Halle: You two have small dreams. #halle_sad
@@ -112,7 +112,7 @@ Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
 Vanya: I volunteer Halle to drive. #vanya_sarcastic
 Halle: I'm the only one with a car... #halle_neutral
 Vanya: Perfect! This works out so well. #vanya_happy
-Halle: Ugh, fine. My car's in the lot up the path. #halle_neutral
+Halle: Ugh, fine. My car's back up the path. #halle_neutral
 ~ loadScene = true
 -> DONE
 
@@ -544,7 +544,7 @@ Matt: Give it a shot? #matt_special
 Kay: Nope. Then they'd give me pills and I wouldn't feel anything and that freaks me out way more. #kay_sad
 Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff. #matt_special
 * [Just a face to put on]
-	Kay: Yeah well, everyone getshanded a stereotype and I never fought mine. #kay_sad
+	Kay: Yeah well, everyone gets handed a stereotype and I never fought mine. #kay_sad
 	Kay: If no one thinks they can get a rise out of you then they won't even try. #kay_neutral
 * [Well that sucks]
 	Kay: Well that sucks, 'cos like we probably could've been friends BEFORE I was out here having a fucking freak out. #kay_sad
@@ -583,7 +583,7 @@ Vanya faces the consequences of her choice to which dude, because the other one 
 		Cody: Nah, I wasn't gonna get physical. #cody_neutral
 		Cam: Well I greatly appreciate that because I would've lost. #cam_neutral
 		Cody: Haha yeah. #cody_neutral
-		Cody: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me. #cody_sad
+		Cody: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me. #cody_neutral
 	- dating_cam == true:
 		Cody: Yeah, it's freshly official, I guess! #cody_neutral
 		Cam: Well that's problematic, cos we've been dating for 3 months. #cam_sad
@@ -595,7 +595,7 @@ Vanya faces the consequences of her choice to which dude, because the other one 
 		... #none
 		Cam: I mean I don't think we were going to? Were we? #cam_neutral
 		Cody: Nah, I wasn't gonna get physical. #cody_neutral
-		Cam: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me. #cam_sad
+		Cam: Yeah, we weren't gonna fight cos neither of us really did anything wrong - Vanya you lied to both of us, and cheated on me. #cam_neutral
 	- dating_cody == true && dating_cam == true:
 		Cody: I mean yeah, it's been a thing for a bit, we've just kept on the down-low. #cody_neutral
 		Cam: Well that's problematic, cos we've been dating for 3 months. #cam_sad
@@ -609,7 +609,7 @@ Vanya faces the consequences of her choice to which dude, because the other one 
 		Cam: Under-statement. #cam_sad
 }
 - Vanya: Uhh. #vanya_sad
-Vanya: I'm sorry? Like soul-crushingly sorry?
+Vanya: I'm sorry? Like soul-crushingly sorry? #vanya_sad
 Cam: I'm not entirely sure that suffices here, Vanya. #cam_sad
 Cody: Yeah man I kinda gotta agree. Cam, you wanna hang out? #cody_neutral
 Cam: Yeah, that sounds chill. #cam_neutral
@@ -667,9 +667,9 @@ Kay: Yeah, I really didn't, and we did anyways, and then I got here and had a fu
 Vanya: Oh shit! Are you okay? #vanya_sad
 Kay: Yeah, I'm okay. #kay_sad
 Matt: We've been hanging out. #matt_special
-Halle: You always freak out when we show up to shit like this, and have "panic attacks"- #kay_angry
+Halle: You always freak out when we show up to shit like this, and have "panic attacks"- #halle_angry
 Matt: Were there "air quotes" around that? #matt_special
-Halle: Yeah, there were - Kay is a total drama queen and doesn't know how to like, breathe and chill- #kay_angry
+Halle: Yeah, there were - Kay is a total drama queen and doesn't know how to like, breathe and chill- #halle_angry
 Matt: Woah, that's not fair, that's super uncool- #matt_special
 Kay: Hang on, I got this. #kay_angry
 Kay: Halle, you NEVER listen to me or take what I want, or even what Vanya wants, into consideration, #kay_angry
@@ -696,4 +696,31 @@ Halle: I'm going home. #halle_neutral
 }
 Vanya: Yeah, you probably shouldn't be in control of anything right now. #vanya_sad
 #scene: 11
+-> DONE
+
+===IIII_i_End===
+Halle: That sure was an adventure. I'm never drinking that much again. Ever. #halle_special
+Vanya: Yeahhh, let's not do that again anytime soon. #vanya_special
+Kay: Agreed. #kay_neutral
+Kay: Although I am going to the movies with Matt this Tuesday, so it wasn't all bad. #kay_happy
+Vanya: You go girl! #vanya_happy
+Halle: Eh, he's nothing special. #halle_sarcastic
+Kay: ... #kay_angry
+Vanya: ... #vanya_angry
+Halle: I'm just kidding! I think you guys look cute together. Your children will be adorable. #halle_happy
+Kay: We'll see how the movies go first. #kay_special
+Dev Team: Thanks for playing Millennium Girls! We hoped you enjoyed it! #none
+Dev Team: So... What did you think?
+* [Garbage]
+	Dev Team: Well fuck you too, buddy.
+	Dev Team: Just kidding! The game definetly has it's problems.
+* [Not bad]
+	Dev Team: We'll take it!
+	Dev Team: Considering all the things that went wrong, we're glad we even got a build out.
+* [Pretty good]
+	Dev Team: Wow! We really appreciate that!
+	Dev Team: We had our doubts when we were making this game, and hearing that you liked it is pretty awesome.
+- Dev Team: Thanks again for playing, and a big shout out to the officer from Campus Police that let us work in the labs until 1am!
+Now Quitting
+#quit
 -> DONE

@@ -203,17 +203,15 @@ public class BallToss : MonoBehaviour
         if (other.tag == "Cup")
         {
             cupsRemaining--;
-            triesRemaining++;
             if (cupsRemaining != 0) other.gameObject.SetActive(false);
-            if (bounced)
+            if (bounced && cupsRemaining > 0)
             {
                 foreach (GameObject cup in cups)
                 {
                     if (cup.activeSelf)
                     {
                         cupsRemaining--;
-                        triesRemaining++;
-                        if (cupsRemaining != 0) other.gameObject.SetActive(false);
+                        cup.gameObject.SetActive(false);
                         break;
                     }
                 }

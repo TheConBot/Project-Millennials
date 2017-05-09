@@ -139,7 +139,7 @@ public class UI : MonoBehaviour
                 int index;
                 if (!int.TryParse(sceneIndex, out index))
                 {
-                    Debug.LogError("Could not convert Ink Tag string to int. Defaulting to next scene in build index...");
+                    //Debug.LogError("Could not convert Ink Tag string to int. Defaulting to next scene in build index...");
                     index = SceneManager.GetActiveScene().buildIndex + 1;
                 }
                 StartCoroutine(LoadScene(index));
@@ -147,6 +147,11 @@ public class UI : MonoBehaviour
             }
             else if (story.currentTags[0].StartsWith("waypoint")){
                 GameObject.FindGameObjectWithTag("Waypoint").GetComponent<NPCWaypoint>().Activate();
+                return;
+            }
+            else if (story.currentTags[0].StartsWith("quit"))
+            {
+                Application.Quit();
                 return;
             }
             characterImage.sprite = GetCharacterImage();
@@ -180,7 +185,7 @@ public class UI : MonoBehaviour
             var canLoad = (int)story.variablesState["loadScene"];
             if (canLoad == 0)
             {
-                Debug.LogWarning("Story will not allow you to load the scene.");
+                //Debug.LogWarning("Story will not allow you to load the scene.");
                 return;
             }
         }
@@ -225,7 +230,7 @@ public class UI : MonoBehaviour
 
         if (charSprite == null)
         {
-            Debug.LogWarning("Something went wrong with updating the character expression. Ink Tag: " + tag);
+            //Debug.LogWarning("Something went wrong with updating the character expression. Ink Tag: " + tag);
             charSprite = expressionSprites[expressionSprites.Length - 1];
         }
         else
@@ -247,7 +252,7 @@ public class UI : MonoBehaviour
                 decorationSquare.color = Color.white;
             }
         }
-        Debug.Log("Character Sprite: " + charSprite.name);
+        //Debug.Log("Character Sprite: " + charSprite.name);
         return charSprite;
     }
 
@@ -260,7 +265,7 @@ public class UI : MonoBehaviour
 
     private void EndConversation()
     {
-        Debug.Log("End of conversation.");
+        //Debug.Log("End of conversation.");
         StartCoroutine(FadeCanvasGroup(FadeType.Out, conversationCanvasGroup));
     }
 
@@ -316,7 +321,7 @@ public class UI : MonoBehaviour
         {
             if (i >= choicesButtons.Length)
             {
-                Debug.LogError("Exceeded max number of choices.");
+                //Debug.LogError("Exceeded max number of choices.");
                 return;
             }
             choicesButtons[i].GetComponentInChildren<Text>().text = story.currentChoices[i].text.Trim();
@@ -331,7 +336,7 @@ public class UI : MonoBehaviour
         {
             button.gameObject.SetActive(false);
         }
-        Debug.Log("Choice Picked: " + story.currentChoices[i].text);
+        //Debug.Log("Choice Picked: " + story.currentChoices[i].text);
         story.ChooseChoiceIndex(i);
         UpdateText();
     }
