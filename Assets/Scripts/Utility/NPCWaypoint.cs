@@ -10,5 +10,9 @@ public class NPCWaypoint : MonoBehaviour {
     public void Activate()
     {
         targetAgent.destination = transform.position;
+        if (targetAgent.transform.GetComponentInChildren<BoxCollider>() != null)
+        {
+            targetAgent.transform.GetComponentInChildren<BoxCollider>().enabled = false;
+        }
     }
 }
