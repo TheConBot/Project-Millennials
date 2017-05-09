@@ -304,11 +304,11 @@ VAR beer_pong_cups = 0
 - Kelly: Oh goody, you're drunk. #kelly_angry
 Halle: Is this not ze poiint of partiess? #halle_happy
 Halle: I kinda gotta drink a bunch to survive being in the same room as YOU people. #halle_sarcastic
-* [Let's play another round!]
++ [Let's play another round!]
 	Halle: Let's play another round. #halle_sarcastic
 	#scene: 6
 	-> DONE
-* [Well, that's enough for me, maybe.]
++ [Well, that's enough for me, maybe.]
 	Halle: That's enough for me, thanks.
 	#scene: 7
 	-> DONE
