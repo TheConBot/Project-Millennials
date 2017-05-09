@@ -376,4 +376,9 @@ public class UI : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(FadeType.Out, mainMenuCanvasGroup));
         mainMenuCanvasGroup.interactable = false;
     }
+
+    public void SetInkVariable(string varName, int value)
+    {
+        story.variablesState[varName] = value;
+    }
 }

@@ -118,6 +118,7 @@ public class CarManager : MonoBehaviour
             impactSound.Play();
             if(lives <= 0)
             {
+                UI.Instance.SetInkVariable("driving_fail", 1);
                 EndGame();
             }
             livesImages[lives].enabled = false;
@@ -150,6 +151,7 @@ public class CarManager : MonoBehaviour
         }
         if (lives > 0)
         {
+            UI.Instance.SetInkVariable("driving_fail", 0);
             EndGame();
         }
     }
