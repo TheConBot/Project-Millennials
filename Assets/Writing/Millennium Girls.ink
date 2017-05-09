@@ -690,5 +690,5 @@ Halle: I'm going home. #halle_neutral
 		Halle: Shit. #halle_angry
 }
 Vanya: Yeah, you probably shouldn't be in control of anything right now. #vanya_sad
-TODO: Write the load scene tag to end the game!!
+#scene: 11
 -> DONE
