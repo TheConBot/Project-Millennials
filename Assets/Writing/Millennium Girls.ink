@@ -13,7 +13,7 @@ halle_angry | halle_neutral | halle_special
 kay_sad | kay_sarcastic | kay_happy
 kay_angry | kay_neutral | kay_special
 
-matt_netural | matt_happy
+matt_special | matt_happy
 
 cody_neutral | cody_sad
 
@@ -23,6 +23,8 @@ kelly_neutral | kelly_angry
 
 #scene: [scene index int] = how to load scene at the end of a conversation
 But remember, scene index int is the (UNITYSCENE - 1) because it's an array.
+
+#waypoint = move people
 
 /********** Act I, Scene 1 (UNITYSCENE 1) **********/
 // EXT. Lake Massapoag - Magic Hour
@@ -56,6 +58,7 @@ Vanya: Hey Kay, you made it! #vanya_happy
 	Vanya: I get that! I've been watching "American Ninja Warrior" non-stop, just 'cos there's nothing else on. #vanya_sarcastic
 - Kay: Where's Halle at? #kay_neutral
 Vanya: Over at the tower. Let's go see what's up. #vanya_neutral
+#waypoint
 -> DONE
 
 =I_i_Kay_to_Vanya_repeat
@@ -447,7 +450,7 @@ Kay: Fuck that. There's no way I can stay in there without freaking the fuck out
 Drunk Party-Goer: Hey, you get fucked up too quick? Gotta learn how to drink, girl! #none
 Kay: Fuck 155% OFF. #kay_angry
 Drunk Party-Goer: Hey, don't freak out at me if you can't handle your shit, right? #none
-Matt: Hey, why don't you give fucking off 155% a shot? #matt_netural
+Matt: Hey, why don't you give fucking off 155% a shot? #matt_special
 Drunk Party-Goer: Woah boy, singer-songwriter Matt Fenster appears! #none
 Drunk Party-Goer: Your sentence structure sucks, by the way - am I fucking off 155%, or am I giving fucking off 155% of "a shot", because either way-
 Kay: YOU KNOW WHAT I MEANT. #kay_angry
@@ -459,22 +462,23 @@ Kay: FACE.
 ... #none
 Drunk Party-Goer: Alright, fair enough. #none
 Drunk Party-Goer: You don't appear to be drunk but instead very distraught. I want none of this.
+... #none
 // Drunk Party-Goer leaves, or turns around or some shit
 -> Talk_to_matt
 
 =Talk_to_matt
-Matt: Hey, are you okay? You do seem "distraught". #matt_netural
+Matt: Hey, are you okay? You do seem "distraught". #matt_special
 Kay: I, I just- yeah. Having a moment. Anxiety thing. It's a thing. It happens. #kay_sad
-Matt: You're having a panic attack? Do you want to chill out for a bit? #matt_netural
+Matt: You're having a panic attack? Do you want to chill out for a bit? #matt_special
 Kay: Yeah, that'd be good. #kay_neutral
-Matt: It's definitely been a couple of years since we've chatted. #matt_netural
+Matt: It's definitely been a couple of years since we've chatted. #matt_special
 Matt: I think last time we had class together was in what, 8th grade chemistry? Mr. W, who had a "bang head here" sign?
 Kay: I borrowed it once. #kay_sarcastic
-Matt: What? #matt_netural
+Matt: What? #matt_special
 Kay: The VP was on my ass about running in the halls, so I ran into Mr. W's room and used the sign until a bunch of teachers dragged me away from it into ISS. #kay_sarcastic
-Matt: Oh. #matt_netural
+Matt: Oh. #matt_special
 Kay: Yeah I don't know if you know, but I kinda turned into an asshole. #kay_sad
-Matt: I mean I'd heard it, but you could've totally lied to me and I would've believed you. Way to goof that up. #matt_netural
+Matt: I mean I'd heard it, but you could've totally lied to me and I would've believed you. Way to goof that up. #matt_special
 Matt: I was always under the impression you weren't like an asshole, more just... surrounded by them? Oh man that's not what I mean, I mean-
 Matt: I mean you fell in with a weird crowd? Oh shit I'm sounding like an after-school special.
 * [You're not wrong, but...]
@@ -486,9 +490,9 @@ Matt: I mean you fell in with a weird crowd? Oh shit I'm sounding like an after-
 	Kay: They're not- we're not assholes. We just stick together, and don't feel like censoring ourselves so people like us. #kay_neutral
 - Matt: Fair enough. I get that. #matt_happy
 ... #none
-Matt: Are you doing okay? #matt_netural
+Matt: Are you doing okay? #matt_special
 Kay: Sort of. it's pretty hard to explain. #kay_neutral
-Matt: Give it a shot? #matt_netural
+Matt: Give it a shot? #matt_special
 * [Drowning]
 	Kay: Uhh, well if I have an attack it's like someone turned on a faucet and stuck my head in it? Like everything, every little thing, is just way too much. #kay_sad
 	Kay: You want there just to be an "off" switch for literally the entire world, but 'cos there isn't, instead you kinda end up just shutting yourself off.
@@ -496,9 +500,9 @@ Matt: Give it a shot? #matt_netural
 	Kay: It's pretty exhausting. My brain is always running at 100% doing like, simulations of all the bad shit that could happen. It would be impressive if it didn't suck so much. #kay_sad
 * [Everyone is the enemy]
 	Kay: It's like being the Hulk, but not green or strong or cool in any way? I'm just a raw nerve, super exposed and everyone, even if they don't know it, is jabbing at me with like, a dinner fork. #kay_sad
-- Matt: Have you been like, checked out for this? #matt_netural
+- Matt: Have you been like, checked out for this? #matt_special
 Kay: Nope. Then they'd give me pills and I wouldn't feel anything and that freaks me out way more. #kay_sad
-Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff. #matt_netural
+Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff. #matt_special
 * [Just a face to put on]
 	Kay: Yeah well, everyone getshanded a stereotype and I never fought mine. #kay_sad
 	Kay: If no one thinks they can get a rise out of you then they won't even try. #kay_neutral
@@ -510,7 +514,7 @@ Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff. #
 * [Nobody is]
 	Kay: Literally nobody is "too cool" or "detached" for this kinda stuff. Everyone's got something. #kay_sad
 - Kay: Fuck why am I dumping this all on you, I just met you like ten minutes ago. #kay_angry
-Matt: We already knew each other! Maybe not this deep, but we knew each other. #matt_netural
+Matt: We already knew each other! Maybe not this deep, but we knew each other. #matt_special
 Kay: Still, you're not exactly in my inner circle - I don't usually tell people stuff like this. #kay_sad
 Matt: I'm glad you did. It seems like it's helping. #matt_happy
 Kay: It is. Thanks. I... #kay_neutral
@@ -667,6 +671,7 @@ Vanya: No, I really don't. #vanya_sad
 Halle: Where's Kay at? #halle_neutral
 Vanya: She's over there, hanging out with Matt. #vanya_neutral
 Halle: Let's go grab her, we're going home. #halle_neutral
+#waypoint
 -> DONE
 
 ===III_iii_Halle_To_Kay===
@@ -676,11 +681,11 @@ Halle: What do you care? You didn't even want to come. #halle_angry
 Kay: Yeah, I really didn't, and we did anyways, and then I got here and had a fucking anxiety attack- #kay_angry
 Vanya: Oh shit! Are you okay? #vanya_sad
 Kay: Yeah, I'm okay. #kay_sad
-Matt: We've been hanging out. #matt_netural
+Matt: We've been hanging out. #matt_special
 Halle: You always freak out when we show up to shit like this, and have "panic attacks"- #kay_angry
-Matt: Were there "air quotes" around that? #matt_netural
+Matt: Were there "air quotes" around that? #matt_special
 Halle: Yeah, there were - Kay is a total drama queen and doesn't know how to like, breathe and chill- #kay_angry
-Matt: Woah, that's not fair, that's super uncool- #matt_netural
+Matt: Woah, that's not fair, that's super uncool- #matt_special
 Kay: Hang on, I got this. #kay_angry
 Kay: Halle, you NEVER listen to me or take what I want, or even what Vanya wants, into consideration, #kay_angry
 Kay: And it's really not okay for you to just say like "breathe" or "chill out" when I say I'm having a moment. #kay_angry
@@ -689,11 +694,11 @@ Halle: Whatever. #kay_angry
 Kay: Vanya, how'd your thing go? #kay_neutral
 Vanya: Badly. #vanya_sad
 Kay: Shit I'm sorry about that. #kay_neutral
-Matt: I have no idea what you're talking about, but me too. #matt_netural
+Matt: I have no idea what you're talking about, but me too. #matt_special
 Vanya: Thanks bro. Appreciate it. #vanya_neutral
 ... #none
 Kay: I'm going to hang out with Matt. #kay_neutral
-Matt: I can, uhh, give her a ride home. #matt_netural
+Matt: I can, uhh, give her a ride home. #matt_special
 Halle: I'm going home. #halle_neutral
 {
 	- driving_fail == true:
