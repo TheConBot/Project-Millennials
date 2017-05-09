@@ -112,6 +112,7 @@ Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
 Vanya: I volunteer Halle to drive. #vanya_sarcastic
 Halle: I'm the only one with a car... #halle_neutral
 Vanya: Perfect! This works out so well. #vanya_happy
+Halle: Ugh, fine. My car's in the lot up the path. #halle_neutral
 ~ loadScene = true
 -> DONE
 
@@ -200,7 +201,7 @@ Kay: Will your car make it? #kay_sarcastic
 Halle: Guess we'll find out! #halle_sarcastic
 Vanya: Halle don't blame the car, you're a really bad driver. #vanya_neutral
 #scene: 3
-VAR driving_fail = false
+VAR driving_fail = 0
 -> DONE
 
 /********** DRIVING MINIGAME 2 (UNITYSCENE 4) ********/
@@ -211,7 +212,7 @@ VAR driving_fail = false
 ~ loadScene = true
 // Do I need to declare these variables earlier to make them accessible?
 {
-	- driving_fail == true:
+	- driving_fail == 1:
 	-> driving_fail
 	- else: 
 	-> driving_pass
@@ -224,7 +225,7 @@ Kay: We walked three miles. #kay_angry
 Halle: And my car is busted! My parents are gonna be pissed!
 Kay: Who's fault is that? #kay_sarcastic
 ... #none
-Halle: The Department of Public Works! The potholes in this town are insane! #halle_angry
+Halle: The Department of Public Works! There was so much shit in the road! #halle_angry
 -> main
 
 = driving_pass
@@ -343,9 +344,9 @@ Vanya: I have to choose between two super cute boys UGH THIS SUCKS. #vanya_angry
 Vanya: Hey! #vanya_happy
 Cody: HEYYY V! What's up?? Me and the guys were just about to learn how to shotgun a beer! Wanna join? #cody_neutral
 Vanya: That's not- nevermind, YES I wanna- WAIT. #vanya_happy
-* [*Choose Cody to be your boyfriend*]
++ [*Choose Cody to be your boyfriend*]
 	-> choose_cody
-* [On second thought-]
++ [On second thought-]
 	Vanya: On second thought, I'll be right back! #vanya_neutral
 	Cody: No problemo! #cody_neutral
 	-> DONE
@@ -354,9 +355,9 @@ Vanya: That's not- nevermind, YES I wanna- WAIT. #vanya_happy
 //Make marginally different from the first, don't want characters re-introducing
 Vanya: Hey! #vanya_happy
 Cody: *burp* #cody_neutral
-* [*Choose Cody to be your boyfriend*]
++ [*Choose Cody to be your boyfriend*]
 	-> choose_cody
-* [On second thought-]
++ [On second thought-]
 	Vanya: On second thought, I'll be right back! #vanya_neutral
 	Cody: No problemo! #cody_neutral
 	-> DONE
@@ -412,18 +413,18 @@ Vanya: Yeah, sorry about that. Things have been busy at the Gas N' Go, or with t
 Cam: That's cool! It's summer, you wanna hang with your friends! #cam_neutral
 Vanya: Yeah. Hey, I've got something I wanna talk to you about. #vanya_neutral
 Cam: Yeah? Alright, what's up? #cam_neutral
-* [*Choose Cam to be your boyfriend*]
++ [*Choose Cam to be your boyfriend*]
 	-> choose_cam
-* [On second thought-]
++ [On second thought-]
 	Vanya: On second thought, I'll be right back! #vanya_neutral
 	-> DONE
 
 =II_iii_Vanya_to_Cam_repeat
 Vanya: Yeah. Hey, I've got something I wanna talk to you about. #vanya_neutral
 Cam: Yeah? What's up? #cam_neutral
-* [*Choose Cam to be your boyfriend*]
++ [*Choose Cam to be your boyfriend*]
 	-> choose_cam
-* [On second thought-]
++ [On second thought-]
 	Vanya: On second thought, I'll be right back! #cam_neutral
 	-> DONE
 
@@ -534,9 +535,11 @@ Matt: Give it a shot? #matt_special
 	Kay: Uhh, well if I have an attack it's like someone turned on a faucet and stuck my head in it? Like everything, every little thing, is just way too much. #kay_sad
 	Kay: You want there just to be an "off" switch for literally the entire world, but 'cos there isn't, instead you kinda end up just shutting yourself off.
 * [Exhausting]
-	Kay: It's pretty exhausting. My brain is always running at 100% doing like, simulations of all the bad shit that could happen. It would be impressive if it didn't suck so much. #kay_sad
+	Kay: It's pretty exhausting. My brain is always running at 100% doing like, simulations of all the bad shit that could happen. #kay_sad
+	Kay: It would be impressive if it didn't suck so much. 
 * [Everyone is the enemy]
-	Kay: It's like being the Hulk, but not green or strong or cool in any way? I'm just a raw nerve, super exposed and everyone, even if they don't know it, is jabbing at me with like, a dinner fork. #kay_sad
+	Kay: It's like being the Hulk, but not green or strong or cool in any way? I'm just a raw nerve, super exposed and everyone, #kay_sad
+	Kay: even if they don't know it, is jabbing at me with like, a dinner fork. 
 - Matt: Have you been like, checked out for this? #matt_special
 Kay: Nope. Then they'd give me pills and I wouldn't feel anything and that freaks me out way more. #kay_sad
 Matt: I kinda assumed you were "too cool" and "detached" for this kinda stuff. #matt_special
@@ -641,7 +644,6 @@ Kelly: You wanna be way cooler than the rest of us, #kelly_angry
 Kelly: You want to be smart and aloof and go into the military instead of college and shit,
 Kelly: But you just want us all to pay attention to you. 
 Kelly: Get out, stay out, or I'll beat you up or something. Ugh.
-// Kelly leaves. Vanya comes up to Halle.
 ... #none
 Vanya: Wow. #vanya_sad
 Halle: Right? Rad. #halle_happy
