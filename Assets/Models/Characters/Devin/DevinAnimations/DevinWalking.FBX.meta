@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: a50ac18c86bce804bbea61c7c7b702fd
-timeCreated: 1490059805
-licenseType: Free
+guid: 3aba1c66a6ed53c41b4ebf4245cd2c70
+timeCreated: 1494289249
+licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Box001
+    100000: body
     100002: //RootNode
     100004: mixamorig:Head
     100006: mixamorig:HeadTop_End
@@ -48,7 +48,7 @@ ModelImporter:
     100080: mixamorig:Spine
     100082: mixamorig:Spine1
     100084: mixamorig:Spine2
-    400000: Box001
+    400000: body
     400002: //RootNode
     400004: mixamorig:Head
     400006: mixamorig:HeadTop_End
@@ -91,11 +91,10 @@ ModelImporter:
     400080: mixamorig:Spine
     400082: mixamorig:Spine1
     400084: mixamorig:Spine2
-    4300000: Box001
+    4300000: body
     7400000: Take 001
-    7400002: mixamo.com
     9500000: //RootNode
-    13700000: Box001
+    13700000: body
   materials:
     importMaterials: 1
     materialName: 0
