@@ -106,6 +106,7 @@ public class UI : MonoBehaviour
     {
         StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
         StartCoroutine(FadeCanvasGroup(FadeType.In, mainMenuCanvasGroup));
+        mainMenuCanvasGroup.interactable = true;
     }
 
     public void UpdateText()
@@ -369,5 +370,6 @@ public class UI : MonoBehaviour
     public void StartScene()
     {
         StartCoroutine(FadeCanvasGroup(FadeType.Out, mainMenuCanvasGroup));
+        mainMenuCanvasGroup.interactable = false;
     }
 }
