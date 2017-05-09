@@ -22,7 +22,7 @@ cam_neutral | cam_sad
 kelly_neutral | kelly_angry
 
 #scene: [scene index int] = how to load scene at the end of a conversation
-But remember, scene index int is the UNITYSCENE - 1 because it's an array.
+But remember, scene index int is the (UNITYSCENE - 1) because it's an array.
 
 /********** Act I, Scene 1 (UNITYSCENE 1) **********/
 // EXT. Lake Massapoag - Magic Hour
@@ -73,11 +73,10 @@ Vanya: Halle's over at the lifeguard tower, let's go see what's up! #vanya_happy
 }
 =I_i_All_main
 Kay: Yo Halle. #kay_neutral
-Halle: Hey K, what's up? #halle_neutral
+Halle: Hey Kay, what's up? #halle_neutral
 Kay: Nothing much - What have you guys been up to? #kay_neutral
 Halle: I watched "The Avengers" for the 18th time today - I'm convinced it's a film without flaws. #halle_happy
 Vanya: Hell yeah. #vanya_happy
-Kay: Amen. #kay_happy
 Vanya: Oh yo so a guy came into the Gas N' Go today after filling up - bought a Snickers and a single lottery ticket, right? #vanya_neutral
 Vanya: He won ten grand and I wanted to suplex him for it SO BAD. #vanya_angry
 Halle: You're too loud to be a fugitive. #halle_sarcastic
@@ -86,7 +85,7 @@ Kay: If you won $10,000 right now, bam, in your wallet, no questions asked.
 ... #none
 Halle: Well first off, after taxes it's probably more like eight grand, so keep that in mind- #halle_neutral
 Kay: UGH. Killjoy. #kay_angry
-Vanya: Booooo. Don't bring taxes into this. I have to do them myself this year it sucks. #vanya_angry
+Vanya: Don't bring taxes into this. #vanya_angry
 Halle: So given EIGHT grand what would you do? #halle_sarcastic
 Halle: I'd invest it - it's not much but it'd become something by the time I'm like, forty. #halle_neutral
 Kay: I'd spend it instantly. #kay_neutral
@@ -104,12 +103,6 @@ Vanya: My mattress would be full of LIES. #vanya_sarcastic
 Halle: You two have small dreams. #halle_sad
 Kay: I dunno man, there isn't really space for big dreams nowadays. #kay_neutral
 Vanya: I try not to think about that stuff. #vanya_neutral
-Vanya: Hey, do you guys think we're weird?
-Halle: What? #halle_sarcastic
-Vanya: Like do you think other teenage girls talk about this stuff?
-Halle: Well it's pretty unfair to ascribe the label 'teenage girl' to a whole gender in an age bracket. #halle_neutral
-Kay: And also we're just living our particular, singular experience, which can't possibly comment on others experiences, you know? We can't be some kind of totem for "ALL TEENAGE GIRLS", obviously. #kay_neutral
-Vanya: Seems legit to me. We're just weird.
 Halle: Whatever. #halle_neutral
 ... #none
 Kay: Let's get out of here. This shit's too picturesque. #kay_neutral
@@ -120,7 +113,7 @@ Vanya: Perfect! This works out so well. #vanya_happy
 -> DONE
 
 =I_i_All_repeat
-Halle: I'm with you. Let's get out of here. #halle_neutral
+Halle: I'm with you. Let's get out of here. My car's in the lot up the path. #halle_neutral
 ~ loadScene = true
 -> DONE
 
@@ -128,7 +121,7 @@ Halle: I'm with you. Let's get out of here. #halle_neutral
 Halle: Oh hey, Kay. Vanya was looking for you. You lose her on the way? #halle_neutral
 -> DONE
 
-/********** DRIVING MINIGAME 2 (UNITYSCENE 2) ********/
+/********** DRIVING MINIGAME 1 (UNITYSCENE 2) ********/
 
 /********** Act I, Scene 2 (UNITYSCENE 3) **********/
 // EXT. Empty Shopping Plaza Parking Lot - Early Evening
@@ -137,8 +130,8 @@ Halle: Oh hey, Kay. Vanya was looking for you. You lose her on the way? #halle_n
 Kay: That's better. #kay_happy
 Vanya: Good ol' Liberty Heights plaza. #vanya_happy
 Halle: This place is about as dead as it gets. #halle_sarcastic
-Kay: It sucks that the cinema closed. #kay_sad
 Vanya: It sucks that the cinema got the emergency exits fixed so we couldn't sneak in during trailers. #vanya_sad
+Kay: It sucks that the cinema closed. #kay_sad
 Kay: Yeah. One less thing to do around here, and the list was getting pretty short already. #kay_sarcastic
 Halle: Speaking of shit to do, Vanya did you hear anything? #halle_neutral
 * [Yeah! Cam texted me.]
@@ -192,17 +185,17 @@ Vanya: Yes, why- #vanya_neutral
 	Vanya: OH BOTHER. #vanya_angry
 	Kay: (Did she just say what I think she did?)
 	Halle: (What the hell?)
-- Halle: Yeah that might become pertinent shortly. #halle_sarcastic
-Halle: I guess you gotta choose a dude tonight huh? Now we HAVE to go to this party.
+- Halle: Yeah that might become important soon. #halle_sarcastic
+Halle: Now we HAVE to go to this party.
 Kay: Oh. #kay_neutral
-Halle: I mean I also am also in the mood to get drunk and cause problems in the company of people I hate. #halle_happy
+Halle: I also am also in the mood to get drunk and cause problems in the company of people I hate. #halle_happy
 Halle: Plus you two, of course. 
-Halle: We can't hangout in the Liberty Plaza parking lot forever. #halle_neutral
+Halle: We can't hang out in the Liberty Plaza parking lot forever. #halle_neutral
 Kay: I dare you to come up with a good reason why. #kay_sarcastic
-Halle: It'll be fine! You'll be fine. We just gotta get this {~shitbucket|shittrap|steel death-trap|domestic disaster|Terry Gilliam joke about consumerism} across town to the sub-division from hell! #halle_happy
-Kay: Can she hold, cap'n? #kay_sarcastic
+Halle: It'll be fine! You'll be fine. We just gotta get this {~shitbucket|shittrap|steel death-trap|domestic disaster|Terry Gilliam joke about consumerism} across town to the sub-division from hell. #halle_happy
+Kay: Will your car make it? #kay_sarcastic
 Halle: Guess we'll find out! #halle_sarcastic
-Vanya: Halle you're a really bad driver, don't blame the car. #vanya_neutral
+Vanya: Halle don't blame the car, you're a really bad driver. #vanya_neutral
 #scene: 3
 VAR driving_fail = false
 -> DONE
@@ -230,6 +223,7 @@ Kay: Who's fault is that? #kay_sarcastic
 ... #none
 Halle: The Department of Public Works! The potholes in this town are insane! #halle_angry
 -> main
+
 = driving_pass
 Vanya: We made it! #vanya_happy
 Kay: Barely. #kay_sarcastic
@@ -237,7 +231,7 @@ Halle: Oh shush, we were just fine. I am an excellent driver. #halle_sarcastic
 -> main
 
 = main
-Halle: So Vanya you're off to choose your beau? #halle_neutral
+Halle: So Vanya you're off to choose your boyfriend? #halle_neutral
 Vanya: I guess so? Ugh this is gonna suck no matter what huh. #vanya_sad
 Kay: It might? It might also go super well and you have two life-long friendships, both of whom you got to make out with at different times. #kay_sarcastic
 Kay: More likely yeah it gets awkward as fuck.
@@ -247,10 +241,13 @@ Halle: I'm in a mischief mood, yeah. #halle_happy
 Kay: Oh goody. #kay_sarcastic
 Halle: Hey everyone says I should learn how to drink BEFORE I go to college, so why not? #halle_sarcastic
 Halle: What are you going to do? 
-Kay: I uhh am just going to hang out. I dunno. I'm not feeling up to this. #kay_neutral
-Vanya: It'll be fun. #vanya_happy
+Kay: Uhh I'm just going to hang out. #kay_neutral
+Kay: I dunno. I'm not feeling up to this.
+Vanya: It'll be fun! #vanya_happy
 Kay: Maybe for you. #kay_neutral
-//Everyone splits off, player is controlling Kay?
+Vanya: Give it a shot? Just go in for a bit, see if you like it. #vanya_happy
+Kay: Alright, I'll go in for a few minutes. #kay_neutral
+//Everyone splits off, player is controlling Kay
 ->DONE
 
 /********** Act II, Scene 2 (UNITYSCENE 6) **********/
@@ -287,7 +284,6 @@ VAR beer_pong_cups = 0
 /********** Pong MiniGame (UNITYSCENE 7) **********/
 
 ===Beer_Poing_Result===
-//What is the result of the Beer Pong game? Can I get the variable of how many cups you knocked over, and depending on that get an IF statement for different funny outcomes?
 {
 	- beer_pong_cups == 10:
 		Halle: AYYYY we won! #halle_happy
@@ -394,7 +390,7 @@ Vanya: Hey! #vanya_happy
 Cam: Hey you! Thank goodness you showed up, I was maximum three minutes from quitting life. #cam_neutral
 Vanya: Oh no! Why? #vanya_sarcastic
 Cam: I know nOBODY at this party. This ain't exactly my crowd. #cam_neutral
-Cam: But it's really good to see your face - it's been a bit!
+Cam: But it's really good to see your face - it's been a while!
 Vanya: Yeah, sorry about that. Things have been busy at the Gas N' Go, or with the usual suspects. #vanya_neutral
 Cam: That's cool! It's summer, you wanna hang with your friends! #cam_neutral
 Vanya: Yeah. Hey, I've got something I wanna talk to you about. #vanya_neutral
@@ -432,7 +428,7 @@ Cam: What do you mean? #cam_neutral
 }
 - Vanya: Well either way I just wanted to ask if you'd want to become a bit more... serious. #vanya_neutral
 Cam: Serious? #cam_neutral
-Vanya: Yeah! Like I could come over to your place before midnight and maybe meet your parents and like we could see a movie some time? Proper date and everything? #vanya_happy
+Vanya: Yeah! Like I could come over to your place before midnight and maybe meet your parents and like we could see a movie some time? A real date and everything? #vanya_happy
 Cam: Uhh... sure! If that's what you want! Is that what... people do? #cam_neutral
 Vanya: I think so? #vanya_sarcastic
 Cam: How mainstream of you. #cam_neutral
@@ -448,12 +444,12 @@ Kay has a panic attack and decides to stay outside.
 
 ===II_iv_main===
 Kay: Fuck that. There's no way I can stay in there without freaking the fuck out. #kay_angry
-Devin: Hey Matthews, you fuck yourself up too quick? #none
-Kay: Fuck 155% OFF, Devin. #kay_angry
-Devin: Hey, don't freak out at me if you can't handle your shit, right? #none
-Matt: Hey McAllister, why don't you actually give fucking off 155% a shot? #matt_netural
-Devin: Woah boy, singer-songwriter Matt Fenster appears! #none
-Devin: Your sentence structure sucks, by the way - am I fucking off 155%, or am I giving fucking off 155% of "a shot", because either way-
+Drunk Party-Goer: Hey, you get fucked up too quick? Gotta learn how to drink, girl! #none
+Kay: Fuck 155% OFF. #kay_angry
+Drunk Party-Goer: Hey, don't freak out at me if you can't handle your shit, right? #none
+Matt: Hey, why don't you give fucking off 155% a shot? #matt_netural
+Drunk Party-Goer: Woah boy, singer-songwriter Matt Fenster appears! #none
+Drunk Party-Goer: Your sentence structure sucks, by the way - am I fucking off 155%, or am I giving fucking off 155% of "a shot", because either way-
 Kay: YOU KNOW WHAT I MEANT. #kay_angry
 Kay: GET
 Kay: OUT
@@ -461,15 +457,13 @@ Kay: OF
 Kay: MY
 Kay: FACE.
 ... #none
-Devin: Alright, fair enough. #none
-Devin: I apologize for any sleight, you don't appear to be drunk but instead very distraught. I want none of this.
-// Devin leaves, or turns around or some shit
-Matt: Uh. Well. I mean that worked really well. #matt_happy
-Kay: I've known Devin since we were like two years old, he isn't bad just dumb. #kay_angry
+Drunk Party-Goer: Alright, fair enough. #none
+Drunk Party-Goer: You don't appear to be drunk but instead very distraught. I want none of this.
+// Drunk Party-Goer leaves, or turns around or some shit
 -> Talk_to_matt
 
 =Talk_to_matt
-Matt: Hey, are you okay? You in fact seem "distraught". #matt_netural
+Matt: Hey, are you okay? You do seem "distraught". #matt_netural
 Kay: I, I just- yeah. Having a moment. Anxiety thing. It's a thing. It happens. #kay_sad
 Matt: You're having a panic attack? Do you want to chill out for a bit? #matt_netural
 Kay: Yeah, that'd be good. #kay_neutral
