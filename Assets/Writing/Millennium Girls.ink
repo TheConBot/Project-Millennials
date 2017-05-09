@@ -128,6 +128,8 @@ Halle: I'm with you. Let's get out of here. #halle_neutral
 Halle: Oh hey, Kay. Vanya was looking for you. You lose her on the way? #halle_neutral
 -> DONE
 
+/********** DRIVING MINIGAME 2 (UNITYSCENE 2) ********/
+
 /********** Act I, Scene 2 (UNITYSCENE 3) **********/
 // EXT. Empty Shopping Plaza Parking Lot - Early Evening
 
@@ -201,11 +203,13 @@ Halle: It'll be fine! You'll be fine. We just gotta get this {~shitbucket|shittr
 Kay: Can she hold, cap'n? #kay_sarcastic
 Halle: Guess we'll find out! #halle_sarcastic
 Vanya: Halle you're a really bad driver, don't blame the car. #vanya_neutral
-#scene: 2
+#scene: 3
 VAR driving_fail = false
 -> DONE
 
-/********** Act II, Scene 1 (UNITY SCENE 4) **********/
+/********** DRIVING MINIGAME 2 (UNITYSCENE 4) ********/
+
+/********** Act II, Scene 1 (UNITYSCENE 5) **********/
 // EXT. Kelly Fleming's House - Front Lawn - Night
 ===II_i_main===
 ~ loadScene = true
@@ -249,7 +253,7 @@ Kay: Maybe for you. #kay_neutral
 //Everyone splits off, player is controlling Kay?
 ->DONE
 
-/********** Act II, Scene 2 (UNITYSCENE 5) **********/
+/********** Act II, Scene 2 (UNITYSCENE 6) **********/
 /* 
 INT. Kelly Fleming's House - Night
 Halle is now inside and can talk with people, including Kelly
@@ -260,7 +264,7 @@ Kelly: Hey, Halle. #kelly_neutral
 Kelly: I uhh, don't remember inviting you?
 Kelly: I mean you're welcome to hang out, I just didn't think this was your scene.
 Halle: It usually isn't, but I heard about it through the grape-vine and couldn't resist. Not a hell of a lot happening this summer. #halle_sarcastic
-Kelly: You doing anything cool? #kelly_neutral
+Kelly: You doing anything cool this summer? #kelly_neutral
 Halle: No. #halle_neutral
 ... #none
 Kelly: Yeah. Umm, listen. Just- just don't start anything alright? I'm just trying to have a cool party. #kelly_neutral
@@ -277,10 +281,10 @@ Kelly: I'm not going to say no, but I want you to know I am apprehensive about t
 Halle: And that's why no one likes you anymore. #halle_sarcastic
 Kelly: Real nice, Halle. #kelly_neutral
 VAR beer_pong_cups = 0
-- #scene: 5
+- #scene: 6
 -> DONE
 
-/********** Pong MiniGame (UNITYSCENE 6) **********/
+/********** Pong MiniGame (UNITYSCENE 7) **********/
 
 ===Beer_Poing_Result===
 //What is the result of the Beer Pong game? Can I get the variable of how many cups you knocked over, and depending on that get an IF statement for different funny outcomes?
@@ -305,10 +309,10 @@ Kelly: If you hate us so much, why the hell do you feel you've got to show up an
 ... #none
 Kelly: Seriously, this is like your THING. #kelly_angry
 Halle: Why yes, yes it is. Let's play another round. #halle_sarcastic
-#scene: 6
+#scene: 7
 -> DONE
 
-/********** Act II, Scene 3 (UNITYSCENE 7) **********/
+/********** Act II, Scene 3 (UNITYSCENE 8) **********/
 /*
 INT. Kelly's Garage
 Vanya chooses her boyfriend
@@ -373,7 +377,7 @@ Cody: and figure out I'm gonna get a job wearing a suit or some shit like that. 
 ... #none
 Vanya: That was really hot. #vanya_special
 Cody: Thanks man! I'm trying. My head hurts. #cody_neutral
-#scene: 7
+#scene: 8
 -> DONE
 
 ===II_iii_Vanya_to_Cam===
@@ -433,13 +437,13 @@ Cam: Uhh... sure! If that's what you want! Is that what... people do? #cam_neutr
 Vanya: I think so? #vanya_sarcastic
 Cam: How mainstream of you. #cam_neutral
 Vanya: Shut up. #vanya_sarcastic
-#scene: 7
+#scene: 8
 -> DONE
 
 /********** Act III, Scene 1 (UNITYSCENE 9) **********/
 /*
 EXT. Kelly Fleming's House - Night
-Kay has a freak out and decides to stay outside.
+Kay has a panic attack and decides to stay outside.
 */
 
 ===II_iv_main===
@@ -707,5 +711,5 @@ Halle: I'm going home. #halle_neutral
 		Halle: Shit. #halle_angry
 }
 Vanya: Yeah, you probably shouldn't be in control of anything right now. #vanya_sad
-#none #loadscene: [the end]
+TODO: Write the load scene tag to end the game!!
 -> DONE
