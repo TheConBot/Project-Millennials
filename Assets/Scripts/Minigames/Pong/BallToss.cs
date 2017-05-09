@@ -41,6 +41,8 @@ public class BallToss : MonoBehaviour
     public Text triesRemainingText;
     public Text cupsRemainingText;
 
+    private bool fireOnce;
+
     private void Awake()
     {
         Initialize();
@@ -48,6 +50,10 @@ public class BallToss : MonoBehaviour
 
     private void Update()
     {
+        if(!fireOnce && !UI.Instance.isMainMenuActive)
+        {
+            StartGame();
+        }
         if (playGame)
         {
             if (triesRemaining > 0 && cupsRemaining > 0)
@@ -119,7 +125,12 @@ public class BallToss : MonoBehaviour
         cameraOrigonalZoom = Camera.main.fieldOfView;
         triesRemainingText.text = TRIES_TEXT + triesRemaining;
         cupsRemainingText.text = CUPS_TEXT + cupsRemaining;
+    }
+
+    private void StartGame()
+    {
         playGame = true;
+        fireOnce = true;
     }
 
     private void EndGame()

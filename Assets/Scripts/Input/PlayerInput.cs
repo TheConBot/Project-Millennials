@@ -24,60 +24,63 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!UI.Instance.isMainMenuActive)
         {
-            //Conversation Input
-            if (UI.Instance.inConversation)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (UI.Instance.choicesAvailable)
+                //Conversation Input
+                if (UI.Instance.inConversation)
                 {
-                    UI.Instance.GenerateChoices();
-                }
-                else
-                {
-                    UI.Instance.UpdateText();
-                }
-            }
-            //Player Movement Input
-            else
-            {
-                RaycastHit hit;
-                NavMeshPath path = new NavMeshPath();
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100000) && (agent.CalculatePath(hit.point, path) || hit.transform.GetComponent<TriggerVolume>() != null))
-                {
-                    agent.destination = hit.point;
-                    if (hit.transform.GetComponent<TriggerVolume>() != null)
+                    if (UI.Instance.choicesAvailable)
                     {
-                        pointerSprite.color = Color.red;
-                        pointer.transform.position = new Vector3(hit.collider.bounds.center.x, hit.collider.bounds.max.y, hit.collider.bounds.center.z);
-                        lastClickedTrigger = hit.transform.GetComponent<TriggerVolume>();
+                        UI.Instance.GenerateChoices();
                     }
                     else
                     {
-                        pointerSprite.color = Color.white;
-                        pointer.transform.position = hit.point;
+                        UI.Instance.UpdateText();
                     }
                 }
+                //Player Movement Input
                 else
                 {
-                    if(hit.transform == null)
+                    RaycastHit hit;
+                    NavMeshPath path = new NavMeshPath();
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100000) && (agent.CalculatePath(hit.point, path) || hit.transform.GetComponent<TriggerVolume>() != null))
                     {
-                        Debug.LogWarning("Could not walk to selected destinaion. Nothing was hit.");
+                        agent.destination = hit.point;
+                        if (hit.transform.GetComponent<TriggerVolume>() != null)
+                        {
+                            pointerSprite.color = Color.red;
+                            pointer.transform.position = new Vector3(hit.collider.bounds.center.x, hit.collider.bounds.max.y, hit.collider.bounds.center.z);
+                            lastClickedTrigger = hit.transform.GetComponent<TriggerVolume>();
+                        }
+                        else
+                        {
+                            pointerSprite.color = Color.white;
+                            pointer.transform.position = hit.point;
+                        }
                     }
                     else
                     {
-                        Debug.LogWarning("Could not walk to selected destinaion. Object Hit: " + hit.transform.name);
-                    }
-                    
-                }
-            }
+                        if (hit.transform == null)
+                        {
+                            Debug.LogWarning("Could not walk to selected destinaion. Nothing was hit.");
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Could not walk to selected destinaion. Object Hit: " + hit.transform.name);
+                        }
 
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            float yAxis = cameraPivot.transform.eulerAngles.y * cameraSwivelSpeed;
-            yAxis += -Input.GetAxis("Mouse X");
-            cameraPivot.transform.rotation = Quaternion.Euler(cameraPivot.transform.eulerAngles.x, yAxis, cameraPivot.transform.eulerAngles.z);
+                    }
+                }
+
+            }
+            else if (Input.GetMouseButton(1))
+            {
+                float yAxis = cameraPivot.transform.eulerAngles.y * cameraSwivelSpeed;
+                yAxis += -Input.GetAxis("Mouse X");
+                cameraPivot.transform.rotation = Quaternion.Euler(cameraPivot.transform.eulerAngles.x, yAxis, cameraPivot.transform.eulerAngles.z);
+            }
         }
         pointerSprite.enabled = (agent.velocity.magnitude != 0);
 

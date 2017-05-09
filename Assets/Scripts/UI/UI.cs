@@ -32,6 +32,11 @@ public class UI : MonoBehaviour
     private Image characterImage, decorationSquare, continueImage;
     [SerializeField]
     private Sprite[] expressionSprites;
+    public CanvasGroup mainMenuCanvasGroup;
+    public GameObject mainMenuMainPanel;
+    public GameObject mainMenuScenesPanel;
+    public GameObject mainMenuCreditsPanel;
+
     [Header("UI Variables"), SerializeField]
     private float fadeSpeed = 1;
     [SerializeField]
@@ -43,6 +48,7 @@ public class UI : MonoBehaviour
     private Color halleColor, kayColor, vanyaColor;
     private CanvasGroup conversationCanvasGroup;
     private CanvasGroup fadeToBlackCanvasGroup;
+    private bool loadingScene;
 
     public bool inConversation
     {
@@ -62,6 +68,14 @@ public class UI : MonoBehaviour
     private bool isWritingText;
     private readonly char[] delimiterChars = { ':' };
 
+    public bool isMainMenuActive
+    {
+        get
+        {
+            return (mainMenuCanvasGroup.alpha != 0);
+        }
+    }
+
     private void Awake()
     {
         //Singleton
@@ -78,6 +92,20 @@ public class UI : MonoBehaviour
         //Everything else
         InitializeInk();
         InitializeUI();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !loadingScene && !isMainMenuActive)
+        {
+            TitleScreen();
+        }
+    }
+
+    private void TitleScreen()
+    {
+        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
+        StartCoroutine(FadeCanvasGroup(FadeType.In, mainMenuCanvasGroup));
     }
 
     public void UpdateText()
@@ -156,6 +184,7 @@ public class UI : MonoBehaviour
 
     private IEnumerator LoadScene(int sceneIndex)
     {
+        loadingScene = true;
         EndConversation();
         StartCoroutine(FadeCanvasGroup(FadeType.In, fadeToBlackCanvasGroup));
         while (fadeToBlackCanvasGroup.alpha != 1)
@@ -172,6 +201,7 @@ public class UI : MonoBehaviour
         Time.timeScale = 1;
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(FadeCanvasGroup(FadeType.Out, fadeToBlackCanvasGroup));
+        loadingScene = false;
         yield return null;
     }
 
@@ -299,5 +329,45 @@ public class UI : MonoBehaviour
         Debug.Log("Choice Picked: " + story.currentChoices[i].text);
         story.ChooseChoiceIndex(i);
         UpdateText();
+    }
+
+    public void MainMenuSceneSelect(int sceneIndex)
+    {
+        if (loadingScene)
+        {
+            return;
+        }
+        StartCoroutine(LoadScene(sceneIndex));
+    }
+
+    public void OpenMainMenu()
+    {
+        mainMenuCreditsPanel.SetActive(false);
+        mainMenuScenesPanel.SetActive(false);
+        mainMenuMainPanel.SetActive(true);
+    }
+
+    public void OpenScenes()
+    {
+        mainMenuCreditsPanel.SetActive(false);
+        mainMenuMainPanel.SetActive(false);
+        mainMenuScenesPanel.SetActive(true);
+    }
+
+    public void OpenCredits()
+    {
+        mainMenuMainPanel.SetActive(false);
+        mainMenuScenesPanel.SetActive(false);
+        mainMenuCreditsPanel.SetActive(true);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void StartScene()
+    {
+        StartCoroutine(FadeCanvasGroup(FadeType.Out, mainMenuCanvasGroup));
     }
 }
